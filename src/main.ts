@@ -24,7 +24,7 @@ function flipCard(this: HTMLElement): void {
 
 // Printa kortleken
 let cardString = '';
-myShuffledCardDeck.forEach((card) => {
+myShuffledCardDeck.forEach((card: string) => {
   cardString += `
     <button class="card">
       <span class="front">♠</span>
