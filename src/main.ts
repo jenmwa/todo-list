@@ -1,5 +1,9 @@
 import './style/style.scss';
 
+// Todays Date
+const todaysDate = new Date();
+document.querySelector('#todaysDate')!.innerHTML = todaysDate.toLocaleDateString();
+
 // All kod härifrån och ner är bara ett exempel för att komma igång
 
 // // I denna utils-fil har vi lagrat funktioner som ofta används, t.ex. en "blanda array"-funktion
