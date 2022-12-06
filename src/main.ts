@@ -9,17 +9,10 @@ const tasks = document.querySelector('#tasks');
 const todaysDate = new Date();
 document.querySelector('#todaysDate')!.innerHTML = todaysDate.toLocaleDateString();
 
-/**
- * Btn to add task from input value
- */
-// eslint-disable-next-line @typescript-eslint/no-use-before-define
-addTaskBtn?.addEventListener('click', addNewTask);
-
 // testing testing
 function printTaskList() {
   tasks!.innerHTML = '';
   for (let i = 0; i < taskList.length; i++) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const task: string = taskList[i];
     const taskNode = document.createElement('li');
     const taskTextnode = document.createTextNode(task);
@@ -33,6 +26,9 @@ function addNewTask() {
   console.log(taskList);
   printTaskList();
 }
+
+// Eventlisteners
+addTaskBtn?.addEventListener('click', addNewTask);
 
 // All kod härifrån och ner är bara ett exempel för att komma igång
 
