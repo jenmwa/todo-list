@@ -4,11 +4,33 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/ico" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projekt</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <title>Projekt todo-lista</title>
   </head>
   <body>
     <main>
-      <div class="app" id="app"></div> <!-- TODO: går bra att radera -->
+      <section class="app" id="app">
+        <h1>Jennys toDO-lista</h1>
+        <p>dagens datum //fixa med JS</p>
+        <label>
+          <input type="text" placeholder="skriv en toDO">
+        </label>
+        <label>
+          deadline datum<br>
+          <input type="date" placeholder="deadline datum">
+        </label>
+        <div class="categorybtn">
+          kategori:<br>
+          <span>📚</span><span>🛒</span><span>👪</span>
+        </div>
+        <button>Lägg till på lista</button>
+      </section>
+
+    
       <!-- TODO: skriv din kod här, innan script-taggen -->
     </main>
 
