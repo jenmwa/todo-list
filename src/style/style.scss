@@ -9,11 +9,19 @@
 
 @media screen and (min-width: 1366px) {
   @import "desktop";
-}
+};
+
+$primaryColorDark: #2f2504;
+$secondaryColorDark: #594e36;
+$primaryColorLight: #d0ddd7;
+$secondaryColorLight: #a5ae9e;
+$primaryAccentColor: #716C84;
+$baseColor: #7e846b;
+
 
 :root {
   font-family: Philosopher, sans-serif;
-  color: #192A2A;
+  color: $primaryColorDark;
   font-size: rem(16px);
   background-color: whitesmoke;
   box-sizing: border-box;
