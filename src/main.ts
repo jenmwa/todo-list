@@ -1,7 +1,7 @@
 import './style/style.scss';
 
 const taskList: string[] = [];
-const newTaskInputField = document.querySelector('#newTaskInput');
+const newTaskInputField = <HTMLInputElement>document.querySelector('#newTaskInput');
 const addTaskBtn = document.querySelector('#addTaskBtn');
 const tasks = document.querySelector('#tasks');
 
