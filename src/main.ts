@@ -2,22 +2,23 @@ import './style/style.scss';
 
 const taskList: string[] = [];
 const newTaskInputField = <HTMLInputElement>document.querySelector('#newTaskInput');
-const addTaskBtn = document.querySelector('#addTaskBtn');
-const tasks = document.querySelector('#tasks');
+const addTaskBtn = <HTMLInputElement>document.querySelector('#addTaskBtn');
+const tasks = <HTMLInputElement>document.querySelector('#tasks');
 
 // Todays Date
 const todaysDate = new Date();
-document.querySelector('#todaysDate')!.innerHTML = todaysDate.toLocaleDateString();
+const dateField = <HTMLInputElement>document.querySelector('#todaysDate');
+dateField.innerHTML = todaysDate.toLocaleDateString();
 
 // testing testing
 function printTaskList() {
-  tasks!.innerHTML = '';
+  tasks.innerHTML = '';
   for (let i = 0; i < taskList.length; i++) {
     const task: string = taskList[i];
     const taskNode = document.createElement('li');
     const taskTextnode = document.createTextNode(task);
     taskNode.appendChild(taskTextnode);
-    tasks?.appendChild(taskNode);
+    tasks.appendChild(taskNode);
   }
 }
 
