@@ -1,5 +1,6 @@
 import './style/style.scss';
 
+// Variables
 const taskList: string[] = [];
 const newTaskInputField = <HTMLInputElement>document.querySelector('#newTaskInput');
 const addTaskBtn = <HTMLButtonElement>document.querySelector('#addTaskBtn');
@@ -12,16 +13,18 @@ dateField.innerHTML = todaysDate.toLocaleDateString();
 
 // testing testing
 function printTaskList() {
-  tasks.innerHTML = '';
-  for (let i = 0; i < taskList.length; i++) {
-    const task: string = taskList[i];
-    const taskNode = document.createElement('li');
-    const taskTextnode = document.createTextNode(task);
-    taskNode.appendChild(taskTextnode);
-    tasks.appendChild(taskNode);
-  }
+  tasks.innerHTML += `
+  <li>${newTaskInputField.value}<button class="material-symbols-outlined">
+  close
+  </button></li>`;
+  // for (let i = 0; i < taskList.length; i++) {
+  //   const task: string = taskList[i];
+  //   const taskNode = document.createElement('li');
+  //   const taskTextnode = document.createTextNode(task);
+  //   taskNode.appendChild(taskTextnode);
+  //   tasks.appendChild(taskNode);
+  // }
 }
-
 function addNewTask(): void {
   if (newTaskInputField.value.length === 0) {
     return;

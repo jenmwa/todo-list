@@ -17,19 +17,6 @@ input {
     margin-bottom: 1rem;
 }
 
-button {
-    width: 200px;
-    border-radius: 8px;
-    padding: 8px 12px;
-
-    &:hover {
-        background-color: #7e846b;
-        color: whitesmoke;
-        cursor: pointer;
-        box-shadow: 2px 2px 5px #2f2504;                     
-    }
-}
-
 li {
     list-style: none;
     background-color: #d0ddd7;
@@ -75,24 +62,35 @@ li {
         .categories {
             display: inline-block;
             font-size: 2rem;
-
-            span {
-                background-color: whitesmoke;
-                padding: 10px;
-                border: 2px solid #2f2504;
-                border-radius: 8px;
-
-                &:hover {
-                    background-color: #7e846b;
-                    color: whitesmoke;
-                    cursor: pointer;
-                    box-shadow: 2px 2px 5px #2f2504;                     
-                }
-            }
         }
     }
 }
 
+.addtaskbtn {
+    width: 200px;
+    border-radius: 8px;
+    padding: 8px 12px;
 
+    &:hover {
+        background-color: #7e846b;
+        color: whitesmoke;
+        cursor: pointer;
+        box-shadow: 2px 2px 5px #2f2504;                     
+    }
+}
+
+.material-symbols-outlined {
+    background-color: whitesmoke;
+    padding: 10px;
+    border: 2px solid #2f2504;
+    border-radius: 8px;
+
+    &:hover {
+        background-color: #7e846b;
+        color: whitesmoke;
+        cursor: pointer;
+        box-shadow: 2px 2px 5px #2f2504;                     
+    }
+}
  
 
