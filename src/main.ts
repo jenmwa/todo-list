@@ -2,12 +2,12 @@ import './style/style.scss';
 
 const taskList: string[] = [];
 const newTaskInputField = <HTMLInputElement>document.querySelector('#newTaskInput');
-const addTaskBtn = <HTMLInputElement>document.querySelector('#addTaskBtn');
-const tasks = <HTMLInputElement>document.querySelector('#tasks');
+const addTaskBtn = <HTMLButtonElement>document.querySelector('#addTaskBtn');
+const tasks = <HTMLElement>document.querySelector('#tasks');
 
 // Todays Date
 const todaysDate = new Date();
-const dateField = <HTMLInputElement>document.querySelector('#todaysDate');
+const dateField = <HTMLDivElement>document.querySelector('#todaysDate');
 dateField.innerHTML = todaysDate.toLocaleDateString();
 
 // testing testing
