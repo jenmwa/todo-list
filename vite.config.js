@@ -6,7 +6,7 @@ då ska "base" här nedan vara "/fed22d-js-grundkurs-jenni-wumpus/"
  */
 
 export default defineConfig({
-  base: '/fed22d-js-grundkurs-2-todo-jenmwa.git', 
+  base: '/fed22d-js-grundkurs-2-todo-jenmwa', 
   define: {
     'process.env': {},
   },
