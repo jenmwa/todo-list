@@ -7,7 +7,7 @@ h1 {
     color: whitesmoke;
     text-align: center;
     font-size: 3.5rem;
-    text-shadow: 5px 5px 10px black;
+    text-shadow: 5px 5px 5px black;
 }
 
 input {
@@ -25,7 +25,8 @@ button {
     &:hover {
         background-color: #7e846b;
         color: whitesmoke;
-        cursor: pointer; 
+        cursor: pointer;
+        box-shadow: 2px 2px 5px #2f2504;                     
     }
 }
 
@@ -37,7 +38,7 @@ li {
     width: 500px;
     margin: 10px 0 0 -40px;
     font-size: 1.2rem;
-    box-shadow: 5px 5px 10px black;
+    box-shadow: 5px 5px 5px black;
 }
 
 .todocontainer {
@@ -52,7 +53,7 @@ li {
     width: 500px;
     margin: 0 auto;
     font-size: 1.2rem;
-    box-shadow: 5px 5px 10px black;
+    box-shadow: 5px 5px 5px black;
 
     .date {
         font-size: 1.5rem;
@@ -84,7 +85,8 @@ li {
                 &:hover {
                     background-color: #7e846b;
                     color: whitesmoke;
-                    cursor: pointer;                     
+                    cursor: pointer;
+                    box-shadow: 2px 2px 5px #2f2504;                     
                 }
             }
         }

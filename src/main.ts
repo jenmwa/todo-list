@@ -23,9 +23,14 @@ function printTaskList() {
 }
 
 function addNewTask(): void {
-  taskList.push(newTaskInputField.value);
-  console.log(taskList);
-  printTaskList();
+  if (newTaskInputField.value.length === 0) {
+    return;
+  }
+  if (taskList.indexOf(newTaskInputField.value) === -1) {
+    taskList.push(newTaskInputField.value);
+    console.log(taskList);
+    printTaskList();
+  }
 }
 
 // Eventlisteners

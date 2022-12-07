@@ -4,3 +4,9 @@ att göra kod:
                                             - kategori 
 
     OM input är tomt = lägg ej till task
+
+
+    SAKER JAG VILL HA MED:
+        * animation
+        * byta bakgrund beroende på årstid?
+        
