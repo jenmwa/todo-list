@@ -22,7 +22,7 @@ function printTaskList() {
   }
 }
 
-function addNewTask() {
+function addNewTask(): void {
   taskList.push(newTaskInputField.value);
   console.log(taskList);
   printTaskList();
