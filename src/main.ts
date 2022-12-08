@@ -2,10 +2,11 @@ import './style/style.scss';
 
 // Variables
 const taskList: string[] = [];
-const newTaskInputField = <HTMLInputElement>document.querySelector('#newTaskInput');
-const deadlineInputField = <HTMLInputElement>document.querySelector('#deadlineInput');
-const addTaskBtn = <HTMLButtonElement>document.querySelector('#addTaskBtn');
-const tasks = <HTMLElement>document.querySelector('#tasks');
+const newTaskInputField = <HTMLInputElement>document.querySelector('#newTaskInput'); // task inputfield
+const deadlineInputField = <HTMLInputElement>document.querySelector('#deadlineInput'); // deadline inputfield
+const addTaskBtn = <HTMLButtonElement>document.querySelector('#addTaskBtn'); // addBtn
+const tasks = <HTMLLIElement>document.querySelector('.tasks'); // the <ul> element
+// const removeBtn = <HTMLButtonElement>document.querySelector('#removeBtn');
 
 // Todays Date
 const todaysDate = new Date();
@@ -26,41 +27,73 @@ const userTask: { task: string, date: string, deadline: string, category: string
 localStorage.setItem('userTask', JSON.stringify(userTask));
 
 console.log(JSON.parse(localStorage.getItem('userTask') || '{}'));
-localStorage.clear();
 
 // testing testing
+
 function printTaskList(): void {
-  tasks.innerHTML += `
-  <li><input type="checkbox" class="checkbox">
-  ${newTaskInputField.value}<br>
-  ${userTask.date} -
-  ${deadlineInputField.value} -
-  ${userTask.category}
-  <button class="material-symbols-outlined">
-  close
-  </button></li>`;
+  tasks.innerHTML = '';
+  for (let i = 0; i < taskList.length; i++) {
+    tasks.innerHTML += `
+    <li><input type="checkbox" class="checkbox" data-id="${i}">
+    ${taskList[i]}<br>
+    <button class="material-symbols-outlined" data-name="${taskList[i]}" id="removeBtn">
+    close
+    </button></li>
+    </li>`;
+  }
+
+  // const taskName = taskList[i];
+  // const taskNode = document.createElement('li');
+  // const taskTextNode = document.createTextNode(taskName);
+  // taskNode.appendChild(taskTextNode);
+  // tasks.appendChild(taskNode);
+
+  // tasks.innerHTML = '';
   // for (let i = 0; i < taskList.length; i++) {
-  //   const task: string = taskList[i];
-  //   const taskNode = document.createElement('li');
-  //   const taskTextnode = document.createTextNode(task);
-  //   taskNode.appendChild(taskTextnode);
-  //   tasks.appendChild(taskNode);
+  //   tasks.innerHTML += `
+  //   <li><input type="checkbox" class="checkbox">
+  //   ${newTaskInputField.value}<br>
+  //   ${dateField.innerHTML} -
+  //   ${deadlineInputField.value} -
+  //   <button class="material-symbols-outlined" data-id="${i}" id="removeBtn">
+  //   close
+  //   </button></li>`;
   // }
+  // console.log(taskList);
 }
+
 function addNewTask(): void {
   if (newTaskInputField.value.length === 0) {
     return;
   }
   if (taskList.indexOf(newTaskInputField.value) === -1) {
     taskList.push(newTaskInputField.value);
-    taskList.push(deadlineInputField.value);
-    console.log(taskList);
     printTaskList();
+    newTaskInputField.value = '';
+    deadlineInputField.value = '';
   }
+
+  function removeItem(e: Event) {
+    // console.log(e.target.dataset.name);
+    // const index = taskList.indexOf((e.currentTarget as HTMLButtonElement).id);
+    // console.log((e.target as HTMLButtonElement).id);
+    const index = taskList.indexOf(e.target.dataset.name);
+    if (index > -1) {
+      taskList.splice(index, 1);
+      printTaskList();
+    }
+  }
+
+  const taskItems = Array.from(document.querySelectorAll('li #removeBtn'));
+  console.log(taskItems);
+  taskItems.forEach((item) => {
+    item.addEventListener('click', removeItem);
+  });
 }
 
 // Eventlisteners
-addTaskBtn?.addEventListener('click', addNewTask);
+addTaskBtn.addEventListener('click', addNewTask);
+// removeBtn.addEventListener('click', removeItem);
 
 // All kod härifrån och ner är bara ett exempel för att komma igång
 
