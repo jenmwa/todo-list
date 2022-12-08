@@ -15,6 +15,7 @@ input {
     border-radius: 8px;
     padding: 8px 12px;
     margin-bottom: 1rem;
+    border: 2px solid black;
 }
 
 li {
@@ -22,7 +23,7 @@ li {
     background-color: #d0ddd7;
     border-radius: 12px;
     padding: 2rem;
-    width: 500px;
+    width: 400px;
     margin: 10px 0 0 -40px;
     font-size: 1.2rem;
     box-shadow: 5px 5px 5px black;
@@ -37,7 +38,7 @@ li {
     background-color: #d0ddd7;
     border-radius: 12px;
     padding: 2rem;
-    width: 500px;
+    width: 400px;
     margin: 0 auto;
     font-size: 1.2rem;
     box-shadow: 5px 5px 5px black;
@@ -50,6 +51,7 @@ li {
 
     .deadline {
         width: 200px;
+        margin-bottom: 10px;
     }
 
     .wrapper {
@@ -70,10 +72,13 @@ li {
     width: 200px;
     border-radius: 8px;
     padding: 8px 12px;
+    background-color: #7e846b;
+    color: whitesmoke;
+    border: 2px solid black;
 
     &:hover {
-        background-color: #7e846b;
-        color: whitesmoke;
+        background-color: whitesmoke;
+        color: #2f2504;
         cursor: pointer;
         box-shadow: 2px 2px 5px #2f2504;                     
     }
@@ -84,6 +89,8 @@ li {
     padding: 10px;
     border: 2px solid #2f2504;
     border-radius: 8px;
+    margin-bottom: 10px;
+
 
     &:hover {
         background-color: #7e846b;

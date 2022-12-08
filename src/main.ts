@@ -11,8 +11,22 @@ const todaysDate = new Date();
 const dateField = <HTMLDivElement>document.querySelector('#todaysDate');
 dateField.innerHTML = todaysDate.toLocaleDateString();
 
+// localStorage.setItem('date', dateField.innerHTML);
+// console.log(localStorage.getItem('date'));
+
+const userTask: { task: string, date: string, deadline: string, category: string } = {
+  task: 'att göra',
+  date: 'dagens datum',
+  deadline: 'deadline',
+  category: 'kategori',
+};
+
+localStorage.setItem('userTask', JSON.stringify(userTask));
+
+console.log(JSON.parse(localStorage.getItem('userTask') || '{}'));
+
 // testing testing
-function printTaskList() {
+function printTaskList(): void {
   tasks.innerHTML += `
   <li>${newTaskInputField.value}<button class="material-symbols-outlined">
   close
