@@ -3,6 +3,7 @@ import './style/style.scss';
 // Variables
 const taskList: string[] = [];
 const newTaskInputField = <HTMLInputElement>document.querySelector('#newTaskInput');
+const deadlineInputField = <HTMLInputElement>document.querySelector('#deadlineInput');
 const addTaskBtn = <HTMLButtonElement>document.querySelector('#addTaskBtn');
 const tasks = <HTMLElement>document.querySelector('#tasks');
 
@@ -14,10 +15,11 @@ dateField.innerHTML = todaysDate.toLocaleDateString();
 // localStorage.setItem('date', dateField.innerHTML);
 // console.log(localStorage.getItem('date'));
 
+// Task Object info
 const userTask: { task: string, date: string, deadline: string, category: string } = {
   task: newTaskInputField.value,
   date: dateField.innerHTML,
-  deadline: 'deadline',
+  deadline: deadlineInputField.value,
   category: 'kategori',
 };
 
@@ -30,9 +32,9 @@ localStorage.clear();
 function printTaskList(): void {
   tasks.innerHTML += `
   <li><input type="checkbox" class="checkbox">
-  ${newTaskInputField.value} -
+  ${newTaskInputField.value}<br>
   ${userTask.date} -
-  ${userTask.deadline} -
+  ${deadlineInputField.value} -
   ${userTask.category}
   <button class="material-symbols-outlined">
   close
@@ -51,6 +53,7 @@ function addNewTask(): void {
   }
   if (taskList.indexOf(newTaskInputField.value) === -1) {
     taskList.push(newTaskInputField.value);
+    taskList.push(deadlineInputField.value);
     console.log(taskList);
     printTaskList();
   }
