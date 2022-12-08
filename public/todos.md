@@ -2,6 +2,8 @@ att göra kod:
 
     * lägg allt i en centrerad container så designen håller sig enhållig.
 
+    * GÖR KNAPPAR av kategorier - så de funkar med keyboard - alt annan lösning
+
     * nollställ inputField efter tillagd task
 
     * ta bort klick

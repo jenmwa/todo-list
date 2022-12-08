@@ -19,13 +19,15 @@ input {
 }
 
 li {
+    display: flex;
+    justify-content: space-between;
     list-style: none;
     background-color: #d0ddd7;
     border-radius: 12px;
-    padding: 2rem;
+    padding: 1rem;
     width: 400px;
     margin: 10px 0 0 -40px;
-    font-size: 1.2rem;
+    font-size: 1rem;
     box-shadow: 5px 5px 5px black;
 }
 
@@ -66,6 +68,15 @@ li {
             font-size: 2rem;
         }
     }
+}
+
+.checkbox {
+    background-color: whitesmoke;
+    padding: 10px;
+    border: 2px solid #2f2504;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    width: 25px;
 }
 
 .addtaskbtn {

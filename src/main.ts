@@ -15,8 +15,8 @@ dateField.innerHTML = todaysDate.toLocaleDateString();
 // console.log(localStorage.getItem('date'));
 
 const userTask: { task: string, date: string, deadline: string, category: string } = {
-  task: 'att göra',
-  date: 'dagens datum',
+  task: newTaskInputField.value,
+  date: dateField.innerHTML,
   deadline: 'deadline',
   category: 'kategori',
 };
@@ -24,11 +24,17 @@ const userTask: { task: string, date: string, deadline: string, category: string
 localStorage.setItem('userTask', JSON.stringify(userTask));
 
 console.log(JSON.parse(localStorage.getItem('userTask') || '{}'));
+localStorage.clear();
 
 // testing testing
 function printTaskList(): void {
   tasks.innerHTML += `
-  <li>${newTaskInputField.value}<button class="material-symbols-outlined">
+  <li><input type="checkbox" class="checkbox">
+  ${newTaskInputField.value} -
+  ${userTask.date} -
+  ${userTask.deadline} -
+  ${userTask.category}
+  <button class="material-symbols-outlined">
   close
   </button></li>`;
   // for (let i = 0; i < taskList.length; i++) {
