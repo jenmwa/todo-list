@@ -29,6 +29,11 @@ Strikeout the todo item if it is completed.
 Delete the todo item.
 Then always save the todo items permanently on LocalStorage.
 
+//
+LÄNKTIPS:
+Typescript och localStorage.
+https://www.youtube.com/watch?v=jBmrduvKl5w
+
 
     *SAKER JAG VILL HA MED:
         * animation
