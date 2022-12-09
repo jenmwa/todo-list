@@ -3,19 +3,20 @@ body {
     padding: 1rem;
 }
 
-h1 {
-    color: whitesmoke;
-    text-align: center;
-    font-size: 3rem;
-    text-shadow: 5px 5px 5px black;
-}
-
 input {
     width: 100%;
     border-radius: 8px;
     padding: 8px 12px;
     margin-bottom: 1rem;
     border: 2px solid black;
+}
+
+h1 {
+    color: whitesmoke;
+    text-align: center;
+    font-size: 2rem;
+    text-shadow: 5px 5px 5px black;
+    margin-bottom: 1rem;
 }
 
 li {
@@ -39,14 +40,14 @@ li {
 .app {
     background-color: #d0ddd7;
     border-radius: 12px;
-    padding: 2rem;
+    padding: 1rem 2rem 2rem;
     width: 400px;
     margin: 0 auto;
     font-size: 1.2rem;
     box-shadow: 5px 5px 5px black;
 
     .date {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         font-weight: 700;
         margin-bottom: 1rem;
     }
@@ -78,13 +79,15 @@ li {
     width: 25px;
 }
 
-.addtaskbtn {
+.submit {
     width: 200px;
     border-radius: 8px;
     padding: 8px 12px;
     background-color: #7e846b;
     color: whitesmoke;
     border: 2px solid black;
+    position: absolute;
+    margin-top: -60px;
 
     &:hover {
         background-color: whitesmoke;
@@ -110,5 +113,8 @@ li {
         box-shadow: 2px 2px 5px #2f2504;                     
     }
 }
- 
+
+.checked { 
+    text-decoration: line-through;
+  }
 
