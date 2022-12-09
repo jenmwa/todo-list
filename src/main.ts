@@ -1,11 +1,11 @@
 import './style/style.scss';
 
 // Variables
-const taskList: string[] = [];
+// const taskList: string[] = [];
 const newTaskInputField = <HTMLInputElement>document.querySelector('#newTaskInput'); // task inputfield
-const deadlineInputField = <HTMLInputElement>document.querySelector('#deadlineInput'); // deadline inputfield
+// const deadlineInputField = <HTMLInputElement>document.querySelector('#deadlineInput'); // deadline inputfield
 const addTaskBtn = <HTMLButtonElement>document.querySelector('#addTaskBtn'); // addBtn
-const tasks = <HTMLLIElement>document.querySelector('.tasks'); // the <ul> element
+const tasks = <HTMLUListElement>document.querySelector('.tasks'); // the <ul> element
 // const removeBtn = <HTMLButtonElement>document.querySelector('#removeBtn');
 
 // Todays Date
@@ -16,83 +16,139 @@ dateField.innerHTML = todaysDate.toLocaleDateString();
 // localStorage.setItem('date', dateField.innerHTML);
 // console.log(localStorage.getItem('date'));
 
+function loadTasks(): Task[] {
+  const taskJSON = localStorage.getItem('TASKS');
+  if (taskJSON == null) {
+    return [];
+  }
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+  return JSON.parse(taskJSON);
+}
+
+const taskStorage: Task[] = loadTasks();
+
+function saveTasks() {
+  localStorage.setItem('TASKS', JSON.stringify(taskStorage));
+}
+
+function addNewTask(task: Task) {
+  const item = document.createElement('li');
+  const label = document.createElement('label');
+  const checkbox = document.createElement('input');
+  checkbox.addEventListener('change', () => {
+    // eslint-disable-next-line no-param-reassign
+    task.completed = checkbox.checked;
+    console.log(taskStorage);
+    saveTasks();
+  });
+
+  checkbox.type = 'checkbox';
+  checkbox.checked = task.completed;
+  label.append(checkbox, task.title);
+  item.append(label);
+  tasks?.append(item);
+}
+
+taskStorage.forEach(addNewTask);
+
 // Task Object info
-const userTask: { task: string, date: string, deadline: string, category: string } = {
-  task: newTaskInputField.value,
-  date: dateField.innerHTML,
-  deadline: deadlineInputField.value,
-  category: 'kategori',
+type Task = {
+  title: string,
+  // date: Date,
+  // deadline: Date,
+  completed: boolean,
+  category: string
 };
 
-localStorage.setItem('userTask', JSON.stringify(userTask));
+// localStorage.setItem('UserTask', JSON.stringify(UserTask));
 
-console.log(JSON.parse(localStorage.getItem('userTask') || '{}'));
+// console.log(JSON.parse(localStorage.getItem('userTask') || '{}'));
 
 // testing testing
 
-function printTaskList(): void {
-  tasks.innerHTML = '';
-  for (let i = 0; i < taskList.length; i++) {
-    tasks.innerHTML += `
-    <li><input type="checkbox" class="checkbox" data-id="${i}">
-    ${taskList[i]}<br>
-    <button class="material-symbols-outlined" data-name="${taskList[i]}" id="removeBtn">
-    close
-    </button></li>
-    </li>`;
-  }
+// function printTaskList(): void {
+//   tasks.innerHTML = '';
+//   for (let i = 0; i < taskList.length; i++) {
+//     tasks.innerHTML += `
+//     <li><input type="checkbox" class="checkbox" data-id="${i}">
+//     ${taskList[i]}<br>
+//     <button class="material-symbols-outlined" data-name="${taskList[i]}" id="removeBtn">
+//     close
+//     </button></li>
+//     </li>`;
+//   }
 
-  // const taskName = taskList[i];
-  // const taskNode = document.createElement('li');
-  // const taskTextNode = document.createTextNode(taskName);
-  // taskNode.appendChild(taskTextNode);
-  // tasks.appendChild(taskNode);
+// const taskName = taskList[i];
+// const taskNode = document.createElement('li');
+// const taskTextNode = document.createTextNode(taskName);
+// taskNode.appendChild(taskTextNode);
+// tasks.appendChild(taskNode);
 
-  // tasks.innerHTML = '';
-  // for (let i = 0; i < taskList.length; i++) {
-  //   tasks.innerHTML += `
-  //   <li><input type="checkbox" class="checkbox">
-  //   ${newTaskInputField.value}<br>
-  //   ${dateField.innerHTML} -
-  //   ${deadlineInputField.value} -
-  //   <button class="material-symbols-outlined" data-id="${i}" id="removeBtn">
-  //   close
-  //   </button></li>`;
-  // }
-  // console.log(taskList);
-}
+// tasks.innerHTML = '';
+// for (let i = 0; i < taskList.length; i++) {
+//   tasks.innerHTML += `
+//   <li><input type="checkbox" class="checkbox">
+//   ${newTaskInputField.value}<br>
+//   ${dateField.innerHTML} -
+//   ${deadlineInputField.value} -
+//   <button class="material-symbols-outlined" data-id="${i}" id="removeBtn">
+//   close
+//   </button></li>`;
+// }
+// console.log(taskList);
+//
+// }
 
-function addNewTask(): void {
-  if (newTaskInputField.value.length === 0) {
-    return;
-  }
-  if (taskList.indexOf(newTaskInputField.value) === -1) {
-    taskList.push(newTaskInputField.value);
-    printTaskList();
-    newTaskInputField.value = '';
-    deadlineInputField.value = '';
-  }
+// if (newTaskInputField.value.length === 0) {
+//   return;
+// }
+// if (taskList.indexOf(newTaskInputField.value) === -1) {
+//   taskList.push(newTaskInputField.value);
+//   printTaskList();
+//   newTaskInputField.value = '';
+//   deadlineInputField.value = '';
+// }
 
-  function removeItem(e: Event) {
-    // console.log(e.target.dataset.name);
-    // const index = taskList.indexOf((e.currentTarget as HTMLButtonElement).id);
-    // console.log((e.target as HTMLButtonElement).id);
-    const index = taskList.indexOf(e.target.dataset.name);
-    if (index > -1) {
-      taskList.splice(index, 1);
-      printTaskList();
-    }
-  }
-
-  const taskItems = Array.from(document.querySelectorAll('li #removeBtn'));
-  console.log(taskItems);
-  taskItems.forEach((item) => {
-    item.addEventListener('click', removeItem);
-  });
-}
+//   function removeItem(e: Event) {
+//     // console.log(e.target.dataset.name);
+//     // const index = taskList.indexOf((e.currentTarget as HTMLButtonElement).id);
+//     // console.log((e.target as HTMLButtonElement).id);
+//     if (e !== null && e.target instanceof HTMLElement) {
+//       const index = taskList.indexOf(e.target.dataset.name);
+//       if (index > -1) {
+//         taskList.splice(index, 1);
+//         printTaskList();
+//       }
+//     }
+//   }
+//   const taskItems = Array.from(document.querySelectorAll('li #removeBtn'));
+//   console.log(taskItems);
+//   taskItems.forEach((item) => {
+//     item.addEventListener('click', removeItem);
+//   });
+// }
 
 // Eventlisteners
-addTaskBtn.addEventListener('click', addNewTask);
+addTaskBtn?.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  if (newTaskInputField?.value === '' || newTaskInputField.value == null) {
+    return;
+  }
+
+  const newTask: Task = {
+    title: newTaskInputField.value,
+    // date: dateField.innerHTML,
+    // deadline: deadlineInputField.value,
+    completed: false,
+    category: 'kategori',
+  };
+  taskStorage.push(newTask);
+
+  addNewTask(newTask);
+  newTaskInputField.value = '';
+});
+
 // removeBtn.addEventListener('click', removeItem);
 
 // All kod härifrån och ner är bara ett exempel för att komma igång
