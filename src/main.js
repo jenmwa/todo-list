@@ -1,17 +1,9 @@
 import './style/style.scss';
 
+const taskList = [];
+// taskList.push(input);
 
-// const pepparkaksDeg = {
-//     content: 'Köp pepparkaksdeg',
-//     deadline: 221212,
-// }
 
-// const ringUnni = {
-//     content: 'Glöm inte ringa Unni!',
-//     deadline: 221231,
-// }
-const taskList = ['pepparkaksDeg', 'ringUnni'];
-// taskList.push(object);
 
 const tasks = document.querySelector('.tasks'); // the <ul> element
 
@@ -30,27 +22,25 @@ const deadLineInput = document.querySelector('#deadlineInput');
 
 function storeValues(e) {
     e.preventDefault();
-    // localStorage.setItem('userTasks', JSON.stringify(userTasks));
-    const input = {
-      task: newTaskInput.value,
-      deadline: deadLineInput.value,
-      addedDate: new Date(),
-      category: '1,2,3 eller 4',
-      isComplete: false,
+    if (newTaskInput.value.length === 0) {
+        return;
     }
-    localStorage.setItem('userTasks', JSON.stringify(input));
-    printHTML();
+    if (taskList.indexOf(newTaskInput.value) === -1) {
+        const input = {
+            task: newTaskInput.value,
+            deadline: deadLineInput.value,
+            addedDate: 'inlagt datum',
+            category: '1,2,3 eller 4',
+            isComplete: false,
+          };
+        taskList.push(input);
+    //localStorage.setItem('userTasks', JSON.stringify(input));
+        printTaskList();
+        console.log(taskList);
   }
+}
+console.log(taskList);
 
-  function getValues() {
-    return localStorage.getItem('userTasks');
-  }
-  
-  function printHTML() {
-    console.log(JSON.parse(localStorage.getItem('userTasks')));
-    const task = getValues();
-    tasks.innerHTML = task; 
-  }
 
 // function addNewTask(e) {
 //     e.preventDefault();
@@ -64,27 +54,27 @@ function storeValues(e) {
 //     }
 // }
 
-// function printTaskList() {
-//     tasks.innerHTML='';
+function printTaskList() {
+    tasks.innerHTML='';
 
-//     for (let i = 0; i < taskList.length; i++) {
-//         const taskName = taskList[i];
-//         //const taskName = taskList[i].content + ' (' + taskList[i].deadline + ')';
-//         const taskNode = document.createElement('li');
-//         const taskTextNode = document.createTextNode(taskName);
+    for (let i = 0; i < taskList.length; i++) {
+        const taskName = taskList[i];
+        //const taskName = taskList[i].content + ' (' + taskList[i].deadline + ')';
+        const taskNode = document.createElement('li');
+        const taskTextNode = document.createTextNode(taskName);
 
-//         //trash
-//         const trashIcon = document.createElement('button');
-//         trashIcon.setAttribute('data-name', taskName);
-//         trashIcon.classList.add('material-symbols-outlined');
-//         const trashIconText = document.createTextNode ('delete');
-//         trashIcon.appendChild(trashIconText);
+        //trash
+        const trashIcon = document.createElement('button');
+        trashIcon.setAttribute('data-name', taskName);
+        trashIcon.classList.add('material-symbols-outlined');
+        const trashIconText = document.createTextNode ('delete');
+        trashIcon.appendChild(trashIconText);
 
-//         taskNode.appendChild(taskTextNode);
-//         taskNode.appendChild(trashIcon);
+        taskNode.appendChild(taskTextNode);
+        taskNode.appendChild(trashIcon);
 
-//         tasks.appendChild(taskNode); 
-//     }
+        tasks.appendChild(taskNode); 
+    }
 
 //     const taskItems = Array.from(document.querySelectorAll('li button'));
 //     taskItems.forEach((item) => {
@@ -100,7 +90,7 @@ function storeValues(e) {
 //         taskList.splice(index, 1);
 //         printTaskList();
 //     }
-// }
+ }
 
 // const userTask = {
 //     task: 'input value',
