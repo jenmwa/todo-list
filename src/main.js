@@ -1,17 +1,16 @@
 import './style/style.scss';
 
 
+// const pepparkaksDeg = {
+//     content: 'Köp pepparkaksdeg',
+//     deadline: 221212,
+// }
 
-const pepparkaksDeg = {
-    content: 'Köp pepparkaksdeg',
-    deadline: 0,
-}
-
-const ringUnni = {
-    content: 'Glöm inte ringa Unni!',
-    deadline: 0,
-}
-const taskList = [pepparkaksDeg, ringUnni];
+// const ringUnni = {
+//     content: 'Glöm inte ringa Unni!',
+//     deadline: 221231,
+// }
+const taskList = ['pepparkaksDeg', 'ringUnni'];
 // taskList.push(object);
 
 const tasks = document.querySelector('.tasks'); // the <ul> element
@@ -31,21 +30,11 @@ const newTaskInput = document.querySelector('#inputTaskField');
 function addNewTask(e) {
     e.preventDefault();
     if (newTaskInput.value.length === 0) {
-        return;
+      return;
     }
-    const clickedTask = newTaskInput.value;
-    const index = taskList.findIndex(singleTaskObject => singleTaskObject.content === clickedTask); 
-  
-
-    if (index === -1) {
-        taskList.push({
-            content: clickedTask,
-            deadline: 1,
-        });
-        printTaskList();
-    } else {
-       taskList[index].deadline +=1;
-       printTaskList();
+    if (taskList.indexOf(newTaskInput.value) === -1) {
+      taskList.push(newTaskInput.value);
+      printTaskList();
     }
 }
 
@@ -53,9 +42,8 @@ function printTaskList() {
     tasks.innerHTML='';
 
     for (let i = 0; i < taskList.length; i++) {
-
-        const taskName = `${taskList[i].content} (${taskList[i].deadline})`;
-
+        const taskName = taskList[i];
+        //const taskName = taskList[i].content + ' (' + taskList[i].deadline + ')';
         const taskNode = document.createElement('li');
         const taskTextNode = document.createTextNode(taskName);
 
@@ -68,6 +56,7 @@ function printTaskList() {
 
         taskNode.appendChild(taskTextNode);
         taskNode.appendChild(trashIcon);
+
         tasks.appendChild(taskNode); 
     }
 
@@ -80,8 +69,7 @@ function printTaskList() {
  * Remove tasks taskList
  */
 function removeTask(e) {
-    const clickedTask = e.target.dataset.name;
-    const index = taskList.findIndex(singleTaskObject => singleTaskObject.content === clickedTask); 
+    const index = taskList.indexOf(e.target.dataset.name); 
     if (index > -1) {
         taskList.splice(index, 1);
         printTaskList();
