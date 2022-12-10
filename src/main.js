@@ -3,8 +3,6 @@ import './style/style.scss';
 const taskList = [];
 // taskList.push(input);
 
-
-
 const tasks = document.querySelector('.tasks'); // the <ul> element
 
 //printTaskList()
@@ -29,17 +27,18 @@ function storeValues(e) {
         const input = {
             task: newTaskInput.value,
             deadline: deadLineInput.value,
-            addedDate: 'inlagt datum',
-            category: '1,2,3 eller 4',
+            addedDate: new Date(),
+            category: ' ！, 📚, 🛒, ❤️',
             isComplete: false,
           };
         taskList.push(input);
-    //localStorage.setItem('userTasks', JSON.stringify(input));
+        localStorage.setItem('taskList', JSON.stringify(taskList)); // allt strängar
         printTaskList();
-        console.log(taskList);
   }
 }
 console.log(taskList);
+// console.log(JSON.parse(localStorage.getItem('taskList'))); //vart?
+
 
 
 // function addNewTask(e) {
@@ -56,40 +55,33 @@ console.log(taskList);
 
 function printTaskList() {
     tasks.innerHTML='';
+    //localStorage.getItem('taskList').split(',');
 
     for (let i = 0; i < taskList.length; i++) {
-        const taskName = taskList[i];
-        //const taskName = taskList[i].content + ' (' + taskList[i].deadline + ')';
-        const taskNode = document.createElement('li');
-        const taskTextNode = document.createTextNode(taskName);
-
-        //trash
-        const trashIcon = document.createElement('button');
-        trashIcon.setAttribute('data-name', taskName);
-        trashIcon.classList.add('material-symbols-outlined');
-        const trashIconText = document.createTextNode ('delete');
-        trashIcon.appendChild(trashIconText);
-
-        taskNode.appendChild(taskTextNode);
-        taskNode.appendChild(trashIcon);
-
-        tasks.appendChild(taskNode); 
+        tasks.innerHTML += `
+        <li>
+        <input type="checkbox" class="checkbox">
+        ${taskList[i].task}<br>
+        ${taskList[i].deadline}
+        ${taskList[i].category}
+        <button class="material-symbols-outlined" data-id="${i}">close</button>
+        </li>`;
     }
 
-//     const taskItems = Array.from(document.querySelectorAll('li button'));
-//     taskItems.forEach((item) => {
-//         item.addEventListener('click', removeTask)
-//     });
-// }
-// /**
-//  * Remove tasks taskList
-//  */
-// function removeTask(e) {
-//     const index = taskList.indexOf(e.target.dataset.name); 
-//     if (index > -1) {
-//         taskList.splice(index, 1);
-//         printTaskList();
-//     }
+    const taskItems = Array.from(document.querySelectorAll('.tasks button'));
+    taskItems.forEach((item) => {
+        item.addEventListener('click', removeTask)
+    });
+}
+/**
+ * Remove tasks taskList
+ */
+function removeTask(e) {
+    const index = e.currentTarget.dataset.id; 
+    if (index > -1) {
+        taskList.splice(index, 1);
+        printTaskList();
+    }
  }
 
 // const userTask = {
