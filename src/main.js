@@ -15,7 +15,14 @@ const todaysDate = new Date();
 const dateField = document.querySelector('#todaysDate');
 dateField.innerHTML = todaysDate.toLocaleDateString();
 
+// kategoridelen
+let category = document.querySelectorAll('.categories span');
 
+category.forEach( (cat) => { 
+       cat.addEventListener('click', () => { 
+             console.log(cat.textContent)
+         })
+});
 
 // funktion lägg till ny todo som objekt till array
 function addNewTask() {
@@ -27,7 +34,7 @@ function addNewTask() {
             task: newTaskInput.value,
             deadline: deadlineInput.value,
             addedDate: todaysDate,
-            category: ' ', //hur får jag in vald knapps id till
+            category: '', //hur får jag in vald knapps id till
             isComplete: false, // avbockade tasks ska längst ner i listan men fortfarande synas i listan
           };
         taskList.push(input);
@@ -48,8 +55,7 @@ function printTaskList(taskList) {
         <input type="checkbox" class="checkbox">
         ${taskList[i].task}<br>
         ${taskList[i].deadline}
-        ${taskList[i].category}
-        <span class="material-symbols-outlined" id="favorite">favorite</span>
+        <span class="material-symbols-outlined" id="favorite">${taskList[i].category}</span>
         <button class="material-symbols-outlined" data-id="${i}">close</button>
         </li>`;
     }

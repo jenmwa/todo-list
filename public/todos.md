@@ -4,7 +4,8 @@ att göra kod:
 
 - JUST NU - flera knapptryck samma todos lägger till samma todo - _FIXA IF-SATS_
 - function för kategori - när du trycker på knapp - den symbolen skickas med in i objectet.
-- localStore hämta listan därifrån.
+    - OM klickat i nån kategori - invertera färgerna så det syns vem som är iklickad
+    
 - i printTaskList - läggs till
                             - kategori 
                             - bocka i klart
@@ -14,6 +15,8 @@ att göra kod:
     - ska man kunna lägga in tasks utan deadline?
         - OM JA - ska de hamna sist på lista vid sortering av deadline-datum.
         - skriva ut texten - ingen deadline eller liknande?
+
+- RESET ALL -knapp lista? (töm taskList samt localStorage?)
         
 - NÄR jag fått in kategorier i todo:listan
     - STYLA CSS:en
