@@ -97,6 +97,20 @@ li {
     }
 }
 
+#favorite {
+    font-size: 1.6rem;
+    background-color: transparent;
+    color:  #2f2504;
+    padding: 10px;
+    margin: 0 5px 10px 0;
+
+    &:hover {
+        background-color: transparent;
+        cursor: none;
+        box-shadow: none;  
+    }
+}
+
 .material-symbols-outlined {
     font-size: 1.6rem;
     background-color: whitesmoke;

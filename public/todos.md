@@ -3,8 +3,6 @@ att göra kod:
 - STÄDA KOD!!!!!
 
 - JUST NU - flera knapptryck samma todos lägger till samma todo - _FIXA IF-SATS_
-- nollställ input vid lägg till.
-- kolla upp e.preventDefault och VARFÖR?
 - function för kategori - när du trycker på knapp - den symbolen skickas med in i objectet.
 - localStore hämta listan därifrån.
 - i printTaskList - läggs till
@@ -12,6 +10,13 @@ att göra kod:
                             - bocka i klart
                                 -stryka över task samtidigt?
                                 -_NÅGON_ visuell förändring + längst ner på listan
+- validera inputs?
+    - ska man kunna lägga in tasks utan deadline?
+        - OM JA - ska de hamna sist på lista vid sortering av deadline-datum.
+        - skriva ut texten - ingen deadline eller liknande?
+        
+- NÄR jag fått in kategorier i todo:listan
+    - STYLA CSS:en
 
 - sakerna i lista ska gå att sorteras på:
 	inlagt datum

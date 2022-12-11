@@ -1,62 +1,47 @@
 import './style/style.scss';
 
-const taskList = [];
+let taskList = [];
 // taskList.push(input);
 
 const tasks = document.querySelector('.tasks'); // the <ul> element
+const newTaskInput = document.querySelector('#inputTaskField'); //task inputField
+const deadlineInput = document.querySelector('#deadlineInput'); //deadline inputfield
+const submitBtn = document.querySelector('#submit'); //submitBtn
 
 //printTaskList()
 
-// Todays Date
+// skriva ut dagens datum på listan enligt sv.tid
 const todaysDate = new Date();
 const dateField = document.querySelector('#todaysDate');
 dateField.innerHTML = todaysDate.toLocaleDateString();
 
-const submitBtn = document.querySelector('#submit'); //submitBtn
-submitBtn.addEventListener('click', /*addNewTask*/ storeValues);
 
-const newTaskInput = document.querySelector('#inputTaskField');
-const deadLineInput = document.querySelector('#deadlineInput');
 
-function storeValues(e) {
-    e.preventDefault();
+// funktion lägg till ny todo som objekt till array
+function addNewTask() {
     if (newTaskInput.value.length === 0) {
         return;
     }
-    if (taskList.indexOf(newTaskInput.value) === -1) {
+    if (taskList.indexOf(newTaskInput.value) === -1) { // GÖR OM, nu kan du lägga till samma sak flera
         const input = {
             task: newTaskInput.value,
-            deadline: deadLineInput.value,
-            addedDate: new Date(),
-            category: ' ！, 📚, 🛒, ❤️',
-            isComplete: false,
+            deadline: deadlineInput.value,
+            addedDate: todaysDate,
+            category: ' ', //hur får jag in vald knapps id till
+            isComplete: false, // avbockade tasks ska längst ner i listan men fortfarande synas i listan
           };
         taskList.push(input);
-        localStorage.setItem('taskList', JSON.stringify(taskList)); // allt strängar
-        printTaskList();
+        addToLocalStorage(taskList);
+        newTaskInput.value = '';
+        deadlineInput.value = '';
   }
 }
 console.log(taskList);
-// console.log(JSON.parse(localStorage.getItem('taskList'))); //vart?
 
-
-
-// function addNewTask(e) {
-//     e.preventDefault();
-//     if (newTaskInput.value.length === 0) {
-//       return;
-//     }
-//     if (taskList.indexOf(newTaskInput.value) === -1) {
-//       taskList.push(newTaskInput.value);
-//       printTaskList();
-//       console.log(taskList);
-//     }
-// }
-
-function printTaskList() {
+// funktion skriv ut vår lista med todo's
+function printTaskList(taskList) {
     tasks.innerHTML='';
-    //localStorage.getItem('taskList').split(',');
-
+    
     for (let i = 0; i < taskList.length; i++) {
         tasks.innerHTML += `
         <li>
@@ -64,6 +49,7 @@ function printTaskList() {
         ${taskList[i].task}<br>
         ${taskList[i].deadline}
         ${taskList[i].category}
+        <span class="material-symbols-outlined" id="favorite">favorite</span>
         <button class="material-symbols-outlined" data-id="${i}">close</button>
         </li>`;
     }
@@ -73,16 +59,42 @@ function printTaskList() {
         item.addEventListener('click', removeTask)
     });
 }
-/**
- * Remove tasks taskList
- */
+
+// Funktion lägg till vår lista m objekt i localStorage som string
+function addToLocalStorage(taskList) {
+    localStorage.setItem('taskList', JSON.stringify(taskList));
+    printTaskList(taskList);
+}
+
+// Funktion hämta det vi lagt till i localStorage,  konverterar tillbaka till lista & läggs i vår taskList -lista
+function getFromLocalStorage() {
+    const getStoredArray = localStorage.getItem('taskList');
+    if (getStoredArray) {
+        taskList = JSON.parse(getStoredArray);
+        printTaskList(taskList);
+    }
+}
+
+getFromLocalStorage();
+
+//funktion ta bort tasks per task, aktiveras av eventlyssnare på X-knapp i funktionen printTaskList
 function removeTask(e) {
     const index = e.currentTarget.dataset.id; 
     if (index > -1) {
         taskList.splice(index, 1);
-        printTaskList();
+        printTaskList(taskList);
     }
  }
+
+ /**
+  * EVENTLISTENERS
+  */
+
+// eventlyssnare klick på submit aktivera funktion addNewTask
+submitBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    addNewTask();
+    });
 
 // const userTask = {
 //     task: 'input value',
