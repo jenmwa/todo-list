@@ -64,7 +64,7 @@ function printTaskList(taskList) {
         </li>`;
     }
 
-    showsortSection ()
+    showsortSection ();
 
     const taskItems = Array.from(document.querySelectorAll('.tasks button'));
     taskItems.forEach((item) => {
@@ -105,6 +105,7 @@ function removeTask(e) {
         taskList.splice(index, 1);
         printTaskList(taskList);
     }
+    addToLocalStorage(taskList);
  }
 
  /**
