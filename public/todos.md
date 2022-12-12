@@ -2,12 +2,9 @@ att göra kod:
 
 - STÄDA KOD!!!!!
 
-- JUST NU - flera knapptryck samma todos lägger till samma todo - _FIXA IF-SATS_
-- function för kategori - när du trycker på knapp - den symbolen skickas med in i objectet.
-    - OM klickat i nån kategori - invertera färgerna så det syns vem som är iklickad
+- alla kommentarer på engelska!
 
 - i printTaskList - läggs till
-                            - kategori 
                             - bocka i klart
                                 -stryka över task samtidigt?
                                 -_NÅGON_ visuell förändring + längst ner på listan
@@ -17,9 +14,6 @@ att göra kod:
         - skriva ut texten - ingen deadline eller liknande?
 
 - RESET ALL -knapp lista? (töm taskList samt localStorage?)
-        
-- NÄR jag fått in kategorier i todo:listan
-    - STYLA CSS:en
 
 - sakerna i lista ska gå att sorteras på:
 	inlagt datum
@@ -36,10 +30,17 @@ att göra kod:
     OM deadline inom 5 dagar
         test/färg förfaller snart
 
+BUGGAR:
+    - OM du lägger till flera todo's, sen tar bort en efter 1, när det är 1 kvar så syns fortfarande sorterings-alternativen. När det är 1 på listan ska dessa ej synas. 
+    (kontrollera if-satserna, samt VART i koden update array + localstorage ligger).
+
+    - du kan lägga till flera av exakt samma todo. detta ska ej gå.
+    (kontrollera if-satsen och villkoren!)
 
 CSS
 - lägg allt i en centrerad container så designen håller sig enhållig vid förstoring/förminskning
 - styla todo-LI-elementen _NÄR_ ikoner och allt printas som de ska.
+- styla kategori-valen!
 
 SAKER JAG VILL HA MED men ej prio:
     - Mörkt läge toggle

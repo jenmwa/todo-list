@@ -8,6 +8,8 @@ const newTaskInput = document.querySelector('#inputTaskField'); //task inputFiel
 const deadlineInput = document.querySelector('#deadlineInput'); //deadline inputfield
 const submitBtn = document.querySelector('#submit'); //submitBtn
 
+const sortSection = document.querySelector('#sortSection'); //sorteringssektionen
+
 // skriva ut dagens datum på listan enligt sv.datum
 const todaysDate = new Date();
 const dateField = document.querySelector('#todaysDate');
@@ -37,7 +39,7 @@ function addNewTask() {
             task: newTaskInput.value,
             deadline: deadlineInput.value,
             addedDate: todaysDate.value,
-            category: selectedCategory, //hur får jag in vald knapp via klick till objektet
+            category: selectedCategory, 
             isComplete: false, // avbockade tasks ska längst ner i listan men fortfarande synas i listan
           };
         taskList.push(todoInput);
@@ -59,24 +61,25 @@ function printTaskList(taskList) {
         ${taskList[i].task}<br>
         ${taskList[i].deadline}
         <span class="material-symbols-outlined" id="favorite">${taskList[i].category}</span>
-        <span class="material-symbols-outlined" data-id="${i}">close</span>
+        <button class="material-symbols-outlined" data-id="${i}">close</button>
         </li>`;
     }
 
     showsortSection ();
 
+    //klick-event för tabort-knappen som anropar funktion removeTask
     const taskItems = Array.from(document.querySelectorAll('.tasks button'));
     taskItems.forEach((item) => {
         item.addEventListener('click', removeTask)
     });
 }
-const sortSection = document.querySelector('#sortSection');
 
+// funktion visa sorteringsalternativ OM det är 2 eller fler todo's på listan
 function showsortSection () {
-    if (taskList.length < 1) {
-        return;
+    if (taskList.length <= 1) {
+        sortSection.classList.remove('open');
     } if (taskList.length >= 2) {
-        sortSection.classList.toggle('open');
+        sortSection.classList.add('open');
     }
 }
 
