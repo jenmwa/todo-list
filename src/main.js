@@ -8,21 +8,25 @@ const newTaskInput = document.querySelector('#inputTaskField'); //task inputFiel
 const deadlineInput = document.querySelector('#deadlineInput'); //deadline inputfield
 const submitBtn = document.querySelector('#submit'); //submitBtn
 
-//printTaskList()
-
-// skriva ut dagens datum på listan enligt sv.tid
+// skriva ut dagens datum på listan enligt sv.datum
 const todaysDate = new Date();
 const dateField = document.querySelector('#todaysDate');
 dateField.innerHTML = todaysDate.toLocaleDateString();
 
 // kategoridelen
-let category = document.querySelectorAll('.categories span');
+let categories = Array.from(document.querySelectorAll('.categories span'));
+console.log(categories);
 
-category.forEach( (cat) => { 
-       cat.addEventListener('click', () => { 
-             console.log(cat.textContent)
-         })
+categories.forEach( (category) => { 
+       category.addEventListener('click',() => { 
+        console.log(category.textContent)
+        tasks.innerHTML = category.textContent;
+         });
 });
+/*
+function getCategory (e) {
+    console.log(e.target.innerText);
+}*/
 
 // funktion lägg till ny todo som objekt till array
 function addNewTask() {
@@ -30,14 +34,14 @@ function addNewTask() {
         return;
     }
     if (taskList.indexOf(newTaskInput.value) === -1) { // GÖR OM, nu kan du lägga till samma sak flera
-        const input = {
+        const todoInput = {
             task: newTaskInput.value,
             deadline: deadlineInput.value,
             addedDate: todaysDate,
-            category: '', //hur får jag in vald knapps id till
+            category: '', //hur får jag in vald knapp via klick till objektet
             isComplete: false, // avbockade tasks ska längst ner i listan men fortfarande synas i listan
           };
-        taskList.push(input);
+        taskList.push(todoInput);
         addToLocalStorage(taskList);
         newTaskInput.value = '';
         deadlineInput.value = '';
@@ -60,10 +64,21 @@ function printTaskList(taskList) {
         </li>`;
     }
 
+    showsortSection ()
+
     const taskItems = Array.from(document.querySelectorAll('.tasks button'));
     taskItems.forEach((item) => {
         item.addEventListener('click', removeTask)
     });
+}
+const sortSection = document.querySelector('#sortSection');
+
+function showsortSection () {
+    if (taskList.length < 1) {
+        return;
+    } if (taskList.length >= 2) {
+        sortSection.classList.toggle('open');
+    }
 }
 
 // Funktion lägg till vår lista m objekt i localStorage som string

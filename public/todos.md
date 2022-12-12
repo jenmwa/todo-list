@@ -5,7 +5,8 @@ att göra kod:
 - JUST NU - flera knapptryck samma todos lägger till samma todo - _FIXA IF-SATS_
 - function för kategori - när du trycker på knapp - den symbolen skickas med in i objectet.
     - OM klickat i nån kategori - invertera färgerna så det syns vem som är iklickad
-    
+            // SPANA in filmerna om el-områdes-labben vi hade (olika områden, olika utslag)
+
 - i printTaskList - läggs till
                             - kategori 
                             - bocka i klart
