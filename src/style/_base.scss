@@ -62,10 +62,19 @@ li {
 
         .select {
             margin-left: 1rem;
+
         }
 
-        .categories {
-            display: inline-block;
+        .categories label {
+            display:flex;
+
+            input {
+                width: none;
+                border-radius: none;
+                padding: none;
+                margin: none;
+                border: none;
+            }
         }
     }
 }

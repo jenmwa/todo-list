@@ -13,16 +13,14 @@ const todaysDate = new Date();
 const dateField = document.querySelector('#todaysDate');
 dateField.innerHTML = todaysDate.toLocaleDateString();
 
-// kategoridelen
-let categories = Array.from(document.querySelectorAll('.categories span'));
-console.log(categories);
+// val av kategori, lista som loopas 
+let categories = Array.from(document.querySelectorAll('.categories input'));
 
 categories.forEach( (category) => { 
        category.addEventListener('click',() => { 
-        console.log(category.textContent)
-        tasks.innerHTML = category.textContent;
          });
 });
+
 /*
 function getCategory (e) {
     console.log(e.target.innerText);
@@ -34,11 +32,12 @@ function addNewTask() {
         return;
     }
     if (taskList.indexOf(newTaskInput.value) === -1) { // GÖR OM, nu kan du lägga till samma sak flera
+        const selectedCategory = document.querySelector("input[name='category']:checked").value; 
         const todoInput = {
             task: newTaskInput.value,
             deadline: deadlineInput.value,
-            addedDate: todaysDate,
-            category: '', //hur får jag in vald knapp via klick till objektet
+            addedDate: todaysDate.value,
+            category: selectedCategory, //hur får jag in vald knapp via klick till objektet
             isComplete: false, // avbockade tasks ska längst ner i listan men fortfarande synas i listan
           };
         taskList.push(todoInput);
@@ -60,7 +59,7 @@ function printTaskList(taskList) {
         ${taskList[i].task}<br>
         ${taskList[i].deadline}
         <span class="material-symbols-outlined" id="favorite">${taskList[i].category}</span>
-        <button class="material-symbols-outlined" data-id="${i}">close</button>
+        <span class="material-symbols-outlined" data-id="${i}">close</span>
         </li>`;
     }
 
