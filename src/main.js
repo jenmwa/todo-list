@@ -7,7 +7,6 @@ const tasks = document.querySelector('.tasks'); // the <ul> element
 const newTaskInput = document.querySelector('#inputTaskField'); //task inputField
 const deadlineInput = document.querySelector('#deadlineInput'); //deadline inputfield
 const submitBtn = document.querySelector('#submit'); //submitBtn
-
 const sortSection = document.querySelector('#sortSection'); //sorteringssektionen
 
 // skriva ut dagens datum på listan enligt sv.datum
@@ -22,11 +21,6 @@ categories.forEach( (category) => {
        category.addEventListener('click',() => { 
          });
 });
-
-/*
-function getCategory (e) {
-    console.log(e.target.innerText);
-}*/
 
 // funktion lägg till ny todo som objekt till array
 function addNewTask() {
@@ -56,12 +50,13 @@ function printTaskList(taskList) {
     
     for (let i = 0; i < taskList.length; i++) {
         tasks.innerHTML += `
-        <li>
+        <li> <div>
         <input type="checkbox" class="checkbox">
         ${taskList[i].task}<br>
-        ${taskList[i].deadline}
+        ${taskList[i].deadline}</div><div class="rightsection">
         <span class="material-symbols-outlined" id="favorite">${taskList[i].category}</span>
         <button class="material-symbols-outlined" data-id="${i}">close</button>
+        </div>
         </li>`;
     }
 
@@ -119,20 +114,5 @@ submitBtn.addEventListener('click', function (e) {
     e.preventDefault();
     addNewTask();
     });
-
-// const userTask = {
-//     task: 'input value',
-//     date: 'dagens datum',
-//     deadline: 'deadline',
-//     category: 'kategori',
-//   };
-
-//   const pizzas = ['Margarita', 'four Cheese', 'hawaii'];
-//   localStorage.setItem('pizzas', pizzas);
-
-//   localStorage.setItem('userTask', JSON.stringify(userTask));
-
-//   console.log(JSON.parse(localStorage.getItem('userTask')).task);
-//   console.log(localStorage.getItem('pizzas').split(','));
 
   //localStorage.clear(); rensa localstorage.

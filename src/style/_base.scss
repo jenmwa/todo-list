@@ -30,6 +30,26 @@ li {
     margin: 10px 0 0 -40px;
     font-size: 1rem;
     box-shadow: 5px 5px 5px black;
+
+    #favorite {
+        font-size: 1.6rem;
+        background-color: transparent;
+        color:  #2f2504;
+        padding: 10px;
+        margin: 0 5px 10px 0;
+    
+        &:hover {
+            background-color: transparent;
+            cursor: none;
+            box-shadow: none;  
+        }
+    }
+
+    .rightsection {
+        display: flex;
+        text-align: right;
+        margin-left: 5px;    
+    }
 }
 
 .todocontainer {
@@ -47,9 +67,14 @@ li {
     box-shadow: 5px 5px 5px black;
 
     .date {
-        font-size: 1.4rem;
+        font-size: 1.45rem;
         font-weight: 700;
         margin-bottom: 1rem;
+        margin-top: -8px;
+    }
+
+    #datetext {
+        font-size: 0.8rem;
     }
 
     .deadline {
@@ -59,24 +84,30 @@ li {
 
     .wrapper {
         display:flex;
-
-        .select {
-            margin-left: 1rem;
-        }
-
-        .categories label {
-            display:flex;
-
-            input {
-                width: none;
-                border-radius: none;
-                padding: none;
-                margin: none;
-                border: none;
-            }
-        }
     }
 }
+
+.select {
+    text-align: left;
+    margin-left: 20px;
+
+    label {
+        height: 60px;
+    }
+
+    span.material-symbols-outlined {
+        position: relative;
+        top: -37px;
+        padding-left: 8px;
+        padding-top: 6px;
+        font-size: 2rem;
+    }
+
+    .section1, .section2 {
+    display: flex;
+    }  
+}
+
 
 .checkbox {
     background-color: whitesmoke;
@@ -105,28 +136,14 @@ li {
     }
 }
 
-#favorite {
-    font-size: 1.6rem;
-    background-color: transparent;
-    color:  #2f2504;
-    padding: 10px;
-    margin: 0 5px 10px 0;
-
-    &:hover {
-        background-color: transparent;
-        cursor: none;
-        box-shadow: none;  
-    }
-}
-
 .material-symbols-outlined {
     font-size: 1.6rem;
     background-color: whitesmoke;
-    padding: 10px;
     border: 2px solid #2f2504;
     border-radius: 8px;
     margin-bottom: 10px;
-
+    width: 50px;
+    height: 50px;
 
     &:hover {
         background-color: #7e846b;

@@ -1,7 +1,6 @@
 att göra kod:
 
 - STÄDA KOD!!!!!
-
 - alla kommentarer på engelska!
 
 - i printTaskList - läggs till
@@ -31,11 +30,12 @@ att göra kod:
         test/färg förfaller snart
 
 BUGGAR:
-    - OM du lägger till flera todo's, sen tar bort en efter 1, när det är 1 kvar så syns fortfarande sorterings-alternativen. När det är 1 på listan ska dessa ej synas. 
-    (kontrollera if-satserna, samt VART i koden update array + localstorage ligger).
-
     - du kan lägga till flera av exakt samma todo. detta ska ej gå.
     (kontrollera if-satsen och villkoren!)
+
+    - Kategorier default-läge = senast klickad... nollställ!
+
+    - markera klickat kategori! (add class?)
 
 CSS
 - lägg allt i en centrerad container så designen håller sig enhållig vid förstoring/förminskning

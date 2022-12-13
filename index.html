@@ -18,6 +18,7 @@
     </header>
     <main>
       <form class="app" id="app">
+        <span id="datetext">dagens datum</span>
         <div class="date" id="todaysDate"></div>
         <label>
           Vad ska göras?
@@ -31,18 +32,26 @@
           <div class="select">
             kategori<br>
             <div class="categories">
-              <label>
-                <input type="radio" name="category" value="priority_high"> viktigt
-              </label>
-              <label>
-                <input type="radio" name="category" value="school"> plugg
-              </label>
-              <label>
-                <input type="radio" name="category" value="add_shopping_cart"> handla
-              </label>
-              <label>
-                <input type="radio" name="category" value="favorite"> favorit
-              </label>
+              <div class="section1">
+                <label>
+                  <input type="radio" name="category" value="priority_high">
+                    <span class="material-symbols-outlined">priority_high</span>
+                </label>
+                <label>
+                  <input type="radio" name="category" value="school">
+                    <span class="material-symbols-outlined">school</span>
+                </label>
+              </div>
+              <div class="section2">
+                <label>
+                  <input type="radio" name="category" value="add_shopping_cart">
+                    <span class="material-symbols-outlined">add_shopping_cart</span>
+                </label>
+                <label>
+                  <input type="radio" name="category" value="favorite">
+                    <span class="material-symbols-outlined">favorite</span>
+                </label>
+              </div>
               <!-- <span class="material-symbols-outlined">
                 priority_high
               </span>
