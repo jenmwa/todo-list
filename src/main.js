@@ -14,13 +14,36 @@ const todaysDate = new Date();
 const dateField = document.querySelector('#todaysDate');
 dateField.innerHTML = todaysDate.toLocaleDateString();
 
-// val av kategori, som färgmarkeras, lista som loopas 
+//val av kategori, som färgmarkeras, lista som loopas 
 const cat = document.getElementsByClassName('material-symbols-outlined');
 for (var i = 0; i < cat.length; i++) {
     cat[i].addEventListener('click', function(){
         this.classList.add("check");
     })
 }
+// const category = Array.from(document.querySelectorAll('.categories input'));
+//     category.forEach((choice) => {
+//         choice.addEventListener('change', choosedCategory);
+//     });
+//     function choosedCategory(ev) {
+//         if (this.checked === true) {
+//             ev.target.nextElementSibling.classList.add('check');
+//         } else {
+//             ev.target.nextElementSibling.classList.remove('check');
+//         }
+//         // if (this.checked != true) {
+//         //     ev.target.nextElementSibling.classList.remove('check')
+//         // }
+//         console.log(ev.target.nextElementSibling);
+     
+        // if (this.checked === false) {
+        //     ev.currentTarget.parentElement.classList.remove('check');
+        //     }
+        //     if (this.checked === true) {
+        //     ev.currentTarget.parentElement.classList.add('check');
+        //     }
+    //console.log(category);
+    //}
 
 // funktion lägg till ny todo som objekt till array
 function addNewTask() {
@@ -77,8 +100,15 @@ function printTaskList(taskList) {
 
 //funktion när todo är checked, gråa ut text
 function checkedBox(event) {
+    if (this.checked === false) {
+    event.currentTarget.parentElement.classList.remove('checked');
+    }
+    if (this.checked === true) {
     event.currentTarget.parentElement.classList.add('checked');
+    }
     console.log('click', event.currentTarget.dataset.id); //jag vill gråa ut symbolen för just denna li med + ändra bakgrund? hur?
+    taskList.push();
+    console.log(taskList)
 }
 
 // funktion visa sorteringsalternativ OM det är 2 eller fler todo's på listan
