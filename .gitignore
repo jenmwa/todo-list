@@ -2,7 +2,6 @@
 dist
 dist-ssr
 *.css.map
-main.ts
 
 # Local files
 *.local
