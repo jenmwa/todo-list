@@ -35,6 +35,7 @@ li {
     #favorite {
         font-size: 1.6rem;
         background-color: transparent;
+        border: 2px solid #6c6b67;
         color:  #6c6b67;
         padding: 10px;
         margin: 0 5px 10px 0;
@@ -186,13 +187,13 @@ li {
 .text {
     display: flex;
     position: relative;
-    top: -35px;
+    top: -31px;
     margin-left: 50px;
-    line-height: 5px; 
+    line-height: 1px; 
 }
 
 #texttodo {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 700;
 }
 

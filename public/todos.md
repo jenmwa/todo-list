@@ -3,14 +3,23 @@ att göra kod:
 - STÄDA KOD!!!!!
 - alla kommentarer på engelska!
 
+- ibockade KLARA-rutan ej sparade i localStorage!!! fixa!)
+
+- Få till _ Hitta hela LI-elemntet som ka ändra färg/blurras vid ✅!
+
 - i printTaskList - läggs till
-                            - bocka i klart
-                                -stryka över task samtidigt?
-                                -_NÅGON_ visuell förändring + längst ner på listan
+                                -_NÅGON_ visuell förändring
+                                + längst ner på listan
+
+                                    - längst ner på en lista push().
+                                    Frågan är, en ny lista? doneTasks som pushas?
+                                    går det att ha 2 listor i localStorage eller skrivs de över?
 - validera inputs?
     - ska man kunna lägga in tasks utan deadline?
         - OM JA - ska de hamna sist på lista vid sortering av deadline-datum.
         - skriva ut texten - ingen deadline eller liknande?
+        -antal bokstäver max?
+            -annars fixa CSS så fungerar fint med flera rader
 
 - RESET ALL -knapp lista? (töm taskList samt localStorage?)
 
@@ -33,14 +42,14 @@ BUGGAR:
     - du kan lägga till flera av exakt samma todo. detta ska ej gå.
     (kontrollera if-satsen och villkoren!)
 
-    - Kategorier default-läge = senast klickad... nollställ!
-
-    - markera klickat kategori! (add class?)
+    - Kategorier iklickade... nollställ!
+    NU GÅR alla att klicka i och får visuell förändring men ej ur.
 
 CSS
 - lägg allt i en centrerad container så designen håller sig enhållig vid förstoring/förminskning
 - styla todo-LI-elementen _NÄR_ ikoner och allt printas som de ska.
 - styla kategori-valen!
+- styla checkboxen, både bock + default-färg...
 
 SAKER JAG VILL HA MED men ej prio:
     - Mörkt läge toggle
@@ -52,12 +61,10 @@ SAKER JAG VILL HA MED men ej prio:
 - TYPESCRIPT
 - STÄDA KOD!!!!!!!!
 
-    todo + datum + deadline + kategori i ett objekt.
-    vid klick på LÄGG TILL
-     objekt till printList array
-     och listan till
-        localstorage
 
 LÄNKTIPS:
 Typescript och localStorage.
 https://www.youtube.com/watch?v=jBmrduvKl5w
+
+systematiskt steg för steg element TodoList (enkel).
+https://thecodingpie.medium.com/how-to-build-a-todo-list-app-with-javascript-and-local-storage-a884f4ea3ec
