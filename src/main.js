@@ -1,9 +1,15 @@
 import './style/style.scss';
 
-let taskList = [];
-// taskList.push(input);
+/************************************************************************************************************
+ * -------------------------------------------  Variables  -------------------------------------------------
+ ************************************************************************************************************/
 
-const tasks = document.querySelector('.tasks'); // the <ul> element
+let taskList = [];
+let doneTodos = [];
+
+const tasks = document.querySelector('.tasks'); // the tasks <ul> element
+const done = document.querySelector('.done'); // the done <ul> element
+
 const newTaskInput = document.querySelector('#inputTaskField'); //task inputField
 const deadlineInput = document.querySelector('#deadlineInput'); //deadline inputfield
 const submitBtn = document.querySelector('#submit'); //submitBtn
@@ -75,8 +81,8 @@ function printTaskList(taskList) {
         tasks.innerHTML += `
         <li data-id="${i}"> <div>
         <input type="checkbox" name="checkbox" class="checkbox" data-id="${i}" ${taskList[i].isComplete}>
-        <span class="text">${taskList[i].task}</span><br>
-        deadline: ${taskList[i].deadline}</div><div class="rightsection">
+        <span class="text" id="texttodo">${taskList[i].task}</span><br>
+        <span class="text">deadline: ${taskList[i].deadline}</span></div><div class="rightsection">
         <span class="material-symbols-outlined" id="favorite">${taskList[i].category}</span>
         <button class="material-symbols-outlined" data-id="${i}">close</button>
         </div>
@@ -95,7 +101,6 @@ function printTaskList(taskList) {
     checkBtn.forEach((check) => {
         check.addEventListener('click', checkedBox);
     });
-    console.log(checkBtn);
 }
 
 //funktion när todo är checked, gråa ut text
@@ -105,9 +110,10 @@ function checkedBox(event) {
     }
     if (this.checked === true) {
     event.currentTarget.parentElement.classList.add('checked');
+    doneTodos.push();
     }
     console.log('click', event.currentTarget.dataset.id); //jag vill gråa ut symbolen för just denna li med + ändra bakgrund? hur?
-    taskList.push();
+    
     console.log(taskList)
 }
 

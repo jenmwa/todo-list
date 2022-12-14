@@ -27,6 +27,7 @@ li {
     border-radius: 12px;
     padding: 1rem;
     width: 400px;
+    height: 85px;
     margin: 10px 0 0 -40px;
     font-size: 1rem;
     box-shadow: 5px 5px 5px black;
@@ -34,13 +35,13 @@ li {
     #favorite {
         font-size: 1.6rem;
         background-color: transparent;
-        color:  #2f2504;
+        color:  #6c6b67;
         padding: 10px;
         margin: 0 5px 10px 0;
     
         &:hover {
             background-color: transparent;
-            cursor: none;
+            cursor:default;
             box-shadow: none;  
         }
     }
@@ -104,9 +105,9 @@ li {
 
     span.material-symbols-outlined {
         position: relative;
-        top: -37px;
-        padding-left: 8px;
-        padding-top: 6px;
+        top: -38px;
+        padding-left: 7px;
+        padding-top: 7px;
         font-size: 2rem;
     }
 
@@ -118,8 +119,8 @@ li {
 .checkbox {
     background-color: whitesmoke;
     padding: 10px;
-    border: 2px solid #2f2504;
     width: 25px;
+    height: 25px;
 }
 
 .submit {
@@ -180,6 +181,19 @@ li {
             text-shadow: 2px 2px 1px #fff;
         }
     }
+}
+
+.text {
+    display: flex;
+    position: relative;
+    top: -35px;
+    margin-left: 50px;
+    line-height: 5px; 
+}
+
+#texttodo {
+    font-size: 1.2rem;
+    font-weight: 700;
 }
 
 .checked { 
