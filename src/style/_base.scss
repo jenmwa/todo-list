@@ -93,6 +93,13 @@ li {
 
     label {
         height: 60px;
+        // /* stylelint-disable-next-line property-no-vendor-prefix */
+        // -webkit-user-select: none;
+        // /* stylelint-disable-next-line property-no-vendor-prefix */
+        // -moz-user-select: none;
+        // /* stylelint-disable-next-line property-no-vendor-prefix */
+        // -ms-user-select: none;
+        // user-select: none;
     }
 
     span.material-symbols-outlined {
@@ -108,13 +115,10 @@ li {
     }  
 }
 
-
 .checkbox {
     background-color: whitesmoke;
     padding: 10px;
     border: 2px solid #2f2504;
-    border-radius: 8px;
-    margin-bottom: 10px;
     width: 25px;
 }
 
@@ -153,6 +157,11 @@ li {
     }
 }
 
+.material-symbols-outlined.check {
+    background-color:#2f2504;
+    color:#fff
+}
+
 .sortsection {
     display: none;
 }
@@ -175,5 +184,6 @@ li {
 
 .checked { 
     text-decoration: line-through;
+    color: grey;
   }
 

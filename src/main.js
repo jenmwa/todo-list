@@ -14,13 +14,13 @@ const todaysDate = new Date();
 const dateField = document.querySelector('#todaysDate');
 dateField.innerHTML = todaysDate.toLocaleDateString();
 
-// val av kategori, lista som loopas 
-let categories = Array.from(document.querySelectorAll('.categories input'));
-
-categories.forEach( (category) => { 
-       category.addEventListener('click',() => { 
-         });
-});
+// val av kategori, som färgmarkeras, lista som loopas 
+const cat = document.getElementsByClassName('material-symbols-outlined');
+for (var i = 0; i < cat.length; i++) {
+    cat[i].addEventListener('click', function(){
+        this.classList.add("check");
+    })
+}
 
 // funktion lägg till ny todo som objekt till array
 function addNewTask() {
@@ -32,7 +32,7 @@ function addNewTask() {
         const todoInput = {
             task: newTaskInput.value,
             deadline: deadlineInput.value,
-            addedDate: todaysDate.value,
+            addedDate: todaysDate,
             category: selectedCategory, 
             isComplete: false, // avbockade tasks ska längst ner i listan men fortfarande synas i listan
           };
@@ -50,23 +50,35 @@ function printTaskList(taskList) {
     
     for (let i = 0; i < taskList.length; i++) {
         tasks.innerHTML += `
-        <li> <div>
-        <input type="checkbox" class="checkbox">
-        ${taskList[i].task}<br>
-        ${taskList[i].deadline}</div><div class="rightsection">
+        <li data-id="${i}"> <div>
+        <input type="checkbox" name="checkbox" class="checkbox" data-id="${i}" ${taskList[i].isComplete}>
+        <span class="text">${taskList[i].task}</span><br>
+        deadline: ${taskList[i].deadline}</div><div class="rightsection">
         <span class="material-symbols-outlined" id="favorite">${taskList[i].category}</span>
         <button class="material-symbols-outlined" data-id="${i}">close</button>
         </div>
         </li>`;
     }
-
+    console.log(taskList)
     showsortSection ();
 
     //klick-event för tabort-knappen som anropar funktion removeTask
     const taskItems = Array.from(document.querySelectorAll('.tasks button'));
     taskItems.forEach((item) => {
-        item.addEventListener('click', removeTask)
+        item.addEventListener('click', removeTask);
     });
+
+    const checkBtn = Array.from(document.querySelectorAll('.tasks input'));
+    checkBtn.forEach((check) => {
+        check.addEventListener('click', checkedBox);
+    });
+    console.log(checkBtn);
+}
+
+//funktion när todo är checked, gråa ut text
+function checkedBox(event) {
+    event.currentTarget.parentElement.classList.add('checked');
+    console.log('click', event.currentTarget.dataset.id); //jag vill gråa ut symbolen för just denna li med + ändra bakgrund? hur?
 }
 
 // funktion visa sorteringsalternativ OM det är 2 eller fler todo's på listan
