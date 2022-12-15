@@ -1,11 +1,10 @@
 import './style/style.scss';
-
 /************************************************************************************************************
  * -------------------------------------------  Variables  -------------------------------------------------
  ************************************************************************************************************/
 
 let taskList = [];
-let doneTodos = [];
+
 
 const tasks = document.querySelector('.tasks'); // the tasks <ul> element
 const done = document.querySelector('.done'); // the done <ul> element
@@ -53,6 +52,7 @@ for (var i = 0; i < cat.length; i++) {
 
 // funktion lägg till ny todo som objekt till array
 function addNewTask() {
+    
     if (newTaskInput.value.length === 0) {
         return;
     }
@@ -88,7 +88,6 @@ function printTaskList(taskList) {
         </div>
         </li>`;
     }
-    console.log(taskList)
     showsortSection ();
 
     //klick-event för tabort-knappen som anropar funktion removeTask
@@ -110,11 +109,9 @@ function checkedBox(event) {
     }
     if (this.checked === true) {
     event.currentTarget.parentElement.classList.add('checked');
-    doneTodos.push();
     }
     console.log('click', event.currentTarget.dataset.id); //jag vill gråa ut symbolen för just denna li med + ändra bakgrund? hur?
-    
-    console.log(taskList)
+    console.log(taskList);
 }
 
 // funktion visa sorteringsalternativ OM det är 2 eller fler todo's på listan
@@ -164,3 +161,23 @@ submitBtn.addEventListener('click', function (e) {
     });
 
   //localStorage.clear(); rensa localstorage.
+
+  //sorteraSektion
+// Sortera per namn
+let isNameSort = true;
+
+const sortByNameBtn = document.querySelector('#sortByNameBtn');
+sortByNameBtn.addEventListener('click', sortByName);
+
+function sortByName (e) {
+    e.preventDefault();
+    if (isNameSort) {
+        taskList.sort((a, b) => a.task.localeCompare(b.task));
+        isNameSort = false;
+    }else if (isNameSort === false) {
+        taskList.sort((a, b) => b.task.localeCompare(a.task));
+        isNameSort = true;
+      }
+      printTaskList(taskList);
+    console.log('klick'); //GLÄÖM EJ add to Local Storage!
+}

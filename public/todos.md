@@ -4,6 +4,7 @@ att göra kod:
 - alla kommentarer på engelska!
 
 - ibockade KLARA-rutan ej sparade i localStorage!!! fixa!)
+- sortera byName ej sparade i localStorage!!! fixa!)
 
 - Få till _ Hitta hela LI-elemntet som ka ändra färg/blurras vid ✅!
 
@@ -25,7 +26,6 @@ att göra kod:
 
 - sakerna i lista ska gå att sorteras på:
 	inlagt datum
-	namn
 	Deadline
 
 - IF-satser
