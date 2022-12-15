@@ -140,6 +140,68 @@ function removeTask(e) {
     addToLocalStorage(taskList);
  }
 
+ //sorteraSektion OBS NÄR ALLT FÖR G ÄR KLART - REFAKTORERA KODEN!
+// se Aritmetik v3 14 modul
+
+let isDateSort = true;
+let isNameSort = true;
+let isDeadlineSort = true;
+
+const SortByDateBtn = document.querySelector('#sortByDateBtn');
+const sortByNameBtn = document.querySelector('#sortByNameBtn');
+const sortByDeadlineBtn = document.querySelector('#sortByDeadlineBtn');
+
+//sortera per inlagt datum
+function sortByDate (eve) {
+    console.log('clicketi');
+    console.log(taskList);
+    eve.preventDefault();
+    if (isDateSort) {
+        taskList.sort((a, b) => a.addedDate.localeCompare(b.addedDate));
+        isDateSort = false;
+    } else if (isDateSort ===false) {
+        taskList.sort((a, b) => b.addedDate.localeCompare(a.addedDate));
+        isDateSort = true;
+    }
+    printTaskList(taskList);
+};
+
+// Sortera per namn
+function sortByName (e) {
+    console.log(taskList);
+    e.preventDefault();
+    if (isNameSort) {
+        taskList.sort((a, b) => a.task.localeCompare(b.task));
+        isNameSort = false;
+    } else if (isNameSort === false) {
+        taskList.sort((a, b) => b.task.localeCompare(a.task));
+        isNameSort = true;
+      }
+      printTaskList(taskList);
+    console.log('klick'); //GLÖM EJ add to Local Storage!
+};
+    
+// Sortera per inlagt datum
+function sortByDeadline (event) {
+    console.log('clicketiclick');
+    console.log(taskList);
+    event.preventDefault();
+    if (isDeadlineSort) {
+        taskList.sort((a, b) =>
+         b.deadline.localeCompare(a.deadline));
+         isDeadlineSort = false; 
+    } else if (isDeadlineSort === false) {
+        taskList.sort((a, b) =>
+        a.deadline.localeCompare(b.deadline));
+        isDeadlineSort = true;
+}
+         printTaskList(taskList);
+    };
+
+SortByDateBtn.addEventListener('click', sortByDate);
+sortByNameBtn.addEventListener('click', sortByName);
+sortByDeadlineBtn.addEventListener('click', sortByDeadline);
+
 // Funktion lägg till vår lista m objekt i localStorage som string
 function addToLocalStorage(taskList) {
     localStorage.setItem('taskList', JSON.stringify(taskList));
@@ -157,6 +219,8 @@ function getFromLocalStorage() {
 
 getFromLocalStorage();
 
+//localStorage.clear(); rensa localstorage.
+
 /************************************************************************************************************
  * ----------------------------------------  Eventlisteners -------------------------------------------------
  ************************************************************************************************************/
@@ -167,53 +231,12 @@ submitBtn.addEventListener('click', function (e) {
     addNewTask();
     });
 
-  //localStorage.clear(); rensa localstorage.
-
-//sorteraSektion OBS NÄR ALLT FÖR G ÄR KLART - REFAKTORERA KODEN!
-
-const SortByDateBtn = document.querySelector('#sortByDateBtn');
 
 
-    
-// Sortera per namn
-let isNameSort = true;
 
-const sortByNameBtn = document.querySelector('#sortByNameBtn');
-sortByNameBtn.addEventListener('click', sortByName);
 
-function sortByName (e) {
-    console.log(taskList);
-    e.preventDefault();
-    if (isNameSort) {
-        taskList.sort((a, b) => a.task.localeCompare(b.task));
-        isNameSort = false;
-    } else if (isNameSort === false) {
-        taskList.sort((a, b) => b.task.localeCompare(a.task));
-        isNameSort = true;
-      }
-      printTaskList(taskList);
-    console.log('klick'); //GLÖM EJ add to Local Storage!
-}
 
-// Sortera per inlagt datum
-let isDeadlineSort = true;
 
-const sortByDeadlineBtn = document.querySelector('#sortByDeadlineBtn');
-sortByDeadlineBtn.addEventListener('click', sortByDeadline);
-console.log(sortByDeadlineBtn);
 
-function sortByDeadline (event) {
-    console.log('clicketiclick');
-    console.log(taskList);
-    event.preventDefault();
-    if (isDeadlineSort) {
-        taskList.sort((a, b) =>
-         b.deadline.localeCompare(a.deadline));
-         isDeadlineSort = false; 
-    } else if (isDeadlineSort === false) {
-        taskList.sort((a, b) =>
-        a.deadline.localeCompare(b.deadline));
-        isDeadlineSort = true;
-}
-         printTaskList(taskList);
-    };
+
+
