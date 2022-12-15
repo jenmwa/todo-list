@@ -24,9 +24,6 @@ att göra kod:
 
 - RESET ALL -knapp lista? (töm taskList samt localStorage?)
 
-- sakerna i lista ska gå att sorteras på:
-	inlagt datum
-	Deadline
 
 - IF-satser
     OM uppgift klar:
@@ -68,3 +65,13 @@ https://www.youtube.com/watch?v=jBmrduvKl5w
 
 systematiskt steg för steg element TodoList (enkel).
 https://thecodingpie.medium.com/how-to-build-a-todo-list-app-with-javascript-and-local-storage-a884f4ea3ec
+
+
+JENNI 16/12
+ - localStorage - hur får jag till att bocken håller i sig vid både uppdatering av sida + lägga till ny 
+
+ -  praxis vid sortering och uppdatering av sida? brukar det hålla sig eller sortering nollställas?
+
+- HUR tänka checked - isComplete: false, och sortera dem utifrån det? 
+
+ - if checked - add class , if else return, vid checkbox + radiobuttons?  ibockad en färg, annars inte.
