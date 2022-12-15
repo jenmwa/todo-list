@@ -7,7 +7,7 @@ let taskList = [];
 
 
 const tasks = document.querySelector('.tasks'); // the tasks <ul> element
-const done = document.querySelector('.done'); // the done <ul> element
+//const done = document.querySelector('.done'); // the done <ul> element
 
 const newTaskInput = document.querySelector('#inputTaskField'); //task inputField
 const deadlineInput = document.querySelector('#deadlineInput'); //deadline inputfield
@@ -19,7 +19,7 @@ const todaysDate = new Date();
 const dateField = document.querySelector('#todaysDate');
 dateField.innerHTML = todaysDate.toLocaleDateString();
 
-//val av kategori, som färgmarkeras, lista som loopas 
+//val av kategori, som färgmarkeras, lista som loopas - GÖR OM & GÖR RÄTT 
 const cat = document.getElementsByClassName('material-symbols-outlined');
 for (var i = 0; i < cat.length; i++) {
     cat[i].addEventListener('click', function(){
@@ -50,6 +50,10 @@ for (var i = 0; i < cat.length; i++) {
     //console.log(category);
     //}
 
+/************************************************************************************************************
+ * -------------------------------------------  Functions  -------------------------------------------------
+ ************************************************************************************************************/
+
 // funktion lägg till ny todo som objekt till array
 function addNewTask() {
     
@@ -58,6 +62,7 @@ function addNewTask() {
     }
     if (taskList.indexOf(newTaskInput.value) === -1) { // GÖR OM, nu kan du lägga till samma sak flera
         const selectedCategory = document.querySelector("input[name='category']:checked").value; 
+
         const todoInput = {
             task: newTaskInput.value,
             deadline: deadlineInput.value,
@@ -75,6 +80,7 @@ console.log(taskList);
 
 // funktion skriv ut vår lista med todo's
 function printTaskList(taskList) {
+
     tasks.innerHTML='';
     
     for (let i = 0; i < taskList.length; i++) {
@@ -96,14 +102,15 @@ function printTaskList(taskList) {
         item.addEventListener('click', removeTask);
     });
 
+    //klick-event för checkbox-knappen som anropar funktion checkedBox
     const checkBtn = Array.from(document.querySelectorAll('.tasks input'));
     checkBtn.forEach((check) => {
-        check.addEventListener('click', checkedBox);
+        check.addEventListener('click', todoChecked);
     });
 }
 
 //funktion när todo är checked, gråa ut text
-function checkedBox(event) {
+function todoChecked(event) {
     if (this.checked === false) {
     event.currentTarget.parentElement.classList.remove('checked');
     }
@@ -123,6 +130,16 @@ function showsortSection () {
     }
 }
 
+//funktion ta bort tasks per task, aktiveras av eventlyssnare på X-knapp i funktionen printTaskList
+function removeTask(e) {
+    const index = e.currentTarget.dataset.id; 
+    if (index > -1) {
+        taskList.splice(index, 1);
+        printTaskList(taskList);
+    }
+    addToLocalStorage(taskList);
+ }
+
 // Funktion lägg till vår lista m objekt i localStorage som string
 function addToLocalStorage(taskList) {
     localStorage.setItem('taskList', JSON.stringify(taskList));
@@ -140,19 +157,9 @@ function getFromLocalStorage() {
 
 getFromLocalStorage();
 
-//funktion ta bort tasks per task, aktiveras av eventlyssnare på X-knapp i funktionen printTaskList
-function removeTask(e) {
-    const index = e.currentTarget.dataset.id; 
-    if (index > -1) {
-        taskList.splice(index, 1);
-        printTaskList(taskList);
-    }
-    addToLocalStorage(taskList);
- }
-
- /**
-  * EVENTLISTENERS
-  */
+/************************************************************************************************************
+ * ----------------------------------------  Eventlisteners -------------------------------------------------
+ ************************************************************************************************************/
 
 // eventlyssnare klick på submit aktivera funktion addNewTask
 submitBtn.addEventListener('click', function (e) {
@@ -162,7 +169,12 @@ submitBtn.addEventListener('click', function (e) {
 
   //localStorage.clear(); rensa localstorage.
 
-  //sorteraSektion
+//sorteraSektion OBS NÄR ALLT FÖR G ÄR KLART - REFAKTORERA KODEN!
+
+const SortByDateBtn = document.querySelector('#sortByDateBtn');
+
+
+    
 // Sortera per namn
 let isNameSort = true;
 
@@ -170,14 +182,38 @@ const sortByNameBtn = document.querySelector('#sortByNameBtn');
 sortByNameBtn.addEventListener('click', sortByName);
 
 function sortByName (e) {
+    console.log(taskList);
     e.preventDefault();
     if (isNameSort) {
         taskList.sort((a, b) => a.task.localeCompare(b.task));
         isNameSort = false;
-    }else if (isNameSort === false) {
+    } else if (isNameSort === false) {
         taskList.sort((a, b) => b.task.localeCompare(a.task));
         isNameSort = true;
       }
       printTaskList(taskList);
-    console.log('klick'); //GLÄÖM EJ add to Local Storage!
+    console.log('klick'); //GLÖM EJ add to Local Storage!
 }
+
+// Sortera per inlagt datum
+let isDeadlineSort = true;
+
+const sortByDeadlineBtn = document.querySelector('#sortByDeadlineBtn');
+sortByDeadlineBtn.addEventListener('click', sortByDeadline);
+console.log(sortByDeadlineBtn);
+
+function sortByDeadline (event) {
+    console.log('clicketiclick');
+    console.log(taskList);
+    event.preventDefault();
+    if (isDeadlineSort) {
+        taskList.sort((a, b) =>
+         b.deadline.localeCompare(a.deadline));
+         isDeadlineSort = false; 
+    } else if (isDeadlineSort === false) {
+        taskList.sort((a, b) =>
+        a.deadline.localeCompare(b.deadline));
+        isDeadlineSort = true;
+}
+         printTaskList(taskList);
+    };
