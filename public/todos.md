@@ -4,7 +4,6 @@ att göra kod:
 - alla kommentarer på engelska!
 
 - ibockade KLARA-rutan ej sparade i localStorage!!! fixa!)
-- sortera byName ej sparade i localStorage!!! fixa!)
 
 - Få till _ Hitta hela LI-elemntet som ka ändra färg/blurras vid ✅!
 
@@ -12,9 +11,8 @@ att göra kod:
                                 -_NÅGON_ visuell förändring
                                 + längst ner på listan
 
-                                    - längst ner på en lista push().
-                                    Frågan är, en ny lista? doneTasks som pushas?
-                                    går det att ha 2 listor i localStorage eller skrivs de över?
+                                    - längst ner på en lista,
+                                    sortera isComplete false/true
 - validera inputs?
     - ska man kunna lägga in tasks utan deadline?
         - OM JA - ska de hamna sist på lista vid sortering av deadline-datum.
@@ -47,6 +45,7 @@ CSS
 - styla todo-LI-elementen _NÄR_ ikoner och allt printas som de ska.
 - styla kategori-valen!
 - styla checkboxen, både bock + default-färg...
+- GÅ IGENOM CSS STRUKTUREN!
 
 SAKER JAG VILL HA MED men ej prio:
     - Mörkt läge toggle
@@ -68,10 +67,17 @@ https://thecodingpie.medium.com/how-to-build-a-todo-list-app-with-javascript-and
 
 
 JENNI 16/12
- - localStorage - hur får jag till att bocken håller i sig vid både uppdatering av sida + lägga till ny 
 
- -  praxis vid sortering och uppdatering av sida? brukar det hålla sig eller sortering nollställas?
+- när klickad - check, add klass -överstruken text. 
+SAMTIDIGT här så vill jag att objektets isComplete = true? hur?
+
+ - localStorage - hur får jag till att bocken håller i sig vid både uppdatering av sida + samtidigt vara kvar lägga till ny artikel?
+
+
 
 - HUR tänka checked - isComplete: false, och sortera dem utifrån det? 
+
+
+...
 
  - if checked - add class , if else return, vid checkbox + radiobuttons?  ibockad en färg, annars inte.
