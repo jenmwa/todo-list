@@ -56,17 +56,24 @@ for (var i = 0; i < cat.length; i++) {
  ************************************************************************************************************/
 
 // funktion lägg till ny todo som objekt till array
-function addNewTask() {
+function addNewTask() {  
   if (newTaskInput.value.length === 0) {
     taskError.innerHTML = 'Fyll i något att göra!';
     return;
   }
-  if (taskList.indexOf(newTaskInput.value) === -1) {
+
+  const found = taskList.find((todoInput) => todoInput.task === newTaskInput.value); 
+  // reagerar inte på OM du skriver med stora/små bokstäver... FIXA!
+  
+  if (found?.task === newTaskInput.value) {
+    taskError.innerHTML = 'Du har redan detta på din lista.';
+  }
+  
+  else {
     taskError.innerHTML = '';
-    // GÖR OM, nu kan du lägga till samma sak flera
     const selectedCategory = document.querySelector("input[name='category']:checked").value;
 
-    const todoInput = {
+    let todoInput = {
       task: newTaskInput.value,
       deadline: deadlineInput.value,
       addedDate: todaysDate,
@@ -78,6 +85,7 @@ function addNewTask() {
     newTaskInput.value = '';
     deadlineInput.value = '';
   }
+  
 }
 
 // funktion skriv ut vår lista med todo's
@@ -96,7 +104,7 @@ function printTaskList(taskList) {
         </div>
         </li>`;
   }
-  console.log(taskList.isComplete)
+  console.log(taskList)
   showsortSection();
 
   //klick-event för tabort-knappen som anropar funktion removeTask
@@ -111,23 +119,25 @@ function printTaskList(taskList) {
     check.addEventListener('click', todoChecked);
   });
 }
-
+ // NEDAN - work In progress!
+ 
 //funktion när todo är checked, gråa ut text
 function todoChecked(event) {
   const index = taskList.findIndex(task => task.task === event.currentTarget.nextElementSibling.innerHTML);
   console.log(event.currentTarget.nextElementSibling.innerHTML);
-  console.log(index)
 
   // if (taskList[index].isComplete  === false) {
   //   event.currentTarget.parentElement.classList.remove('checked');
   // }
-  taskList[index].isComplete  === true
-
+  if (taskList[index].isComplete  === true) {
+    event.currentTarget.parentElement.classList.add('checked');
+  
+  }
     //KOD?
 
-    //sortByComplete();
+  sortByComplete();
   
-  //addToLocalStorage(taskList);
+  //addToLocalStorage(taskList); //OM denna syns här, så går det ej att klicka i checkbox! why?
 
   console.log('click', event.currentTarget.dataset.id); //jag vill gråa ut symbolen för just denna li med + ändra bakgrund? hur?
   //console.log(taskList);

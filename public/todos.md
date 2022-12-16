@@ -3,18 +3,22 @@ att göra kod:
 - STÄDA KOD!!!!!
 - alla kommentarer på engelska!
 
+- När iklickad KLAR - isComplete = TRUE;
+    - Om true addera klassen .checked 
+            (som stryker över all text!)
+
+- se till att bock- i- ruta SYNS!
+
 - ibockade KLARA-rutan ej sparade i localStorage!!! fixa!)
 
 - Få till _ Hitta hela LI-elemntet som ka ändra färg/blurras vid ✅!
 
 - i printTaskList - läggs till
-                                -_NÅGON_ visuell förändring
-                                + längst ner på listan
-
-                                    - längst ner på en lista,
-                                    sortera isComplete false/true
+                            - längst ner på en lista,
+                                sortera isComplete false/true
 - validera inputs?
-    - ska man kunna lägga in tasks utan deadline?
+    - ska man kunna lägga in todo's utan Kategori? (NEJ i dagsläget, men jag visar ingen validering)
+    - ska man kunna lägga in todo's utan deadline? (ja i dagsläget men visar ingen validering)
         - OM JA - ska de hamna sist på lista vid sortering av deadline-datum.
         - skriva ut texten - ingen deadline eller liknande?
         -antal bokstäver max?
@@ -23,7 +27,7 @@ att göra kod:
 - RESET ALL -knapp lista? (töm taskList samt localStorage?)
 
 
-- IF-satser
+- IF-satser VG
     OM uppgift klar:
         visuellt SYNS klar och läggs längst ner i listan
 
@@ -66,7 +70,7 @@ systematiskt steg för steg element TodoList (enkel).
 https://thecodingpie.medium.com/how-to-build-a-todo-list-app-with-javascript-and-local-storage-a884f4ea3ec
 
 
-JENNI 16/12
+FUNDERINGAR: 
 
 - när klickad - check, add klass -överstruken text. 
 SAMTIDIGT här så vill jag att objektets isComplete = true? hur?
