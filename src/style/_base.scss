@@ -68,6 +68,14 @@ li {
     font-size: 1.2rem;
     box-shadow: 5px 5px 5px black;
 
+    .taskerror {
+        font-size: 1rem;
+        color: darkred;
+        position: relative;
+        top: -20px;
+        left: 15px;
+    }
+
     .date {
         font-size: 1.45rem;
         font-weight: 700;

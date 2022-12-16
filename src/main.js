@@ -13,6 +13,8 @@ const deadlineInput = document.querySelector('#deadlineInput'); //deadline input
 const submitBtn = document.querySelector('#submit'); //submitBtn
 const sortSection = document.querySelector('#sortSection'); //sorteringssektionen
 
+const taskError = document.querySelector('#taskError');
+
 // skriva ut dagens datum på listan enligt sv.datum
 const todaysDate = new Date();
 const dateField = document.querySelector('#todaysDate');
@@ -56,9 +58,11 @@ for (var i = 0; i < cat.length; i++) {
 // funktion lägg till ny todo som objekt till array
 function addNewTask() {
   if (newTaskInput.value.length === 0) {
+    taskError.innerHTML = 'Fyll i något att göra!';
     return;
   }
   if (taskList.indexOf(newTaskInput.value) === -1) {
+    taskError.innerHTML = '';
     // GÖR OM, nu kan du lägga till samma sak flera
     const selectedCategory = document.querySelector("input[name='category']:checked").value;
 
@@ -75,7 +79,6 @@ function addNewTask() {
     deadlineInput.value = '';
   }
 }
-console.log(taskList);
 
 // funktion skriv ut vår lista med todo's
 function printTaskList(taskList) {
@@ -85,7 +88,7 @@ function printTaskList(taskList) {
     const checkBox = taskList[i].isComplete ? 'checked' : ''; //som en förenklad if-sats (if taskList[i].isComplete == true, lägger till checked, if else - '') 
     tasks.innerHTML += `
         <li data-id="${i}" class="${checkBox}"> <div>
-        <input type="checkbox" name="checkbox" class="checkbox" data-id="${i}">
+        <input type="checkbox" name="checkbox" class="checkbox"data-id="${i}">
         <span class="text" id="texttodo">${taskList[i].task}</span><br>
         <span class="text">deadline: ${taskList[i].deadline}</span></div><div class="rightsection">
         <span class="material-symbols-outlined" id="favorite">${taskList[i].category}</span>
@@ -93,7 +96,7 @@ function printTaskList(taskList) {
         </div>
         </li>`;
   }
-  console.log(taskList)
+  console.log(taskList.isComplete)
   showsortSection();
 
   //klick-event för tabort-knappen som anropar funktion removeTask
@@ -110,24 +113,23 @@ function printTaskList(taskList) {
 }
 
 //funktion när todo är checked, gråa ut text
-function todoChecked() {
-  console.log(taskList);
-  // const index = taskList.findIndex(task => task.task === event.currentTarget.nextElementSibling.innerHTML);
+function todoChecked(event) {
+  const index = taskList.findIndex(task => task.task === event.currentTarget.nextElementSibling.innerHTML);
+  console.log(event.currentTarget.nextElementSibling.innerHTML);
+  console.log(index)
 
   // if (taskList[index].isComplete  === false) {
-  //   taskList[index].isComplete = false;
-  //   //event.currentTarget.parentElement.classList.remove('checked');
+  //   event.currentTarget.parentElement.classList.remove('checked');
   // }
-  // if (taskList[index].isComplete  === true) {
-  //   taskList[index].isComplete = true;
-  //   //event.currentTarget.parentElement.classList.add('checked');
-  //   //KOD?
+  taskList[index].isComplete  === true
 
-  //   //sortByComplete();
-  // }
-  // addToLocalStorage(taskList);
+    //KOD?
 
-  //console.log('click', event.currentTarget.dataset.id); //jag vill gråa ut symbolen för just denna li med + ändra bakgrund? hur?
+    //sortByComplete();
+  
+  //addToLocalStorage(taskList);
+
+  console.log('click', event.currentTarget.dataset.id); //jag vill gråa ut symbolen för just denna li med + ändra bakgrund? hur?
   //console.log(taskList);
 }
 

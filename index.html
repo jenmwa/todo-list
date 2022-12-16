@@ -24,6 +24,7 @@
           Vad ska göras?
           <input type="text" class="inputTaskField" id="inputTaskField" placeholder="skriv upp din toDo">
         </label>
+        <span class="taskerror" id="taskError"></span>
         <div class="wrapper">
           <label>
             deadline datum<br>
@@ -35,7 +36,7 @@
               <div class="section1">
                 <label>
                   <input type="radio" name="category" value="priority_high">
-                    <span class="material-symbols-outlined" id="prio">priority_high</span>
+                    <span class="material-symbols-outlined" id="prio" checked>priority_high</span>
                 </label>
                 <label>
                   <input type="radio" name="category" value="school">
