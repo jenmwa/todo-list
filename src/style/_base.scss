@@ -178,10 +178,10 @@ li {
     }
 }
 
-.check {
+label input[type="radio"]:checked ~ span {
     background-color:#2f2504;
     color:#fff
-}
+  }
 
 .sortsection {
     display: none;
@@ -189,18 +189,6 @@ li {
 
 .sortsection.open {
     display:block;
-
-    span {
-        background-color: transparent;
-        border: none;
-
-        &:hover {
-            cursor: pointer;
-            color: black;
-            box-shadow: none;
-            text-shadow: 2px 2px 1px #fff;
-        }
-    }
 }
 
 .text {

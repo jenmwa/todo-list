@@ -48,7 +48,6 @@ function addNewTask() {
     newTaskInput.value = '';
     deadlineInput.value = '';
   }
-
 }
 
 // funktion skriv ut vår lista med todo's
@@ -85,8 +84,6 @@ function printTaskList(taskList) {
  // NEDAN - work In progress!
 
 /** TODO
- * FUNKTION - val av kategori, som färgmarkeras vid val, neutral annars.
- * 
  * FUNKTION - NÄR checkbox är checkad - addera  klass .checked (överstruken text)
  * 
  * FIXA checkbox checkad i LocalStorage
@@ -94,8 +91,6 @@ function printTaskList(taskList) {
  * FIXA remove all knapp + funktion
  */
 // //
-
-
  
 //funktion när todo är checked, gråa ut text
 function todoChecked(event) {
@@ -110,7 +105,6 @@ function todoChecked(event) {
     console.log(event.currentTarget);
   
   }
-    //KOD?
 
   sortByComplete();
   
