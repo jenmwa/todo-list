@@ -57,7 +57,7 @@ function printTaskList(taskList) {
   for (let i = 0; i < taskList.length; i++) {
     const checkBox = taskList[i].isComplete ? 'checked' : ''; //som en förenklad if-sats (if taskList[i].isComplete == true, lägger till checked, if else - '') 
     tasks.innerHTML += `
-        <li data-id="${i}" class="${checkBox}"> <div>
+        <li data-id="${i}" class="${checkBox}"> <div class="licontainer">
         <input type="checkbox" name="checkbox" class="checkbox"data-id="${i}">
         <span class="text" id="texttodo">${taskList[i].task}</span><br>
         <span class="text"> ${taskList[i].deadline}</span></div><div class="rightsection">
@@ -84,9 +84,9 @@ function printTaskList(taskList) {
  // NEDAN - work In progress!
 
 /** TODO
- * FUNKTION - NÄR checkbox är checkad - addera  klass .checked (överstruken text)
- * 
  * FIXA checkbox checkad i LocalStorage
+ * checkbox checkad längst NER i listan! (sortera true/false isComplete)
+ * 
  * 
  * FIXA remove all knapp + funktion
  */

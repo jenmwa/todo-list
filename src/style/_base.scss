@@ -14,6 +14,7 @@ input {
 button {
     margin: 0;
     padding: 0;
+    color: #2f2504;
 }
 
 h1 {
@@ -59,6 +60,30 @@ li {
     }
 }
 
+label input[type="radio"]:checked ~ span {
+    background-color:#2f2504;
+    color:#fff
+  }
+  
+input[type="checkbox"] {
+    cursor: pointer;
+    background-color: whitesmoke;
+    padding: 10px;
+    width: 25px;
+    height: 25px;
+}
+
+input[type="checkbox"]:checked {
+      border: none;
+      accent-color: #6c6b67;
+      outline: 2px solid #2f2504;
+  }
+
+div input[type="checkbox"]:checked ~ span {
+    text-decoration: line-through;
+    color: grey;
+}
+
 .todocontainer {
     display: flex;
     justify-content: center;
@@ -95,51 +120,42 @@ li {
     .deadline {
         width: 200px;
         height: 50px;
-        margin-bottom: 10px;
-        margin-top: 25px;
+        margin-top: 15px;
+
     }
 
     .wrapper {
         display:flex;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
     }
 }
 
 .select {
     text-align: left;
-    margin-left: 10px;
+    margin-left: 5px;
 
     label {
         height: 60px;
-        // /* stylelint-disable-next-line property-no-vendor-prefix */
-        // -webkit-user-select: none;
-        // /* stylelint-disable-next-line property-no-vendor-prefix */
-        // -moz-user-select: none;
-        // /* stylelint-disable-next-line property-no-vendor-prefix */
-        // -ms-user-select: none;
-        // user-select: none;
+    }
+
+    input {
+        margin-top: 25px;
+        margin-left: 10px;
     }
 
     span.material-symbols-outlined {
         position: relative;
-        top: -10px;
+        top: -40px;
         left: 7px;
         padding-left: 7px;
         padding-top: 7px;
         font-size: 2rem;
+        box-shadow: none;                     
     }
 
     .section1, .section2 {
     display: flex;
-    margin-bottom: 15px;
     }  
-}
-
-.checkbox {
-    background-color: whitesmoke;
-    padding: 10px;
-    width: 25px;
-    height: 25px;
 }
 
 .submit {
@@ -178,11 +194,6 @@ li {
     }
 }
 
-label input[type="radio"]:checked ~ span {
-    background-color:#2f2504;
-    color:#fff
-  }
-
 .sortsection {
     display: none;
 }
@@ -203,9 +214,3 @@ label input[type="radio"]:checked ~ span {
     font-size: 1.1rem;
     font-weight: 700;
 }
-
-.checked { 
-    text-decoration: line-through;
-    color: grey;
-  }
-
