@@ -25,18 +25,14 @@ dateField.innerHTML = todaysDate.toLocaleDateString();
 
 // funktion lägg till ny todo som objekt till array
 function addNewTask() {  
-  if (newTaskInput.value.length === 0) {
-    taskError.innerHTML = 'Fyll i något att göra!';
+  if (newTaskInput.value.length === 0 || deadlineInput.value === '') {
+    taskError.innerHTML = 'Fyll i todo & deadline!';
     return;
   }
+  
+  if (newTaskInput.value.length >= 2 && deadlineInput != '') {
+    console.log(taskList.indexOf);
 
-  //const found = taskList.find((todoInput) => todoInput.task === newTaskInput.value); 
-  // reagerar inte på OM du skriver med stora/små bokstäver... FIXA!
-  
-  // if () { // OM newInputTask.value redan finns i taskList[i].task, skriv ut "Du har redan denna på din lista"
-  // }
-  
-  else {
     taskError.innerHTML = '';
     const selectedCategory = document.querySelector("input[name='category']:checked").value;
 
@@ -52,7 +48,7 @@ function addNewTask() {
     newTaskInput.value = '';
     deadlineInput.value = '';
   }
-  
+
 }
 
 // funktion skriv ut vår lista med todo's
