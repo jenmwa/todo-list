@@ -6,12 +6,11 @@ import './style/style.scss';
 let taskList = [];
 
 const tasks = document.querySelector('.tasks'); // the tasks <ul> element
-//const done = document.querySelector('.done'); // the done <ul> element
 
 const newTaskInput = document.querySelector('#inputTaskField'); //task inputField
 const deadlineInput = document.querySelector('#deadlineInput'); //deadline inputfield
 const submitBtn = document.querySelector('#submit'); //submitBtn
-const sortSection = document.querySelector('#sortSection'); //sorteringssektionen
+const sortSection = document.querySelector('#sortSection'); //sortSection
 
 const taskError = document.querySelector('#taskError');
 
@@ -19,37 +18,6 @@ const taskError = document.querySelector('#taskError');
 const todaysDate = new Date();
 const dateField = document.querySelector('#todaysDate');
 dateField.innerHTML = todaysDate.toLocaleDateString();
-
-//val av kategori, som färgmarkeras, lista som loopas - GÖR OM & GÖR RÄTT
-const cat = document.getElementsByClassName('material-symbols-outlined');
-for (var i = 0; i < cat.length; i++) {
-  cat[i].addEventListener('click', function () {
-    this.classList.add('check');
-  });
-}
-// const category = Array.from(document.querySelectorAll('.categories input'));
-//     category.forEach((choice) => {
-//         choice.addEventListener('change', choosedCategory);
-//     });
-//     function choosedCategory(ev) {
-//         if (this.checked === true) {
-//             ev.target.nextElementSibling.classList.add('check');
-//         } else {
-//             ev.target.nextElementSibling.classList.remove('check');
-//         }
-//         // if (this.checked != true) {
-//         //     ev.target.nextElementSibling.classList.remove('check')
-//         // }
-//         console.log(ev.target.nextElementSibling);
-
-// if (this.checked === false) {
-//     ev.currentTarget.parentElement.classList.remove('check');
-//     }
-//     if (this.checked === true) {
-//     ev.currentTarget.parentElement.classList.add('check');
-//     }
-//console.log(category);
-//}
 
 /************************************************************************************************************
  * -------------------------------------------  Functions  -------------------------------------------------
@@ -62,12 +30,11 @@ function addNewTask() {
     return;
   }
 
-  const found = taskList.find((todoInput) => todoInput.task === newTaskInput.value); 
+  //const found = taskList.find((todoInput) => todoInput.task === newTaskInput.value); 
   // reagerar inte på OM du skriver med stora/små bokstäver... FIXA!
   
-  if (found?.task === newTaskInput.value) {
-    taskError.innerHTML = 'Du har redan detta på din lista.';
-  }
+  // if () { // OM newInputTask.value redan finns i taskList[i].task, skriv ut "Du har redan denna på din lista"
+  // }
   
   else {
     taskError.innerHTML = '';
@@ -98,7 +65,7 @@ function printTaskList(taskList) {
         <li data-id="${i}" class="${checkBox}"> <div>
         <input type="checkbox" name="checkbox" class="checkbox"data-id="${i}">
         <span class="text" id="texttodo">${taskList[i].task}</span><br>
-        <span class="text">deadline: ${taskList[i].deadline}</span></div><div class="rightsection">
+        <span class="text"> ${taskList[i].deadline}</span></div><div class="rightsection">
         <span class="material-symbols-outlined" id="favorite">${taskList[i].category}</span>
         <button class="material-symbols-outlined" data-id="${i}">close</button>
         </div>
@@ -120,6 +87,19 @@ function printTaskList(taskList) {
   });
 }
  // NEDAN - work In progress!
+
+/** TODO
+ * FUNKTION - val av kategori, som färgmarkeras vid val, neutral annars.
+ * 
+ * FUNKTION - NÄR checkbox är checkad - addera  klass .checked (överstruken text)
+ * 
+ * FIXA checkbox checkad i LocalStorage
+ * 
+ * FIXA remove all knapp + funktion
+ */
+// //
+
+
  
 //funktion när todo är checked, gråa ut text
 function todoChecked(event) {
@@ -163,7 +143,7 @@ function removeTask(e) {
   addToLocalStorage(taskList);
 }
 
-//sorteraSektion OBS NÄR ALLT FÖR G ÄR KLART - REFAKTORERA KODEN!
+/***** sorteraSektion OBS NÄR ALLT FÖR G ÄR KLART - REFAKTORERA KODEN! *****/
 // se Aritmetik v3 14 modul
 
 let isDateSort = true;
@@ -228,15 +208,14 @@ function sortByDeadline(event) {
 function sortByComplete() {
   console.log('clickt');
   console.log(taskList);
-
-  
 }
-
 
 SortByDateBtn.addEventListener('click', sortByDate);
 sortByNameBtn.addEventListener('click', sortByName);
 sortByDeadlineBtn.addEventListener('click', sortByDeadline);
 
+
+/***** LOCALSTORAGE FUNKTIONER - SET & GET *****/
 // Funktion lägg till vår lista m objekt i localStorage som string
 function addToLocalStorage(taskList) {
   localStorage.setItem('taskList', JSON.stringify(taskList));

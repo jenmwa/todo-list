@@ -11,6 +11,11 @@ input {
     border: 2px solid black;
 }
 
+button {
+    margin: 0;
+    padding: 0;
+}
+
 h1 {
     color: whitesmoke;
     text-align: center;
@@ -26,7 +31,7 @@ li {
     background-color: #d0ddd7;
     border-radius: 12px;
     padding: 1rem;
-    width: 400px;
+    width: 350px;
     height: 85px;
     margin: 10px 0 0 -40px;
     font-size: 1rem;
@@ -62,10 +67,10 @@ li {
 .app {
     background-color: #d0ddd7;
     border-radius: 12px;
-    padding: 1rem 2rem 2rem;
-    width: 400px;
+    padding: 1rem 1rem 2rem;
+    width: 350px;
     margin: 0 auto;
-    font-size: 1.2rem;
+    font-size: 1rem;
     box-shadow: 5px 5px 5px black;
 
     .taskerror {
@@ -89,6 +94,7 @@ li {
 
     .deadline {
         width: 200px;
+        height: 50px;
         margin-bottom: 10px;
     }
 
@@ -99,7 +105,7 @@ li {
 
 .select {
     text-align: left;
-    margin-left: 20px;
+    margin-left: 10px;
 
     label {
         height: 60px;
@@ -134,6 +140,7 @@ li {
 
 .submit {
     width: 200px;
+    height: 50px;
     border-radius: 8px;
     padding: 8px 12px;
     background-color: #7e846b;
