@@ -5,12 +5,12 @@ import './style/style.scss';
 
 let taskList = [];
 
-const tasks = document.querySelector('.tasks'); // the tasks <ul> element
+const tasks = document.querySelector('.tasks'); 
 
-const newTaskInput = document.querySelector('#inputTaskField'); //task inputField
-const deadlineInput = document.querySelector('#deadlineInput'); //deadline inputfield
-const submitBtn = document.querySelector('#submit'); //submitBtn
-const sortSection = document.querySelector('#sortSection'); //sortSection
+const newTaskInput = document.querySelector('#inputTaskField'); 
+const deadlineInput = document.querySelector('#deadlineInput'); 
+const submitBtn = document.querySelector('#submit'); 
+const sortSection = document.querySelector('#sortSection'); 
 
 const taskError = document.querySelector('#taskError');
 
@@ -27,19 +27,16 @@ dateField.innerHTML = todaysDate.toLocaleDateString();
 function addNewTask() {  
   if (newTaskInput.value.length === 0 || deadlineInput.value === '') {
     taskError.innerHTML = 'Fyll i Todo & deadline!';
-    return;
   }
   
-  else if (newTaskInput.value.length >= 2 && deadlineInput != '') {
-    console.log(taskList.indexOf);
-
+  if (newTaskInput.value.length >= 2 && deadlineInput != '') {
     taskError.innerHTML = '';
     const selectedCategory = document.querySelector("input[name='category']:checked").value;
 
     let todoInput = {
       task: newTaskInput.value,
       deadline: deadlineInput.value,
-      addedDate: todaysDate,
+      addedDate: new Date(),
       category: selectedCategory,
       isComplete: false, // avbockade tasks ska längst ner i listan men fortfarande synas i listan
     };
@@ -50,15 +47,15 @@ function addNewTask() {
   }
 }
 
-// funktion skriv ut vår lista med todo's
 function printTaskList(taskList) {
   tasks.innerHTML = '';
 
   for (let i = 0; i < taskList.length; i++) {
-    const checkBox = taskList[i].isComplete ? 'checked' : ''; //som en förenklad if-sats (if taskList[i].isComplete == true, lägger till checked, if else - '') 
+    const checkBox = taskList[i].isComplete ? 'checked' : ''; //som en förenklad if else -sats, (condition to test ? value if true : value if false
+    
     tasks.innerHTML += `
         <li data-id="${i}" class="${checkBox}"> <div class="licontainer">
-        <input type="checkbox" name="checkbox" class="checkbox"data-id="${i}">
+        <input type="checkbox" name="checkbox" class="checkbox" data-id="${i}">
         <span class="text" id="texttodo">${taskList[i].task}</span><br>
         <span class="text"> ${taskList[i].deadline}</span></div><div class="rightsection">
         <span class="material-symbols-outlined category">${taskList[i].category}</span>
@@ -66,7 +63,7 @@ function printTaskList(taskList) {
         </div>
         </li>`;
   }
-  console.log(taskList)
+  console.log(taskList);
   showsortSection();
 
   //klick-event för tabort-knappen som anropar funktion removeTask
@@ -75,46 +72,37 @@ function printTaskList(taskList) {
     item.addEventListener('click', removeTask);
   });
 
-  //klick-event för checkbox-knappen som anropar funktion checkedBox
+  //change-event för checkbox-knappen som anropar funktion checkedBox
   const checkBtn = Array.from(document.querySelectorAll('.tasks input'));
   checkBtn.forEach(check => {
-    check.addEventListener('change', todoChecked);
+    check.addEventListener('change', todoChecked); //ändrar jag till click går det ej att checka box?
   });
-}
- // NEDAN - work In progress!
+};
 
-/** TODO
- * FIXA checkbox checkad i LocalStorage
- * checkbox checkad längst NER i listan! (sortera true/false isComplete)
- * 
- * 
- * FIXA remove all knapp + funktion
- */
-// //
- 
+ // NEDAN - work In progress!
 //funktion när todo är checked, gråa ut text
-function todoChecked(event) {
-  const index = taskList.findIndex(task => task.task === event.currentTarget.nextElementSibling.innerHTML);
-  console.log(event.currentTarget.nextElementSibling);
+function todoChecked(eventer) {
+  // const index = taskList.findIndex(task => task.task === eventer.currentTarget.nextElementSibling.innerHTML);
+  // console.log(eventer.target.nextElementSibling.innerHTML);
+  // console.log(taskList[index].isComplete);
+  // if (taskList.isComplete) {
+  //   isComplete = true;
+  // }
+  //return true;
+
+  console.log('if clicked once - isComplete = true');
+  console.log('if clicked again - isComplete = false');
+  eventer.preventDefault();
 
   // if (taskList[index].isComplete  === false) {
   //   event.currentTarget.parentElement.classList.remove('checked');
   // }
-  if (taskList[index].isComplete  === true) {
-    event.currentTarget.nextElementSibling.classList.add('checked');
-    console.log(event.currentTarget);
-  
-  }
-
-  sortByComplete();
-  
+  //sortByComplete();
   //addToLocalStorage(taskList); //OM denna syns här, så går det ej att klicka i checkbox! why?
-
   //console.log('click', event.currentTarget.dataset.id); //jag vill gråa ut symbolen för just denna li med + ändra bakgrund? hur?
   //console.log(taskList);
 }
 
-// funktion visa sorteringsalternativ OM det är 2 eller fler todo's på listan
 function showsortSection() { 
   if (taskList.length <= 1) {
     sortSection.classList.remove('open');
@@ -124,7 +112,6 @@ function showsortSection() {
   }
 }
 
-//funktion ta bort tasks per task, aktiveras av eventlyssnare på X-knapp i funktionen printTaskList
 function removeTask(e) {
   const index = e.currentTarget.dataset.id;
   if (index > -1) {
@@ -134,35 +121,34 @@ function removeTask(e) {
   addToLocalStorage(taskList);
 }
 
-/***** sorteraSektion OBS NÄR ALLT FÖR G ÄR KLART - REFAKTORERA KODEN! *****/
-// se Aritmetik v3 14 modul
+/**
+ * sorteraSektion OBS NÄR ALLT FÖR G ÄR KLART - REFAKTORERA KODEN! 
+ * se Aritmetik v3 14 modul
+ */
 
-//let isDateSort = true;
+let isDateSort = true;
 let isNameSort = true;
 let isDeadlineSort = true;
 
-//const SortByDateBtn = document.querySelector('#sortByDateBtn');
+const sortByDateBtn = document.querySelector('#sortByDateBtn');
 const sortByNameBtn = document.querySelector('#sortByNameBtn');
 const sortByDeadlineBtn = document.querySelector('#sortByDeadlineBtn');
 
-//sortera per inlagt datum
-// function sortByDate(eve) {
-//   console.log('clicketi');
-//   console.log(taskList);
-//   eve.preventDefault();
-//   if (isDateSort) {
-//     taskList.sort((a, b) => a.addedDate.localeCompare(b.addedDate));
-//     isDateSort = false;
-//   } else if (isDateSort === false) {
-//     taskList.sort((a, b) => b.addedDate.localeCompare(a.addedDate));
-//     isDateSort = true;
-//   }
-//   printTaskList(taskList);
-//   addToLocalStorage(taskList);
+function sortByDate(eve) {
+  console.log('clicketi');
+  console.log(taskList);
+  eve.preventDefault();
+  if (isDateSort) {
+    taskList.sort((a, b) => a.addedDate.localeCompare(b.addedDate));
+    isDateSort = false;
+  } else if (isDateSort === false) {
+    taskList.sort((a, b) => b.addedDate.localeCompare(a.addedDate));
+    isDateSort = true;
+  }
+  printTaskList(taskList);
+  addToLocalStorage(taskList);
+}
 
-// }
-
-// Sortera per namn
 function sortByName(ev) {
   console.log(taskList);
   ev.preventDefault();
@@ -175,10 +161,9 @@ function sortByName(ev) {
   }
   printTaskList(taskList);
   addToLocalStorage(taskList);
-  console.log('klick'); //GLÖM EJ add to Local Storage!
+  console.log('klick'); 
 }
 
-// Sortera per inlagt datum
 function sortByDeadline(event) {
   console.log('clicketiclick');
   console.log(taskList);
@@ -195,27 +180,38 @@ function sortByDeadline(event) {
 
 }
 
-// Sortera per inlagt datum
-function sortByComplete() {
-  console.log('clickt');
-  console.log(taskList);
-}
+// Sortera per complete
+// function sortByComplete() {
+//   const trueVal = true; // change to "true" if you want a string
+//   const falseVal = false; // change to "false" if you want a string
+//   taskList.sort((a, b) => b.isComplete.localeCompare(a.isComplete));
+//   taskList[0].isComplete = trueVal;
+//   taskList.filter(datum => !datum.is_latest).forEach(datum => datum.is_latest = falseVal);
+//   console.log(taskList);
+//   //const checkBox = taskList[i].isComplete ? 'checked' : '';
+//   console.log('JARRÅ');
+//   if (taskList.isComplete  === true) {
+//     isComplete= true;
+//   }
+//   console.log(isComplete);
+// }
 
-//SortByDateBtn.addEventListener('click', sortByDate);
+sortByDateBtn.addEventListener('click', sortByDate);
 sortByNameBtn.addEventListener('click', sortByName);
 sortByDeadlineBtn.addEventListener('click', sortByDeadline);
 
+/**
+ * LOCALSTORAGE FUNKTIONER 
+ * SET & GET
+ */
 
-/***** LOCALSTORAGE FUNKTIONER - SET & GET *****/
-// Funktion lägg till vår lista m objekt i localStorage som string
 function addToLocalStorage(taskList) {
   localStorage.setItem('taskList', JSON.stringify(taskList));
   printTaskList(taskList);
 }
 
-// Funktion hämta det vi lagt till i localStorage,  konverterar tillbaka till lista & läggs i vår taskList -lista
 function getFromLocalStorage() {
-  const getStoredArray = localStorage.getItem('taskList');
+  let getStoredArray = localStorage.getItem('taskList');
   if (getStoredArray) {
     taskList = JSON.parse(getStoredArray);
     printTaskList(taskList);

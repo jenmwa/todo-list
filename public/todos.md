@@ -1,13 +1,19 @@
 att göra kod:
 
 - STÄDA KOD!!!!!
-- alla kommentarer på engelska!
+-  kommentarer på engelska!
 
 - När iklickad KLAR - isComplete = TRUE;
     - Om true addera klassen .checked 
             (som stryker över all text!)
 
-- se till att bock- i- ruta SYNS!
+- se till att bock- i- ruta SYNS! SYNS om eventet har status change, men inte klick.
+
+LÄS - https://www.techiedelight.com/bind-to-checkbox-change-event-with-javascript/
+
+
+
+
 - ibockade KLARA-rutan ej sparade i localStorage!!! fixa!)
 
 - Få till _ Hitta hela LI-elemntet som ka ändra färg/blurras vid ✅!
@@ -68,16 +74,23 @@ https://thecodingpie.medium.com/how-to-build-a-todo-list-app-with-javascript-and
 
 FUNDERINGAR: 
 
-- när klickad - check, add klass -överstruken text. 
-SAMTIDIGT här så vill jag att objektets isComplete = true? hur?
+OM checkbox blir checkad 
+checkbox === true,
+DÅ vill jag sortera taskList
+    efter isComplete true/ false
 
- - localStorage - hur får jag till att bocken håller i sig vid både uppdatering av sida + samtidigt vara kvar lägga till ny artikel?
+- vi har ett change-event för att känna av ändring på checkbox
+    - anropa en funktion som
+        OM input[type="checkbox"]:checked == true /false
+        false : return
+
+        om true - isComplete = true
+            funktion sortera 
+            skriv ut lista på nytt.
 
 
-
-- HUR tänka checked - isComplete: false, och sortera dem utifrån det? 
-
-
-...
-
- - if checked - add class , if else return, vid checkbox + radiobuttons?  ibockad en färg, annars inte.
+  const doneTodos = document.querySelectorAll('.done-container .todo .left-grid input');
+          
+  doneTodos.forEach(element => {
+    element.setAttribute('checked', '');
+  });
