@@ -22,6 +22,18 @@ dateField.innerHTML = todaysDate.toLocaleDateString();
  * -------------------------------------------  Functions  -------------------------------------------------
  ************************************************************************************************************/
 
+// Funktion hämta det vi lagt till i localStorage,  konverterar tillbaka till lista & läggs i vår taskList -lista
+function getFromLocalStorage() {
+  const getStoredArray = localStorage.getItem('taskList');
+  if (getStoredArray) {
+    taskList = JSON.parse(getStoredArray);
+    printTaskList(taskList);
+  }
+}
+
+getFromLocalStorage();
+
+
 function addNewTask() {  
   if (newTaskInput.value.length === 0 || deadlineInput.value === '') {
     taskError.innerHTML = 'Fyll i Todo & deadline!';
@@ -81,11 +93,26 @@ function todoChecked(event) {
   if (event.target.checked) {
     console.log('The checkbox is checked');
     event.currentTarget.parentElement.classList.add('colorchange');
-    sortByComplete();
+    isComplete = !isComplete;
   } else {
     console.log('The checkbox is not checked');
     event.currentTarget.parentElement.classList.remove('colorchange');
   }
+  sortByComplete();
+}
+
+
+
+// Sortera per isComplete sant/falskt
+let isComplete = false;
+function sortByComplete() {
+  if ( isComplete = !isComplete) {
+    console.log('still false');
+  }
+ else {
+  console.log('true');
+ }
+  console.log(taskList);
 }
 
 function showsortSection() { 
@@ -161,13 +188,6 @@ function sortByDeadline(event) {
   }
   printTaskList(taskList);
   addToLocalStorage(taskList);
-
-}
-
-// Sortera per inlagt datum
-function sortByComplete() {
-  console.log('clickt');
-  console.log(taskList);
 }
 
 SortByDateBtn.addEventListener('click', sortByDate);
@@ -185,18 +205,20 @@ function addToLocalStorage(taskList) {
   printTaskList(taskList);
 }
 
-// Funktion hämta det vi lagt till i localStorage,  konverterar tillbaka till lista & läggs i vår taskList -lista
-function getFromLocalStorage() {
-  const getStoredArray = localStorage.getItem('taskList');
-  if (getStoredArray) {
-    taskList = JSON.parse(getStoredArray);
-    printTaskList(taskList);
-  }
-}
-
-getFromLocalStorage();
-
 //localStorage.clear(); rensa localstorage.
+
+/************************************************************************************************************
+ * ------------------------------------  Light/DarkMode Toggle ---------------------------------------------
+ ************************************************************************************************************/
+
+const colorTheme = document.querySelector("body");
+
+const colorModeIcon = document.querySelector(".light-mode-icon");
+
+colorModeIcon.addEventListener('click', () => {
+  colorTheme.classList.toggle('change')?
+  colorModeIcon.textContent = "dark_mode": colorModeIcon.textContent = "light_mode";
+});
 
 /************************************************************************************************************
  * ----------------------------------------  Eventlisteners -------------------------------------------------
