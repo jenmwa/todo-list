@@ -3,16 +3,6 @@ att göra kod:
 - STÄDA KOD!!!!!
 -  kommentarer på engelska!
 
-- När iklickad KLAR - isComplete = TRUE;
-    - Om true addera klassen .checked 
-            (som stryker över all text!)
-
-- se till att bock- i- ruta SYNS! SYNS om eventet har status change, men inte klick.
-
-LÄS - https://www.techiedelight.com/bind-to-checkbox-change-event-with-javascript/
-
-
-
 
 - ibockade KLARA-rutan ej sparade i localStorage!!! fixa!)
 
@@ -71,6 +61,9 @@ https://www.youtube.com/watch?v=jBmrduvKl5w
 systematiskt steg för steg element TodoList (enkel).
 https://thecodingpie.medium.com/how-to-build-a-todo-list-app-with-javascript-and-local-storage-a884f4ea3ec
 
+checkboxes
+ https://www.techiedelight.com/bind-to-checkbox-change-event-with-javascript/
+
 
 FUNDERINGAR: 
 
@@ -87,10 +80,3 @@ DÅ vill jag sortera taskList
         om true - isComplete = true
             funktion sortera 
             skriv ut lista på nytt.
-
-
-  const doneTodos = document.querySelectorAll('.done-container .todo .left-grid input');
-          
-  doneTodos.forEach(element => {
-    element.setAttribute('checked', '');
-  });

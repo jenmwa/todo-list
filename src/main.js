@@ -5,16 +5,15 @@ import './style/style.scss';
 
 let taskList = [];
 
-const tasks = document.querySelector('.tasks'); // the tasks <ul> element
+const tasks = document.querySelector('.tasks'); 
 
-const newTaskInput = document.querySelector('#inputTaskField'); //task inputField
-const deadlineInput = document.querySelector('#deadlineInput'); //deadline inputfield
-const submitBtn = document.querySelector('#submit'); //submitBtn
-const sortSection = document.querySelector('#sortSection'); //sortSection
+const newTaskInput = document.querySelector('#inputTaskField'); 
+const deadlineInput = document.querySelector('#deadlineInput'); 
+const submitBtn = document.querySelector('#submit'); 
+const sortSection = document.querySelector('#sortSection'); 
 
 const taskError = document.querySelector('#taskError');
 
-// skriva ut dagens datum på listan enligt sv.datum
 const todaysDate = new Date();
 const dateField = document.querySelector('#todaysDate');
 dateField.innerHTML = todaysDate.toLocaleDateString();
@@ -23,9 +22,6 @@ dateField.innerHTML = todaysDate.toLocaleDateString();
  * -------------------------------------------  Functions  -------------------------------------------------
  ************************************************************************************************************/
 
-getFromLocalStorage();
-
-// funktion lägg till ny todo som objekt till array
 function addNewTask() {  
   if (newTaskInput.value.length === 0 || deadlineInput.value === '') {
     taskError.innerHTML = 'Fyll i Todo & deadline!';
@@ -52,12 +48,11 @@ function addNewTask() {
   }
 }
 
-// funktion skriv ut vår lista med todo's
 function printTaskList(taskList) {
   tasks.innerHTML = '';
 
   for (let i = 0; i < taskList.length; i++) {
-    const checkBox = taskList[i].isComplete ? 'checked' : ''; //som en förenklad if-sats (if taskList[i].isComplete == true, lägger till checked, if else - '') 
+    const checkBox = taskList[i].isComplete ? 'checked' : ''; //som en förenklad if else -sats, (condition to test ? value if true : value if false)
     tasks.innerHTML += `
         <li data-id="${i}"> <div class="licontainer">
         <input type="checkbox" ${checkBox} name="checkbox" class="checkbox"data-id="${i}">
@@ -68,44 +63,31 @@ function printTaskList(taskList) {
         </div>
         </li>`;
   }
-  console.log(taskList)
   showsortSection();
 
-  //klick-event för tabort-knappen som anropar funktion removeTask
   const taskItems = Array.from(document.querySelectorAll('.tasks button'));
   taskItems.forEach(item => {
     item.addEventListener('click', removeTask);
   });
 
-  //klick-event för checkbox-knappen som anropar funktion checkedBox
   const checkBtn = Array.from(document.querySelectorAll('.tasks input'));
   checkBtn.forEach(check => {
     check.addEventListener('change', todoChecked);
   });
 }
- // NEDAN - work In progress!
-
-/** TODO
- * FIXA checkbox checkad i LocalStorage
- * checkbox checkad längst NER i listan! (sortera true/false isComplete)
- * 
- * 
- * FIXA remove all knapp + funktion
- */
-// //
  
 //funktion när todo är checked, gråa ut text
 function todoChecked(event) {
   if (event.target.checked) {
     console.log('The checkbox is checked');
     event.currentTarget.parentElement.classList.add('colorchange');
+    sortByComplete();
   } else {
     console.log('The checkbox is not checked');
     event.currentTarget.parentElement.classList.remove('colorchange');
   }
 }
 
-// funktion visa sorteringsalternativ OM det är 2 eller fler todo's på listan
 function showsortSection() { 
   if (taskList.length <= 1) {
     sortSection.classList.remove('open');
@@ -115,7 +97,6 @@ function showsortSection() {
   }
 }
 
-//funktion ta bort tasks per task, aktiveras av eventlyssnare på X-knapp i funktionen printTaskList
 function removeTask(e) {
   const index = e.currentTarget.dataset.id;
   if (index > -1) {
@@ -125,8 +106,10 @@ function removeTask(e) {
   addToLocalStorage(taskList);
 }
 
-/***** sorteraSektion OBS NÄR ALLT FÖR G ÄR KLART - REFAKTORERA KODEN! *****/
-// se Aritmetik v3 14 modul
+/**
+ * sorteraSektion OBS NÄR ALLT FÖR G ÄR KLART - REFAKTORERA KODEN! 
+ * se Aritmetik v3 14 modul
+ */
 
 let isDateSort = true;
 let isNameSort = true;
@@ -151,7 +134,6 @@ function sortByDate(eve) {
   addToLocalStorage(taskList);
 }
 
-// Sortera per namn
 function sortByName(ev) {
   console.log(taskList);
   ev.preventDefault();
@@ -164,10 +146,8 @@ function sortByName(ev) {
   }
   printTaskList(taskList);
   addToLocalStorage(taskList);
-  console.log('klick'); //GLÖM EJ add to Local Storage!
 }
 
-// Sortera per inlagt datum
 function sortByDeadline(event) {
   console.log('clicketiclick');
   console.log(taskList);
@@ -195,8 +175,11 @@ sortByNameBtn.addEventListener('click', sortByName);
 sortByDeadlineBtn.addEventListener('click', sortByDeadline);
 
 
-/***** LOCALSTORAGE FUNKTIONER - SET & GET *****/
-// Funktion lägg till vår lista m objekt i localStorage som string
+/**
+ * LOCALSTORAGE FUNKTIONER 
+ * SET & GET
+ */
+
 function addToLocalStorage(taskList) {
   localStorage.setItem('taskList', JSON.stringify(taskList));
   printTaskList(taskList);
@@ -211,6 +194,7 @@ function getFromLocalStorage() {
   }
 }
 
+getFromLocalStorage();
 
 //localStorage.clear(); rensa localstorage.
 
