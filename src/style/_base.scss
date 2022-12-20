@@ -79,11 +79,6 @@ input[type="checkbox"]:checked {
       outline: 2px solid #2f2504;
   }
 
-div input[type="checkbox"]:checked ~ span {
-    text-decoration: line-through;
-    color: grey;
-}
-
 .todocontainer {
     display: flex;
     justify-content: center;
@@ -213,4 +208,9 @@ div input[type="checkbox"]:checked ~ span {
 #texttodo {
     font-size: 1.1rem;
     font-weight: 700;
+}
+
+.colorchange {
+    text-decoration: line-through;
+    color: grey;
 }
