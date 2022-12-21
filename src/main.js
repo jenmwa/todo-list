@@ -93,8 +93,6 @@ function todoChecked(event) {
   sortByComplete();
 }
 
-
-
 // Sortera per isComplete sant/falskt
 let isComplete = false;
 function sortByComplete() {
