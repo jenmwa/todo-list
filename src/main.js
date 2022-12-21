@@ -22,18 +22,6 @@ dateField.innerHTML = todaysDate.toLocaleDateString();
  * -------------------------------------------  Functions  -------------------------------------------------
  ************************************************************************************************************/
 
-// Funktion hämta det vi lagt till i localStorage,  konverterar tillbaka till lista & läggs i vår taskList -lista
-function getFromLocalStorage() {
-  const getStoredArray = localStorage.getItem('taskList');
-  if (getStoredArray) {
-    taskList = JSON.parse(getStoredArray);
-    printTaskList(taskList);
-  }
-}
-
-getFromLocalStorage();
-
-
 function addNewTask() {  
   if (newTaskInput.value.length === 0 || deadlineInput.value === '') {
     taskError.innerHTML = 'Fyll i Todo & deadline!';
@@ -77,7 +65,10 @@ function printTaskList(taskList) {
         </li>`;
   }
   showsortSection();
-
+  todoEventListeners();
+}
+ 
+function todoEventListeners() {
   const taskItems = Array.from(document.querySelectorAll('.tasks button'));
   taskItems.forEach(item => {
     item.addEventListener('click', removeTask);
@@ -88,7 +79,7 @@ function printTaskList(taskList) {
     check.addEventListener('change', todoChecked);
   });
 }
- 
+
 //funktion när todo är checked, gråa ut text
 function todoChecked(event) {
   if (event.target.checked) {
@@ -210,6 +201,17 @@ function addToLocalStorage(taskList) {
   localStorage.setItem('taskList', JSON.stringify(taskList));
   printTaskList(taskList);
 }
+
+// Funktion hämta det vi lagt till i localStorage,  konverterar tillbaka till lista & läggs i vår taskList -lista
+function getFromLocalStorage() {
+  const getStoredArray = localStorage.getItem('taskList');
+  if (getStoredArray) {
+    taskList = JSON.parse(getStoredArray);
+    printTaskList(taskList);
+  }
+}
+
+getFromLocalStorage();
 
 //localStorage.clear(); rensa localstorage.
 

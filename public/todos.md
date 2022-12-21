@@ -48,9 +48,9 @@ SAKER JAG VILL HA MED men ej prio:
     - byta bakgrund beroende på årstid?
 
 *GLÖM EJ:
-- tillgänglighetsaspekt!
 - TYPESCRIPT
 - STÄDA KOD!!!!!!!!
+- METATAGGAR!
 
 
 LÄNKTIPS:
