@@ -23,6 +23,7 @@ dateField.innerHTML = todaysDate.toLocaleDateString();
  ************************************************************************************************************/
 
 function getFromLocalStorage() {
+  console.log(localStorage.getItem('taskList'));
   const getStoredArray = localStorage.getItem('taskList');
   if (getStoredArray) {
     taskList = JSON.parse(getStoredArray);
@@ -61,13 +62,13 @@ function printTaskList(taskList) {
   tasks.innerHTML = '';
 
   for (let i = 0; i < taskList.length; i++) {
-    //const checkBox = taskList[i].isComplete ? 'checked' : ''; //som en förenklad if else -sats, (condition to test ? value if true : value if false)
+    const checkBox = taskList[i].isComplete ? 'todochecked' : ''; //som en förenklad if else -sats, (condition to test ? value if true : value if false)
     tasks.innerHTML += `
         <li data-id="${i}"> <div class="licontainer">
         <label for= "${taskList[i].task}">
-        <input type="checkbox" name="checkbox" class="checkbox"data-id="${i}">
-        <span class="text" id="texttodo">${taskList[i].task}</span><br>
-        <span class="text"> ${taskList[i].deadline}</span></div><div class="rightsection">
+        <input type="checkbox" name="checkbox" class="checkbox ${checkBox}" data-id="${i}">
+        <span class="text ${checkBox}" id="texttodo">${taskList[i].task}</span><br>
+        <span class="text ${checkBox}"> ${taskList[i].deadline}</span></div><div class="rightsection">
         <span class="material-symbols-outlined category">${taskList[i].category}</span>
         <button class="material-symbols-outlined" data-id="${i}">close</button>
         </div>
@@ -91,26 +92,33 @@ function todoEventListeners() {
 
 //funktion när todo är checked, gråa ut text
 function todoChecked(event) {
+  const todo = taskList[event.currentTarget.dataset.id];
   if (event.target.checked) {
     console.log('The checkbox is checked');
     event.currentTarget.parentElement.classList.add('todochecked');
-    isComplete = !isComplete;
+
+    todo.isComplete = true;
+
+    console.log(todo);
+   
   } else {
+    todo.isComplete = false;
     console.log('The checkbox is not checked');
     event.currentTarget.parentElement.classList.remove('todochecked');
   }
+  localStorage.setItem("taskList", JSON.stringify(taskList));
   sortByComplete();
 }
 
 // Sortera per isComplete sant/falskt
 let isComplete = false;
 function sortByComplete() {
-  console.log(taskList.findIndex(x => x.isComplete === true)) //if true = -1, if false = 0
+  //console.log(taskList.findIndex(x => x.isComplete === true)) //if true = -1, if false = 0
   if ( isComplete = !isComplete) {
-    console.log('still false');
+    //console.log('still false');
   }
   else if (isComplete) {
-  console.log('true');
+  //console.log('true');
  }
   console.log(taskList);
 }
