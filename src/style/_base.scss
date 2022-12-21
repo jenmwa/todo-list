@@ -236,7 +236,7 @@ input[type="checkbox"]:checked {
     font-weight: 700;
 }
 
-.colorchange {
+.todochecked {
     text-decoration: line-through;
     color: grey;
 }
@@ -333,7 +333,7 @@ input[type="checkbox"]:checked {
         }
     }
 
-    .colorchange {
+    .todochecked {
         text-decoration: line-through;
         color: #d0ddd7;
     }

@@ -22,15 +22,22 @@ dateField.innerHTML = todaysDate.toLocaleDateString();
  * -------------------------------------------  Functions  -------------------------------------------------
  ************************************************************************************************************/
 
-function addNewTask() {  
+function getFromLocalStorage() {
+  const getStoredArray = localStorage.getItem('taskList');
+  if (getStoredArray) {
+    taskList = JSON.parse(getStoredArray);
+    printTaskList(taskList);
+  }
+}
+
+function addNewTask(e) { 
+  e.preventDefault(); 
   if (newTaskInput.value.length === 0 || deadlineInput.value === '') {
     taskError.innerHTML = 'Fyll i Todo & deadline!';
     return;
   }
   
-  else if (newTaskInput.value.length >= 2 && deadlineInput != '') {
-    console.log(taskList.indexOf);
-
+  if (newTaskInput.value.length >= 2 && deadlineInput != '') {
     taskError.innerHTML = '';
     const selectedCategory = document.querySelector("input[name='category']:checked").value;
 
@@ -41,22 +48,24 @@ function addNewTask() {
       category: selectedCategory,
       isComplete: false, // avbockade tasks ska längst ner i listan men fortfarande synas i listan
     };
+
     taskList.push(todoInput);
-    addToLocalStorage(taskList);
+    printTaskList(taskList);
     newTaskInput.value = '';
     deadlineInput.value = '';
   }
 }
 
 function printTaskList(taskList) {
+  localStorage.setItem("taskList", JSON.stringify(taskList));
   tasks.innerHTML = '';
 
   for (let i = 0; i < taskList.length; i++) {
-    const checkBox = taskList[i].isComplete ? 'checked' : ''; //som en förenklad if else -sats, (condition to test ? value if true : value if false)
+    //const checkBox = taskList[i].isComplete ? 'checked' : ''; //som en förenklad if else -sats, (condition to test ? value if true : value if false)
     tasks.innerHTML += `
         <li data-id="${i}"> <div class="licontainer">
         <label for= "${taskList[i].task}">
-        <input type="checkbox" ${checkBox} name="checkbox" class="checkbox"data-id="${i}">
+        <input type="checkbox" name="checkbox" class="checkbox"data-id="${i}">
         <span class="text" id="texttodo">${taskList[i].task}</span><br>
         <span class="text"> ${taskList[i].deadline}</span></div><div class="rightsection">
         <span class="material-symbols-outlined category">${taskList[i].category}</span>
@@ -77,18 +86,18 @@ function todoEventListeners() {
   const checkBtn = Array.from(document.querySelectorAll('.tasks input'));
   checkBtn.forEach(check => {
     check.addEventListener('change', todoChecked);
-  });
+  });  
 }
 
 //funktion när todo är checked, gråa ut text
 function todoChecked(event) {
   if (event.target.checked) {
     console.log('The checkbox is checked');
-    event.currentTarget.parentElement.classList.add('colorchange');
+    event.currentTarget.parentElement.classList.add('todochecked');
     isComplete = !isComplete;
   } else {
     console.log('The checkbox is not checked');
-    event.currentTarget.parentElement.classList.remove('colorchange');
+    event.currentTarget.parentElement.classList.remove('todochecked');
   }
   sortByComplete();
 }
@@ -98,10 +107,9 @@ let isComplete = false;
 function sortByComplete() {
   console.log(taskList.findIndex(x => x.isComplete === true)) //if true = -1, if false = 0
   if ( isComplete = !isComplete) {
-    
     console.log('still false');
   }
- else {
+  else if (isComplete) {
   console.log('true');
  }
   console.log(taskList);
@@ -122,7 +130,6 @@ function removeTask(e) {
     taskList.splice(index, 1);
     printTaskList(taskList);
   }
-  addToLocalStorage(taskList);
 }
 
 /************************************************************************************************************
@@ -152,8 +159,8 @@ function sortByDate(eve) {
     taskList.sort((a, b) => b.addedDate.localeCompare(a.addedDate));
     isDateSort = true;
   }
+  localStorage.setItem("taskList", JSON.stringify(taskList));
   printTaskList(taskList);
-  addToLocalStorage(taskList);
 }
 
 function sortByName(ev) {
@@ -166,8 +173,8 @@ function sortByName(ev) {
     taskList.sort((a, b) => b.task.localeCompare(a.task));
     isNameSort = true;
   }
+  localStorage.setItem("taskList", JSON.stringify(taskList));
   printTaskList(taskList);
-  addToLocalStorage(taskList);
 }
 
 function sortByDeadline(event) {
@@ -181,35 +188,14 @@ function sortByDeadline(event) {
     taskList.sort((a, b) => a.deadline.localeCompare(b.deadline));
     isDeadlineSort = true;
   }
+  localStorage.setItem("taskList", JSON.stringify(taskList));
   printTaskList(taskList);
-  addToLocalStorage(taskList);
 }
 
 SortByDateBtn.addEventListener('click', sortByDate);
 sortByNameBtn.addEventListener('click', sortByName);
 sortByDeadlineBtn.addEventListener('click', sortByDeadline);
 
-
-/**
- * LOCALSTORAGE FUNKTIONER 
- * SET & GET
- */
-
-function addToLocalStorage(taskList) {
-  localStorage.setItem('taskList', JSON.stringify(taskList));
-  printTaskList(taskList);
-}
-
-// Funktion hämta det vi lagt till i localStorage,  konverterar tillbaka till lista & läggs i vår taskList -lista
-function getFromLocalStorage() {
-  const getStoredArray = localStorage.getItem('taskList');
-  if (getStoredArray) {
-    taskList = JSON.parse(getStoredArray);
-    printTaskList(taskList);
-  }
-}
-
-getFromLocalStorage();
 
 //localStorage.clear(); rensa localstorage.
 
@@ -230,8 +216,12 @@ colorModeIcon.addEventListener('click', () => {
  * ----------------------------------------  Eventlisteners -------------------------------------------------
  ************************************************************************************************************/
 
+
 // eventlyssnare klick på submit aktivera funktion addNewTask
-submitBtn.addEventListener('click', function (e) {
-  e.preventDefault();
-  addNewTask();
-});
+submitBtn.addEventListener('click', addNewTask);
+
+/************************************************************************************************************
+ * ------------------------------------  get from local Storage ---------------------------------------------
+ ************************************************************************************************************/
+
+getFromLocalStorage();
