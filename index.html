@@ -23,41 +23,41 @@
       <form class="app" id="app">
         <span id="datetext">dagens datum</span>
         <div class="date" id="todaysDate"></div>
-        <label>
+        <label for="inputTaskField">
           Vad ska göras?
           <input type="text" class="inputTaskField" id="inputTaskField" placeholder="skriv upp din toDo">
         </label>
         <span class="taskerror" id="taskError"></span>
         <div class="wrapper">
-          <label>
+          <label for="deadlineInput">
             deadline datum<br>
             <input type="date" title="deadline datum" class ="deadline" id="deadlineInput">
           </label>
-          <div class="select">
-            kategori<br>
+          <fieldset class="select">
+            <legend>kategori</legend><br>
             <div class="categories">
               <div class="section1">
-                <label>
+                <label for="prio">
                   <input type="radio" name="category" value="priority_high" checked>
                     <span class="material-symbols-outlined" id="prio" checked>priority_high</span>
                 </label>
-                <label>
+                <label for="school">
                   <input type="radio" name="category" value="school">
                      <span class="material-symbols-outlined" id="school">school</span>
                 </label>
               </div>
               <div class="section2">
-                <label>
+                <label for="shopping">
                   <input type="radio" name="category" value="add_shopping_cart">
-                    <span class="material-symbols-outlined" id="shop">add_shopping_cart</span>
+                    <span class="material-symbols-outlined" id="shopping">add_shopping_cart</span>
                 </label>
-                <label>
+                <label for="favorite">
                   <input type="radio" name="category" value="favorite">
-                    <span class="material-symbols-outlined" id="fav">favorite</span>
+                    <span class="material-symbols-outlined" id="favorite">favorite</span>
                 </label>
               </div>
             </div>
-          </div>
+          </fieldset>
         </div>  
       <button type="submit" class="submit" id="submit" value="Lägg till">lägg till</button>
       <div class="sortsection" id="sortSection">sortera på:<br> 

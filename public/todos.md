@@ -3,10 +3,13 @@ att göra kod:
 - STÄDA KOD!!!!!
 -  kommentarer på engelska!
 
-
+GÖR OM localstorage!!!!!
+    - ta bort allt
+    -gör om, gör rätt.
 - ibockade KLARA-rutan ej sparade i localStorage!!! fixa!)
+- dark mood ej sparat i localStorage
 
-- Få till _ Hitta hela LI-elemntet som ka ändra färg/blurras vid ✅!
+
 
 - i printTaskList - läggs till
                             - längst ner på en lista,
@@ -37,14 +40,10 @@ BUGGAR:
 
 CSS
 - lägg allt i en centrerad container så designen håller sig enhållig vid förstoring/förminskning
-- styla todo-LI-elementen _NÄR_ ikoner och allt printas som de ska.
-- styla kategori-valen!
-- styla checkboxen, både bock + default-färg...
-- GÖR DESKTOPläget större!
+- FIXA DESKTOP & TABLET
 - GÅ IGENOM CSS STRUKTUREN!
 
 SAKER JAG VILL HA MED men ej prio:
-    - Mörkt läge toggle
     - animation
     - byta bakgrund beroende på årstid?
 

@@ -25,6 +25,16 @@ h1 {
     margin-bottom: 1rem;
 }
 
+fieldset {
+    border: none;
+    position: relative;
+    margin-bottom: -15px;
+
+    legend {
+        margin-bottom: -25px;
+    }
+}
+
 li {
     display: flex;
     justify-content: space-between;
@@ -132,19 +142,18 @@ input[type="checkbox"]:checked {
     .deadline {
         width: 200px;
         height: 50px;
-        margin-top: 15px;
-
+        margin-top: 20px;
     }
 
     .wrapper {
         display:flex;
-        margin-bottom: 15px;
+        margin-bottom: 18px;
     }
 }
 
 .select {
     text-align: left;
-    margin-left: 5px;
+    margin-left: -5px;
 
     label {
         height: 60px;
@@ -162,7 +171,8 @@ input[type="checkbox"]:checked {
         padding-left: 7px;
         padding-top: 7px;
         font-size: 2rem;
-        box-shadow: none;                     
+        box-shadow: none; 
+        margin-right: 10px;                    
     }
 
     .section1, .section2 {
@@ -176,7 +186,9 @@ input[type="checkbox"]:checked {
     border-radius: 8px;
     padding: 8px 12px;
     background-color: #7e846b;
-    color: whitesmoke;
+    color: white;
+    text-shadow: 0 0 5px black;
+    font-weight: 700;
     border: 2px solid black;
     position: absolute;
     margin-top: -60px;
@@ -185,7 +197,8 @@ input[type="checkbox"]:checked {
         background-color: whitesmoke;
         color: #2f2504;
         cursor: pointer;
-        box-shadow: 2px 2px 5px #2f2504;                     
+        box-shadow: 2px 2px 5px #2f2504;  
+        text-shadow: none;                   
     }
 }
 

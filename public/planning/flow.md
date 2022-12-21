@@ -68,7 +68,6 @@ FUNKTIONER:
 		Symboler Google Icons
  
 	ÖVRIGT jag vill ha med som jag missade i webshopen:
-		toggle mörkt läge växla ljust läge.
 		ANIMATION
 
 FUNKTIONER:

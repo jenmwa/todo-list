@@ -67,6 +67,7 @@ function printTaskList(taskList) {
     const checkBox = taskList[i].isComplete ? 'checked' : ''; //som en förenklad if else -sats, (condition to test ? value if true : value if false)
     tasks.innerHTML += `
         <li data-id="${i}"> <div class="licontainer">
+        <label for= "${taskList[i].task}">
         <input type="checkbox" ${checkBox} name="checkbox" class="checkbox"data-id="${i}">
         <span class="text" id="texttodo">${taskList[i].task}</span><br>
         <span class="text"> ${taskList[i].deadline}</span></div><div class="rightsection">
@@ -106,7 +107,9 @@ function todoChecked(event) {
 // Sortera per isComplete sant/falskt
 let isComplete = false;
 function sortByComplete() {
+  console.log(taskList.findIndex(x => x.isComplete === true)) //if true = -1, if false = 0
   if ( isComplete = !isComplete) {
+    
     console.log('still false');
   }
  else {
@@ -133,6 +136,9 @@ function removeTask(e) {
   addToLocalStorage(taskList);
 }
 
+/************************************************************************************************************
+ * ------------------------------------  Sort Section ---------------------------------------------
+ ************************************************************************************************************/
 /**
  * sorteraSektion OBS NÄR ALLT FÖR G ÄR KLART - REFAKTORERA KODEN! 
  * se Aritmetik v3 14 modul
