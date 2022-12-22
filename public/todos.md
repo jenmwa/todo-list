@@ -3,20 +3,22 @@ att göra kod:
 - STÄDA KOD!!!!!
 -  kommentarer på engelska!
 
-GÖR OM localstorage!!!!!
-    - ta bort allt
-    -gör om, gör rätt.
-- ibockade KLARA-rutan ej sparade i localStorage!!! fixa!)
 - dark mood ej sparat i localStorage
+
+- IF-satser VG
+    OM uppgift klar:
+        visuellt SYNS klar och läggs längst ner i listan
 
 
 
 - i printTaskList - läggs till
                             - längst ner på en lista,
                                 sortera isComplete false/true
+
 - validera inputs?
     - antal bokstäver max?
         -annars fixa CSS så fungerar fint med flera rader
+        
 
 - RESET ALL -knapp lista? (töm taskList samt localStorage?)
 
@@ -64,18 +66,3 @@ checkboxes
  https://www.techiedelight.com/bind-to-checkbox-change-event-with-javascript/
 
 
-FUNDERINGAR: 
-
-OM checkbox blir checkad 
-checkbox === true,
-DÅ vill jag sortera taskList
-    efter isComplete true/ false
-
-- vi har ett change-event för att känna av ändring på checkbox
-    - anropa en funktion som
-        OM input[type="checkbox"]:checked == true /false
-        false : return
-
-        om true - isComplete = true
-            funktion sortera 
-            skriv ut lista på nytt.

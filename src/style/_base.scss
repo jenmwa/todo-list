@@ -97,9 +97,12 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked {
+    .todochecked {
       border: none;
       accent-color: #6c6b67;
       outline: 2px solid #2f2504;
+      border-radius: 10px;
+    }
   }
 
 .todocontainer {
@@ -236,10 +239,18 @@ input[type="checkbox"]:checked {
     font-weight: 700;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 .todochecked {
     text-decoration: line-through;
     color: grey;
+    accent-color: #6c6b67; 
 }
+
+.test {
+    border-radius: 50%;
+}
+
+//DARKMODE LYFT ÖVER TILL EGET DOKUMENT!
 
  body.change {
     background: #403b34;
@@ -260,6 +271,7 @@ input[type="checkbox"]:checked {
         outline: 2px solid #2f2504;
     }
 
+    /* stylelint-disable-next-line no-descending-specificity */
     label input[type="radio"]:checked ~ span {
         background-color:whitesmoke;
         color: #7e846b;
@@ -333,6 +345,7 @@ input[type="checkbox"]:checked {
         }
     }
 
+    /* stylelint-disable-next-line no-descending-specificity */
     .todochecked {
         text-decoration: line-through;
         color: #d0ddd7;

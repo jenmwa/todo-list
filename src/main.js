@@ -25,6 +25,7 @@ dateField.innerHTML = todaysDate.toLocaleDateString();
 function getFromLocalStorage() {
   console.log(localStorage.getItem('taskList'));
   const getStoredArray = localStorage.getItem('taskList');
+  
   if (getStoredArray) {
     taskList = JSON.parse(getStoredArray);
     printTaskList(taskList);
@@ -63,10 +64,19 @@ function printTaskList(taskList) {
 
   for (let i = 0; i < taskList.length; i++) {
     const checkBox = taskList[i].isComplete ? 'todochecked' : ''; //som en förenklad if else -sats, (condition to test ? value if true : value if false)
+    const checked = taskList[i].isComplete ? 'checked' : '';
+
+    // const checkBox;
+    //   if (taskList[i].isComplete) {
+    //     checkBox = 'todochecked';
+    //   } else {
+    //     checkBox = '';
+    //   };
+
     tasks.innerHTML += `
         <li data-id="${i}"> <div class="licontainer">
         <label for= "${taskList[i].task}">
-        <input type="checkbox" name="checkbox" class="checkbox ${checkBox}" data-id="${i}">
+        <input type="checkbox" name="checkbox" class="checkbox" ${checked} data-id="${i}">
         <span class="text ${checkBox}" id="texttodo">${taskList[i].task}</span><br>
         <span class="text ${checkBox}"> ${taskList[i].deadline}</span></div><div class="rightsection">
         <span class="material-symbols-outlined category">${taskList[i].category}</span>
@@ -93,26 +103,32 @@ function todoEventListeners() {
 //funktion när todo är checked, gråa ut text
 function todoChecked(event) {
   const todo = taskList[event.currentTarget.dataset.id];
+
   if (event.target.checked) {
+    todo.isComplete = true;
     console.log('The checkbox is checked');
     event.currentTarget.parentElement.classList.add('todochecked');
-
-    todo.isComplete = true;
-
+    event.target.classList.add('checked');
+    
+    //add class to colormark checkboc name if checked 
+    console.log(event.currentTarget)
     console.log(todo);
    
   } else {
     todo.isComplete = false;
     console.log('The checkbox is not checked');
     event.currentTarget.parentElement.classList.remove('todochecked');
+    event.target.classList.remove('checked');
   }
-  localStorage.setItem("taskList", JSON.stringify(taskList));
-  sortByComplete();
+    localStorage.setItem("taskList", JSON.stringify(taskList));
+    console.table(taskList);
+
+  //sortByComplete();
 }
 
 // Sortera per isComplete sant/falskt
-let isComplete = false;
 function sortByComplete() {
+  
   //console.log(taskList.findIndex(x => x.isComplete === true)) //if true = -1, if false = 0
   if ( isComplete = !isComplete) {
     //console.log('still false');
