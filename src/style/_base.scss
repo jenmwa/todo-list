@@ -3,20 +3,6 @@ body {
     padding: 1rem;
 }
 
-input {
-    width: 100%;
-    border-radius: 8px;
-    padding: 8px 12px;
-    margin-bottom: 1rem;
-    border: 2px solid black;
-}
-
-button {
-    margin: 0;
-    padding: 0;
-    color: #2f2504;
-}
-
 h1 {
     color: whitesmoke;
     text-align: center;
@@ -25,46 +11,18 @@ h1 {
     margin-bottom: 1rem;
 }
 
+input {
+    width: 100%;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-bottom: 1rem;
+    border: 2px solid black;
+}
+
 fieldset {
     border: none;
     position: relative;
     margin-bottom: -15px;
-}
-
-li {
-    display: flex;
-    justify-content: space-between;
-    list-style: none;
-    background-color: #d0ddd7;
-    border-radius: 12px;
-    padding: 1rem;
-    width: 350px;
-    height: 85px;
-    margin: 10px 0 0 -40px;
-    font-size: 1rem;
-    box-shadow: 5px 5px 5px black;
-
-    .category {
-        font-size: 2rem;
-        background-color: transparent;
-        border: none;
-        color:  #6c6b67;
-        padding: 10px;
-        margin: 0 5px 10px 0;
-    
-        &:hover {
-            background-color: transparent;
-            cursor:default;
-            box-shadow: none;
-            color: #6c6b67;  
-        }
-    }
-
-    .rightsection {
-        display: flex;
-        text-align: right;
-        margin-left: 5px;    
-    }
 }
 
 .colortoggleicon span {
@@ -83,33 +41,6 @@ li {
     align-items: center;
  }
 
-label input[type="radio"]:checked ~ span {
-    background-color:#2f2504;
-    color:#fff
-  }
-  
-input[type="checkbox"] {
-    cursor: pointer;
-    background-color: whitesmoke;
-    padding: 10px;
-    width: 25px;
-    height: 25px;
-}
-
-input[type="checkbox"]:checked {
-    .todochecked {
-      border: none;
-      accent-color: #6c6b67;
-      outline: 2px solid #2f2504;
-      border-radius: 10px;
-    }
-  }
-
-.todocontainer {
-    display: flex;
-    justify-content: center;
-}
- 
 .app {
     background-color: #d0ddd7;
     border-radius: 12px;
@@ -118,14 +49,6 @@ input[type="checkbox"]:checked {
     margin: 0 auto;
     font-size: 1rem;
     box-shadow: 5px 5px 5px black;
-
-    .taskerror {
-        font-size: 1rem;
-        color: darkred;
-        position: relative;
-        top: -10px;
-        left: 5px;
-    }
 
     .date {
         font-size: 1.45rem;
@@ -138,6 +61,14 @@ input[type="checkbox"]:checked {
         font-size: 0.8rem;
     }
 
+    .taskerror {
+        font-size: 1rem;
+        color: darkred;
+        position: relative;
+        top: -10px;
+        left: 5px;
+    }
+
     .deadline {
         width: 200px;
         height: 50px;
@@ -148,58 +79,148 @@ input[type="checkbox"]:checked {
         display:flex;
         margin-bottom: 18px;
     }
+
+    .sortsection {
+        display: none;
+    }
+    
+    .sortsection.open {
+        display:block;
+    }
+
+    .select {
+        text-align: left;
+        margin-left: -5px;
+        
+        label input[type="radio"]:checked ~ span {
+            background-color:#2f2504;
+            color:#fff;
+          }
+    
+        label {
+            height: 60px;
+        }
+    
+        input {
+            margin-top: 25px;
+            margin-left: 10px;
+        }
+    
+        span.material-symbols-outlined {
+            position: relative;
+            top: -40px;
+            left: 7px;
+            padding-left: 7px;
+            padding-top: 7px;
+            font-size: 2rem;
+            box-shadow: none; 
+            margin-right: 10px;                    
+        }
+    
+        .section1, .section2 {
+        display: flex;
+        }
+    }
+
+    .submit {
+        width: 200px;
+        height: 50px;
+        border-radius: 8px;
+        padding: 8px 12px;
+        background-color: #7e846b;
+        color: white;
+        text-shadow: 0 0 5px black;
+        font-weight: 700;
+        border: 2px solid black;
+        position: absolute;
+        margin-top: -60px;
+    
+        &:hover {
+            background-color: whitesmoke;
+            color: #2f2504;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px #2f2504;  
+            text-shadow: none;                   
+        }
+    }
 }
 
-.select {
-    text-align: left;
-    margin-left: -5px;
-
-    label {
-        height: 60px;
-    }
-
-    input {
-        margin-top: 25px;
-        margin-left: 10px;
-    }
-
-    span.material-symbols-outlined {
-        position: relative;
-        top: -40px;
-        left: 7px;
-        padding-left: 7px;
-        padding-top: 7px;
-        font-size: 2rem;
-        box-shadow: none; 
-        margin-right: 10px;                    
-    }
-
-    .section1, .section2 {
+li {
     display: flex;
-    }  
-}
+    justify-content: space-between;
+    list-style: none;
+    background-color: #d0ddd7;
+    border-radius: 12px;
+    padding: 1rem;
+    width: 350px;
+    height: 85px;
+    margin: 10px 0 0 -40px;
+    font-size: 1rem;
+    box-shadow: 5px 5px 5px black;
 
-.submit {
-    width: 200px;
-    height: 50px;
-    border-radius: 8px;
-    padding: 8px 12px;
-    background-color: #7e846b;
-    color: white;
-    text-shadow: 0 0 5px black;
-    font-weight: 700;
-    border: 2px solid black;
-    position: absolute;
-    margin-top: -60px;
-
-    &:hover {
-        background-color: whitesmoke;
-        color: #2f2504;
+    .checkbox {
         cursor: pointer;
-        box-shadow: 2px 2px 5px #2f2504;  
-        text-shadow: none;                   
+        background-color: whitesmoke;
+        padding: 10px;
+        width: 25px;
+        height: 25px;
+
+        &:checked {
+            accent-color: black; 
+        }
+    }
+
+    .text {
+        display: flex;
+        position: relative;
+        top: -31px;
+        margin-left: 50px;
+        line-height: 1px; 
+    }
+    
+    #texttodo {
+        font-size: 1.1rem;
+        font-weight: 700;
+    }
+    
+    .rightsection {
+        display: flex;
+        text-align: right;
+        margin-left: 5px;    
+    
+        .category {
+            font-size: 2rem;
+            background-color: transparent;
+            border: none;
+            color:  #6c6b67;
+            padding: 10px;
+            margin: 0 5px 10px 0;
+        
+            &:hover {
+                background-color: transparent;
+                cursor:default;
+                box-shadow: none;
+                color: #6c6b67;  
+            }
+        }
+
+        button {
+            margin: 0;
+            padding: 0;
+            color: #2f2504;
+        }
     }
 }
+
+
+// input[type="checkbox"]:checked {
+//     .todochecked {
+//       border: none;
+//       accent-color: #6c6b67;
+//       outline: 2px solid #2f2504;
+//       border-radius: 10px;
+//     }
+//   }
 
 .material-symbols-outlined {
     font-size: 1.6rem;
@@ -218,36 +239,15 @@ input[type="checkbox"]:checked {
     }
 }
 
-.sortsection {
-    display: none;
-}
-
-.sortsection.open {
-    display:block;
-}
-
-.text {
+.todocontainer {
     display: flex;
-    position: relative;
-    top: -31px;
-    margin-left: 50px;
-    line-height: 1px; 
-}
-
-#texttodo {
-    font-size: 1.1rem;
-    font-weight: 700;
+    justify-content: center;
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
 .todochecked {
     text-decoration: line-through;
     color: grey;
-    accent-color: #6c6b67; 
-}
-
-.test {
-    border-radius: 50%;
 }
 
 //DARKMODE LYFT ÖVER TILL EGET DOKUMENT!
@@ -260,6 +260,7 @@ input[type="checkbox"]:checked {
         background: #403b34;
     }
 
+    /* stylelint-disable-next-line no-descending-specificity */
     input {
         background-color: whitesmoke;
         color:#403b34
@@ -296,6 +297,7 @@ input[type="checkbox"]:checked {
         font-size: 1rem;
         box-shadow: 5px 5px 5px black;
     
+        /* stylelint-disable-next-line no-descending-specificity */
         .category {
             font-size: 2rem;
             background-color: transparent;
@@ -336,6 +338,7 @@ input[type="checkbox"]:checked {
         color: lightcoral;
     }
        
+    /* stylelint-disable-next-line no-descending-specificity */
     .submit {
         &:hover {
             background-color: #6c6b67;

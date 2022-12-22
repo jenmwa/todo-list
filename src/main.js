@@ -23,13 +23,17 @@ dateField.innerHTML = todaysDate.toLocaleDateString();
  ************************************************************************************************************/
 
 function getFromLocalStorage() {
-  console.log(localStorage.getItem('taskList'));
   const getStoredArray = localStorage.getItem('taskList');
   
   if (getStoredArray) {
     taskList = JSON.parse(getStoredArray);
     printTaskList(taskList);
   }
+}
+
+function addToLocalStorage() {
+  localStorage.setItem("taskList", JSON.stringify(taskList));
+  console.table(taskList);
 }
 
 function addNewTask(e) { 
@@ -108,7 +112,7 @@ function todoChecked(event) {
     todo.isComplete = true;
     console.log('The checkbox is checked');
     event.currentTarget.parentElement.classList.add('todochecked');
-    event.target.classList.add('checked');
+    event.target.classList.toggle('checked');
     
     //add class to colormark checkboc name if checked 
     console.log(event.currentTarget)
@@ -118,24 +122,34 @@ function todoChecked(event) {
     todo.isComplete = false;
     console.log('The checkbox is not checked');
     event.currentTarget.parentElement.classList.remove('todochecked');
-    event.target.classList.remove('checked');
+    event.target.classList.toggle('checked');
   }
-    localStorage.setItem("taskList", JSON.stringify(taskList));
-    console.table(taskList);
-
-  //sortByComplete();
+  addToLocalStorage();
+  sortByComplete();
 }
 
 // Sortera per isComplete sant/falskt
 function sortByComplete() {
+  const taskList = taskList.sort((a, b) => {
+    if (a.isComplete < b.isComplete) {
+      return -1;
+    }
+    if (a.isComplete > b.isComplete) {
+      return 1;
+    }
+    return 0;
+  });
+  addToLocalStorage()
   
-  //console.log(taskList.findIndex(x => x.isComplete === true)) //if true = -1, if false = 0
-  if ( isComplete = !isComplete) {
-    //console.log('still false');
-  }
-  else if (isComplete) {
-  //console.log('true');
- }
+//   //console.log(taskList.findIndex(x => x.isComplete === true)) //if true = -1, if false = 0
+//   if ( isComplete = !isComplete) {
+//     taskList.sort((a, b) => a.isComplete.localeCompare(b.isComplete));
+
+//     //console.log('still false');
+//   }
+//   else if (isComplete) {
+//   //console.log('true');
+//  }
   console.log(taskList);
 }
 
@@ -183,8 +197,7 @@ function sortByDate(eve) {
     taskList.sort((a, b) => b.addedDate.localeCompare(a.addedDate));
     isDateSort = true;
   }
-  localStorage.setItem("taskList", JSON.stringify(taskList));
-  printTaskList(taskList);
+  addToLocalStorage()
 }
 
 function sortByName(ev) {
@@ -197,8 +210,7 @@ function sortByName(ev) {
     taskList.sort((a, b) => b.task.localeCompare(a.task));
     isNameSort = true;
   }
-  localStorage.setItem("taskList", JSON.stringify(taskList));
-  printTaskList(taskList);
+  addToLocalStorage()
 }
 
 function sortByDeadline(event) {
@@ -212,8 +224,7 @@ function sortByDeadline(event) {
     taskList.sort((a, b) => a.deadline.localeCompare(b.deadline));
     isDeadlineSort = true;
   }
-  localStorage.setItem("taskList", JSON.stringify(taskList));
-  printTaskList(taskList);
+  addToLocalStorage()
 }
 
 SortByDateBtn.addEventListener('click', sortByDate);
