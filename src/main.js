@@ -23,17 +23,13 @@ dateField.innerHTML = todaysDate.toLocaleDateString();
  ************************************************************************************************************/
 
 function getFromLocalStorage() {
+  console.log(localStorage.getItem('taskList'));
   const getStoredArray = localStorage.getItem('taskList');
   
   if (getStoredArray) {
     taskList = JSON.parse(getStoredArray);
     printTaskList(taskList);
   }
-}
-
-function addToLocalStorage() {
-  localStorage.setItem("taskList", JSON.stringify(taskList));
-  console.table(taskList);
 }
 
 function addNewTask(e) { 
@@ -68,7 +64,9 @@ function printTaskList(taskList) {
 
   for (let i = 0; i < taskList.length; i++) {
     const checkBox = taskList[i].isComplete ? 'todochecked' : ''; //som en förenklad if else -sats, (condition to test ? value if true : value if false)
+    const toggled = taskList[i].isComplete ? 'toggled' : '';
     const checked = taskList[i].isComplete ? 'checked' : '';
+
 
     // const checkBox;
     //   if (taskList[i].isComplete) {
@@ -78,14 +76,18 @@ function printTaskList(taskList) {
     //   };
 
     tasks.innerHTML += `
-        <li data-id="${i}"> <div class="licontainer">
-        <label for= "${taskList[i].task}">
-        <input type="checkbox" name="checkbox" class="checkbox" ${checked} data-id="${i}">
-        <span class="text ${checkBox}" id="texttodo">${taskList[i].task}</span><br>
-        <span class="text ${checkBox}"> ${taskList[i].deadline}</span></div><div class="rightsection">
-        <span class="material-symbols-outlined category">${taskList[i].category}</span>
-        <button class="material-symbols-outlined" data-id="${i}">close</button>
-        </div>
+        <li data-id="${i}">
+          <div class="licontainer">
+            <label for= "${taskList[i].task}">
+              <input type="checkbox" name="checkbox" class="checkbox ${toggled}"  ${checked} data-id="${i}">
+              <span class="text ${checkBox}" id="texttodo">${taskList[i].task}</span><br>
+              <span class="text"> ${taskList[i].deadline}</span>
+            </label>
+          </div>
+          <div class="rightsection">
+            <span class="material-symbols-outlined category">${taskList[i].category}</span>
+            <button class="material-symbols-outlined" data-id="${i}">close</button>
+          </div>
         </li>`;
   }
   showsortSection();
@@ -111,21 +113,26 @@ function todoChecked(event) {
   if (event.target.checked) {
     todo.isComplete = true;
     console.log('The checkbox is checked');
-    event.currentTarget.parentElement.classList.add('todochecked');
-    event.target.classList.toggle('checked');
+    event.currentTarget.nextElementSibling.classList.add('todochecked');
+    event.target.classList.add('toggled');
+    event.target.classList.add('checked');
     
-    //add class to colormark checkboc name if checked 
-    console.log(event.currentTarget)
+    //add class to colormark checkbox name if checked 
+    console.log(event.target)
     console.log(todo);
    
   } else {
     todo.isComplete = false;
     console.log('The checkbox is not checked');
-    event.currentTarget.parentElement.classList.remove('todochecked');
-    event.target.classList.toggle('checked');
+    event.currentTarget.nextElementSibling.classList.remove('todochecked');
+    event.target.classList.remove('toggled');
+    event.target.classList.remove('checked');
+
   }
-  addToLocalStorage();
-  sortByComplete();
+    localStorage.setItem("taskList", JSON.stringify(taskList));
+    console.table(taskList);
+
+  //sortByComplete();
 }
 
 // Sortera per isComplete sant/falskt
@@ -139,7 +146,8 @@ function sortByComplete() {
     }
     return 0;
   });
-  addToLocalStorage()
+  localStorage.setItem("taskList", JSON.stringify(taskList));
+  printTaskList(taskList);
   
 //   //console.log(taskList.findIndex(x => x.isComplete === true)) //if true = -1, if false = 0
 //   if ( isComplete = !isComplete) {
@@ -197,7 +205,8 @@ function sortByDate(eve) {
     taskList.sort((a, b) => b.addedDate.localeCompare(a.addedDate));
     isDateSort = true;
   }
-  addToLocalStorage()
+  localStorage.setItem("taskList", JSON.stringify(taskList));
+  printTaskList(taskList);
 }
 
 function sortByName(ev) {
@@ -210,7 +219,8 @@ function sortByName(ev) {
     taskList.sort((a, b) => b.task.localeCompare(a.task));
     isNameSort = true;
   }
-  addToLocalStorage()
+  localStorage.setItem("taskList", JSON.stringify(taskList));
+  printTaskList(taskList);
 }
 
 function sortByDeadline(event) {
@@ -224,7 +234,8 @@ function sortByDeadline(event) {
     taskList.sort((a, b) => a.deadline.localeCompare(b.deadline));
     isDeadlineSort = true;
   }
-  addToLocalStorage()
+  localStorage.setItem("taskList", JSON.stringify(taskList));
+  printTaskList(taskList);
 }
 
 SortByDateBtn.addEventListener('click', sortByDate);
