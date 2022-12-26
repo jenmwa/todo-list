@@ -46,7 +46,7 @@ function addNewTask(e) {
     let todoInput = {
       task: newTaskInput.value,
       deadline: deadlineInput.value,
-      addedDate: todaysDate.toString(),
+      addedDate: new Date().toString(),
       category: selectedCategory,
       isComplete: false, // avbockade tasks ska längst ner i listan men fortfarande synas i listan
     };
@@ -86,7 +86,7 @@ function printTaskList(taskList) {
           </div>
           <div class="rightsection">
             <span class="material-symbols-outlined category">${taskList[i].category}</span>
-            <button class="material-symbols-outlined" data-id="${i}">close</button>
+            <button class="material-symbols-outlined" aria-label="ta bort todo" data-id="${i}">close</button>
           </div>
         </li>`;
   }
@@ -194,20 +194,41 @@ const SortByDateBtn = document.querySelector('#sortByDateBtn');
 const sortByNameBtn = document.querySelector('#sortByNameBtn');
 const sortByDeadlineBtn = document.querySelector('#sortByDeadlineBtn');
 
-function sortByDate(eve) {
-  console.log('clicketi');
-  console.log(taskList);
-  eve.preventDefault();
-  if (isDateSort) {
-    taskList.sort((a, b) => a.addedDate.localeCompare(b.addedDate));
-    isDateSort = false;
-  } else if (isDateSort === false) {
-    taskList.sort((a, b) => b.addedDate.localeCompare(a.addedDate));
-    isDateSort = true;
+
+function sortByDate(e) {
+e.preventDefault();
+const sorted = taskList.sort((a, b) => {
+  if (a.addedDate < b.addedDate) {
+    return -1;
+
   }
-  localStorage.setItem("taskList", JSON.stringify(taskList));
-  printTaskList(taskList);
+  if (a.addedDate > b.addedDate) {
+    return 1;
+  }
+  return 0;
+});
+
+console.table(taskList);
+localStorage.setItem("taskList", JSON.stringify(taskList));
+printTaskList(taskList);
 }
+
+// function sortByDate(eve) {
+//   console.log('clicketi');
+//   console.log(taskList);
+//   eve.preventDefault();
+//   if (isDateSort) {
+//     taskList.sort((a, b) => a.addedDate(b.addedDate));
+//     isDateSort = false;
+//   } else if (isDateSort === false) {
+//     taskList.sort((a, b) => b.addedDate(a.addedDate));
+//     isDateSort = true;
+//   }
+//   localStorage.setItem("taskList", JSON.stringify(taskList));
+//   // console.table(taskList);
+
+//   printTaskList(taskList);
+// }
 
 function sortByName(ev) {
   console.log(taskList);
