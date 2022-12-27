@@ -132,20 +132,22 @@ function todoChecked(event) {
     localStorage.setItem("taskList", JSON.stringify(taskList));
     console.table(taskList);
 
-  //sortByComplete();
+  sortByComplete();
 }
 
 // Sortera per isComplete sant/falskt
 function sortByComplete() {
-  const taskList = taskList.sort((a, b) => {
-    if (a.isComplete < b.isComplete) {
-      return -1;
-    }
-    if (a.isComplete > b.isComplete) {
-      return 1;
-    }
-    return 0;
-  });
+  
+const done = taskList.sort((a, b) => {
+  if (a.isComplete < b.isComplete) {
+    return -1;
+
+  }
+  if (a.isComplete > b.isComplete) {
+    return 1;
+  }
+  return 0;
+});
   localStorage.setItem("taskList", JSON.stringify(taskList));
   printTaskList(taskList);
   
@@ -186,7 +188,7 @@ function removeTask(e) {
  * se Aritmetik v3 14 modul
  */
 
-let isDateSort = true;
+//let isDateSort = true;
 let isNameSort = true;
 let isDeadlineSort = true;
 
