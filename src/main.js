@@ -48,7 +48,7 @@ function addNewTask(e) {
       deadline: deadlineInput.value,
       addedDate: new Date().toString(),
       category: selectedCategory,
-      isComplete: false, // avbockade tasks ska längst ner i listan men fortfarande synas i listan
+      isComplete: false,
     };
 
     taskList.push(todoInput);
@@ -58,15 +58,16 @@ function addNewTask(e) {
   }
 }
 
+submitBtn.addEventListener('click', addNewTask);
+
 function printTaskList(taskList) {
   localStorage.setItem("taskList", JSON.stringify(taskList));
   tasks.innerHTML = '';
 
   for (let i = 0; i < taskList.length; i++) {
-    const checkBox = taskList[i].isComplete ? 'todochecked' : ''; //som en förenklad if else -sats, (condition to test ? value if true : value if false)
+    const checkBox = taskList[i].isComplete ? 'todochecked' : ''; 
     const toggled = taskList[i].isComplete ? 'toggled' : '';
     const checked = taskList[i].isComplete ? 'checked' : '';
-
 
     // const checkBox;
     //   if (taskList[i].isComplete) {
@@ -81,7 +82,7 @@ function printTaskList(taskList) {
             <label for= "${taskList[i].task}">
               <input type="checkbox" name="checkbox" class="checkbox ${toggled}"  ${checked} data-id="${i}">
               <span class="text ${checkBox}" id="texttodo">${taskList[i].task}</span><br>
-              <span class="text"> ${taskList[i].deadline}</span>
+              <span class="text ${checkBox}"> ${taskList[i].deadline}</span>
             </label>
           </div>
           <div class="rightsection">
@@ -89,6 +90,10 @@ function printTaskList(taskList) {
             <button class="material-symbols-outlined" aria-label="ta bort todo" data-id="${i}">close</button>
           </div>
         </li>`;
+
+  // IN med OM deadline har passerat
+  // IN med OM deadline är inom 5 dagar
+        
   }
   showsortSection();
   todoEventListeners();
@@ -106,50 +111,22 @@ function todoEventListeners() {
   });  
 }
 
-//funktion när todo är checked, gråa ut text
 function todoChecked(event) {
   const todo = taskList[event.currentTarget.dataset.id];
 
   if (event.target.checked) {
     todo.isComplete = true;
-    console.log('The checkbox is checked');
     event.currentTarget.nextElementSibling.classList.add('todochecked');
     event.target.classList.add('toggled');
     event.target.classList.add('checked');
-    
-    //add class to colormark checkbox name if checked 
-    console.log(event.target)
-    console.log(todo);
-   
   } else {
     todo.isComplete = false;
-    console.log('The checkbox is not checked');
     event.currentTarget.nextElementSibling.classList.remove('todochecked');
     event.target.classList.remove('toggled');
     event.target.classList.remove('checked');
-
   }
-    localStorage.setItem("taskList", JSON.stringify(taskList));
-    console.table(taskList);
-
-  sortByComplete();
-}
-
-function sortByComplete() {
-  
-const done = taskList.sort((a, b) => {
-  if (a.isComplete < b.isComplete) {
-    return -1;
-
-  }
-  if (a.isComplete > b.isComplete) {
-    return 1;
-  }
-  return 0;
-});
   localStorage.setItem("taskList", JSON.stringify(taskList));
-  printTaskList(taskList);
-  console.log(taskList);
+  sortByComplete();
 }
 
 function showsortSection() { 
@@ -172,12 +149,7 @@ function removeTask(e) {
 /************************************************************************************************************
  * ------------------------------------  Sort Section ---------------------------------------------
  ************************************************************************************************************/
-/**
- * sorteraSektion OBS NÄR ALLT FÖR G ÄR KLART - REFAKTORERA KODEN! 
- * se Aritmetik v3 14 modul
- */
 
-//let isDateSort = true;
 let isNameSort = true;
 let isDeadlineSort = true;
 
@@ -185,9 +157,9 @@ const SortByDateBtn = document.querySelector('#sortByDateBtn');
 const sortByNameBtn = document.querySelector('#sortByNameBtn');
 const sortByDeadlineBtn = document.querySelector('#sortByDeadlineBtn');
 
-
 function sortByDate(e) {
 e.preventDefault();
+document.querySelector('#sortByText').innerHTML = 'inlagt datum';
 const sorted = taskList.sort((a, b) => {
   if (a.addedDate < b.addedDate) {
     return -1;
@@ -199,31 +171,13 @@ const sorted = taskList.sort((a, b) => {
   return 0;
 });
 
-console.table(taskList);
 localStorage.setItem("taskList", JSON.stringify(taskList));
 printTaskList(taskList);
 }
 
-// function sortByDate(eve) {
-//   console.log('clicketi');
-//   console.log(taskList);
-//   eve.preventDefault();
-//   if (isDateSort) {
-//     taskList.sort((a, b) => a.addedDate(b.addedDate));
-//     isDateSort = false;
-//   } else if (isDateSort === false) {
-//     taskList.sort((a, b) => b.addedDate(a.addedDate));
-//     isDateSort = true;
-//   }
-//   localStorage.setItem("taskList", JSON.stringify(taskList));
-//   // console.table(taskList);
-
-//   printTaskList(taskList);
-// }
-
 function sortByName(ev) {
-  console.log(taskList);
   ev.preventDefault();
+  document.querySelector('#sortByText').innerHTML = 'bokstavsordning';
   if (isNameSort) {
     taskList.sort((a, b) => a.task.localeCompare(b.task));
     isNameSort = false;
@@ -236,9 +190,8 @@ function sortByName(ev) {
 }
 
 function sortByDeadline(event) {
-  console.log('clicketiclick');
-  console.log(taskList);
   event.preventDefault();
+  document.querySelector('#sortByText').innerHTML = 'deadline';
   if (isDeadlineSort) {
     taskList.sort((a, b) => b.deadline.localeCompare(a.deadline));
     isDeadlineSort = false;
@@ -249,6 +202,22 @@ function sortByDeadline(event) {
   localStorage.setItem("taskList", JSON.stringify(taskList));
   printTaskList(taskList);
 }
+
+function sortByComplete() {
+  const done = taskList.sort((a, b) => {
+    if (a.isComplete < b.isComplete) {
+      return -1;
+  
+    }
+    if (a.isComplete > b.isComplete) {
+      return 1;
+    }
+    return 0;
+  });
+    localStorage.setItem("taskList", JSON.stringify(taskList));
+    printTaskList(taskList);
+    console.log(taskList);
+  }
 
 SortByDateBtn.addEventListener('click', sortByDate);
 sortByNameBtn.addEventListener('click', sortByName);
@@ -274,14 +243,6 @@ function toggleColorMode() {
 };
 
 colorModeIcon.addEventListener('click', toggleColorMode);
-
-/************************************************************************************************************
- * ----------------------------------------  Eventlisteners -------------------------------------------------
- ************************************************************************************************************/
-
-
-// eventlyssnare klick på submit aktivera funktion addNewTask
-submitBtn.addEventListener('click', addNewTask);
 
 /************************************************************************************************************
  * ------------------------------------  get from local Storage ---------------------------------------------

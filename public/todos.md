@@ -1,19 +1,6 @@
 att göra kod:
 
-- STÄDA KOD!!!!!
--  kommentarer på engelska!
-
 - dark mood ej sparat i localStorage
-
-- IF-satser VG
-    OM uppgift klar:
-        visuellt SYNS klar och läggs längst ner i listan
-
-
-
-- i printTaskList - läggs till
-                            - längst ner på en lista,
-                                sortera isComplete false/true
 
 - validera inputs?
     - antal bokstäver max?
@@ -24,8 +11,6 @@ att göra kod:
 
 
 - IF-satser VG
-    OM uppgift klar:
-        visuellt SYNS klar och läggs längst ner i listan
 
     OM deadline passerats
         annan färg/ annat utseende SYNAS
@@ -36,9 +21,6 @@ att göra kod:
 BUGGAR:
     - du kan lägga till flera av exakt samma todo. detta ska ej gå.
     (kontrollera if-satsen och villkoren!)
-
-    - Kategorier iklickade... nollställ!
-    NU GÅR alla att klicka i och får visuell förändring men ej ur.
 
 CSS
 - lägg allt i en centrerad container så designen håller sig enhållig vid förstoring/förminskning
@@ -51,7 +33,6 @@ SAKER JAG VILL HA MED men ej prio:
 
 *GLÖM EJ:
 - TYPESCRIPT
-- STÄDA KOD!!!!!!!!
 - METATAGGAR!
 
 
