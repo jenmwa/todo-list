@@ -132,6 +132,8 @@ function todoChecked(event) {
 function showsortSection() { 
   if (taskList.length <= 1) {
     sortSection.classList.remove('open');
+    document.querySelector('#sortByText').innerHTML = ' ';
+
   }
   if (taskList.length >= 2) {
     sortSection.classList.add('open');
@@ -163,7 +165,6 @@ document.querySelector('#sortByText').innerHTML = 'inlagt datum';
 const sorted = taskList.sort((a, b) => {
   if (a.addedDate < b.addedDate) {
     return -1;
-
   }
   if (a.addedDate > b.addedDate) {
     return 1;
