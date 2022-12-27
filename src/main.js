@@ -135,7 +135,6 @@ function todoChecked(event) {
   sortByComplete();
 }
 
-// Sortera per isComplete sant/falskt
 function sortByComplete() {
   
 const done = taskList.sort((a, b) => {
@@ -150,16 +149,6 @@ const done = taskList.sort((a, b) => {
 });
   localStorage.setItem("taskList", JSON.stringify(taskList));
   printTaskList(taskList);
-  
-//   //console.log(taskList.findIndex(x => x.isComplete === true)) //if true = -1, if false = 0
-//   if ( isComplete = !isComplete) {
-//     taskList.sort((a, b) => a.isComplete.localeCompare(b.isComplete));
-
-//     //console.log('still false');
-//   }
-//   else if (isComplete) {
-//   //console.log('true');
-//  }
   console.log(taskList);
 }
 
@@ -273,13 +262,18 @@ sortByDeadlineBtn.addEventListener('click', sortByDeadline);
  ************************************************************************************************************/
 
 const colorTheme = document.querySelector("body");
-
 const colorModeIcon = document.querySelector(".light-mode-icon");
 
-colorModeIcon.addEventListener('click', () => {
-  colorTheme.classList.toggle('change')?
-  colorModeIcon.textContent = "dark_mode": colorModeIcon.textContent = "light_mode";
-});
+function toggleColorMode() {
+  colorTheme.classList.toggle('change');
+  if (colorTheme.classList.contains('change')) {
+    colorModeIcon.textContent = "dark_mode";
+  } else {
+    colorModeIcon.textContent = "light_mode";
+  }
+};
+
+colorModeIcon.addEventListener('click', toggleColorMode);
 
 /************************************************************************************************************
  * ----------------------------------------  Eventlisteners -------------------------------------------------
