@@ -10,7 +10,7 @@ const tasks = document.querySelector('.tasks');
 const newTaskInput = document.querySelector('#inputTaskField'); 
 const deadlineInput = document.querySelector('#deadlineInput'); 
 const submitBtn = document.querySelector('#submit'); 
-const sortSection = document.querySelector('#sortSection'); 
+const sortSection = document.querySelector('#sortSection');
 
 const taskError = document.querySelector('#taskError');
 
@@ -77,12 +77,13 @@ function printTaskList(taskList) {
     //   };
 
     tasks.innerHTML += `
-        <li data-id="${i}">
+        <li class="todo" data-id="${i}">
           <div class="licontainer">
             <label for= "${taskList[i].task}">
-              <input type="checkbox" name="checkbox" class="checkbox ${toggled}"  ${checked} data-id="${i}">
+              <input type="checkbox" name="checkbox" class="checkbox ${toggled}" ${checked} data-id="${i}">
               <span class="text ${checkBox}" id="texttodo">${taskList[i].task}</span><br>
               <span class="text ${checkBox}"> ${taskList[i].deadline}</span>
+              <span id="test"></span>
             </label>
           </div>
           <div class="rightsection">
@@ -91,8 +92,17 @@ function printTaskList(taskList) {
           </div>
         </li>`;
 
-  // IN med OM deadline har passerat
-  // IN med OM deadline är inom 5 dagar
+        const deadlines = new Date(taskList[i].deadline);
+        const deadlineIn5days = new Date(todaysDate.getFullYear(), todaysDate.getMonth(), todaysDate.getDate() + 5)
+        
+        if (deadlines < todaysDate) {
+          console.log('deadline har passerat');
+         //.classList.add('passed-deadline');
+          
+        }
+        else if (deadlines <= deadlineIn5days) {
+          console.log('deadline är inom 5 dagar');
+        }
         
   }
   showsortSection();
@@ -217,7 +227,6 @@ function sortByComplete() {
   });
     localStorage.setItem("taskList", JSON.stringify(taskList));
     printTaskList(taskList);
-    console.log(taskList);
   }
 
 SortByDateBtn.addEventListener('click', sortByDate);

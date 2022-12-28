@@ -182,7 +182,6 @@ li {
         &:checked {
             accent-color: black; 
         }
-
     }
 
     .text {
@@ -191,6 +190,14 @@ li {
         top: -31px;
         margin-left: 50px;
         line-height: 1px; 
+    }
+
+    .passed-deadline {
+        color: red;
+    }
+
+    .deadline-in-5 {
+        color: green;
     }
     
     #texttodo {
