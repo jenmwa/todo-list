@@ -36,6 +36,11 @@ fieldset {
     margin-right: auto;
 }
 
+.bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
 .colortoggleicon > span {
     font-size: 2rem;
     position: relative;
@@ -197,10 +202,10 @@ li {
     }
 
     .deadline-in-5 {
-        color: green;
+        border: 2px red;
     }
     
-    #texttodo {
+    .texttodo {
         font-size: 1.1rem;
         font-weight: 700;
     }

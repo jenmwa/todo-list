@@ -1,14 +1,8 @@
 att göra kod:
 
-- dark mood ej sparat i localStorage
-
 - validera inputs?
     - antal bokstäver max?
         -annars fixa CSS så fungerar fint med flera rader
-        
-
-- RESET ALL -knapp lista? (töm taskList samt localStorage?)
-
 
 - IF-satser VG
 
@@ -35,6 +29,10 @@ SAKER JAG VILL HA MED men ej prio:
 - TYPESCRIPT
 - METATAGGAR!
 
+
+TODO framöver:
+ - spara sortera-text i LocalStorage om valt
+ - spara darkMode i LocalStorage om valt
 
 LÄNKTIPS:
 Typescript och localStorage.

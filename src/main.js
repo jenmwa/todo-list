@@ -9,7 +9,9 @@ const tasks = document.querySelector('.tasks');
 
 const newTaskInput = document.querySelector('#inputTaskField'); 
 const deadlineInput = document.querySelector('#deadlineInput'); 
-const submitBtn = document.querySelector('#submit'); 
+const submitBtn = document.querySelector('#submit');
+const resetBtn = document.querySelector('#resetAll')
+
 const sortSection = document.querySelector('#sortSection');
 
 const taskError = document.querySelector('#taskError');
@@ -23,13 +25,16 @@ dateField.innerHTML = todaysDate.toLocaleDateString();
  ************************************************************************************************************/
 
 function getFromLocalStorage() {
-  console.log(localStorage.getItem('taskList'));
   const getStoredArray = localStorage.getItem('taskList');
   
   if (getStoredArray) {
     taskList = JSON.parse(getStoredArray);
     printTaskList(taskList);
   }
+}
+
+function setToLocalStorage() {
+  localStorage.setItem("taskList", JSON.stringify(taskList));
 }
 
 function addNewTask(e) { 
@@ -58,10 +63,8 @@ function addNewTask(e) {
   }
 }
 
-submitBtn.addEventListener('click', addNewTask);
-
 function printTaskList(taskList) {
-  localStorage.setItem("taskList", JSON.stringify(taskList));
+  setToLocalStorage();
   tasks.innerHTML = '';
 
   for (let i = 0; i < taskList.length; i++) {
@@ -81,9 +84,8 @@ function printTaskList(taskList) {
           <div class="licontainer">
             <label for= "${taskList[i].task}">
               <input type="checkbox" name="checkbox" class="checkbox ${toggled}" ${checked} data-id="${i}">
-              <span class="text ${checkBox}" id="texttodo">${taskList[i].task}</span><br>
+              <span class="text texttodo ${checkBox}">${taskList[i].task}</span><br>
               <span class="text ${checkBox}"> ${taskList[i].deadline}</span>
-              <span id="test"></span>
             </label>
           </div>
           <div class="rightsection">
@@ -91,19 +93,20 @@ function printTaskList(taskList) {
             <button class="material-symbols-outlined" aria-label="ta bort todo" data-id="${i}">close</button>
           </div>
         </li>`;
-
-        const deadlines = new Date(taskList[i].deadline);
-        const deadlineIn5days = new Date(todaysDate.getFullYear(), todaysDate.getMonth(), todaysDate.getDate() + 5)
         
+        const deadlines = new Date(taskList[i].deadline);
+        const deadlineIn5days = new Date(todaysDate.getFullYear(), todaysDate.getMonth(), todaysDate.getDate() + 5);
+
         if (deadlines < todaysDate) {
           console.log('deadline har passerat');
-         //.classList.add('passed-deadline');
+          //.classList.add('passed-deadline');
           
         }
         else if (deadlines <= deadlineIn5days) {
           console.log('deadline är inom 5 dagar');
+          //.classList.add('.deadline-in-5');
         }
-        
+      
   }
   showsortSection();
   todoEventListeners();
@@ -135,7 +138,7 @@ function todoChecked(event) {
     event.target.classList.remove('toggled');
     event.target.classList.remove('checked');
   }
-  localStorage.setItem("taskList", JSON.stringify(taskList));
+  setToLocalStorage();
   sortByComplete();
 }
 
@@ -182,7 +185,7 @@ const sorted = taskList.sort((a, b) => {
   return 0;
 });
 
-localStorage.setItem("taskList", JSON.stringify(taskList));
+setToLocalStorage();
 printTaskList(taskList);
 }
 
@@ -196,7 +199,7 @@ function sortByName(ev) {
     taskList.sort((a, b) => b.task.localeCompare(a.task));
     isNameSort = true;
   }
-  localStorage.setItem("taskList", JSON.stringify(taskList));
+  setToLocalStorage();
   printTaskList(taskList);
 }
 
@@ -210,7 +213,7 @@ function sortByDeadline(event) {
     taskList.sort((a, b) => a.deadline.localeCompare(b.deadline));
     isDeadlineSort = true;
   }
-  localStorage.setItem("taskList", JSON.stringify(taskList));
+  setToLocalStorage();
   printTaskList(taskList);
 }
 
@@ -225,16 +228,25 @@ function sortByComplete() {
     }
     return 0;
   });
-    localStorage.setItem("taskList", JSON.stringify(taskList));
-    printTaskList(taskList);
+  setToLocalStorage()
+  printTaskList(taskList);
   }
 
 SortByDateBtn.addEventListener('click', sortByDate);
 sortByNameBtn.addEventListener('click', sortByName);
 sortByDeadlineBtn.addEventListener('click', sortByDeadline);
 
+/************************************************************************************************************
+ * ------------------------------------  RESET ALL BTN ------------------------------------------------------
+ ************************************************************************************************************/
 
-//localStorage.clear(); rensa localstorage.
+function resetAll(event) {
+  event.preventDefault();
+  console.log('klick');
+  tasks.innerHTML = '';
+  sortSection.classList.remove('open');
+  localStorage.clear();
+}
 
 /************************************************************************************************************
  * ------------------------------------  Light/DarkMode Toggle ---------------------------------------------
@@ -251,6 +263,14 @@ function toggleColorMode() {
     colorModeIcon.textContent = "light_mode";
   }
 };
+
+/************************************************************************************************************
+ * ------------------------------------  EventListeners -----------------------------------------------------
+ ************************************************************************************************************/
+
+submitBtn.addEventListener('click', addNewTask);
+
+resetBtn.addEventListener('click', resetAll);
 
 colorModeIcon.addEventListener('click', toggleColorMode);
 
