@@ -71,6 +71,9 @@ function printTaskList(taskList) {
     const checkBox = taskList[i].isComplete ? 'todochecked' : ''; 
     const toggled = taskList[i].isComplete ? 'toggled' : '';
     const checked = taskList[i].isComplete ? 'checked' : '';
+    //const passed = taskList[i].deadline ? 'passed-deadline' : ''; ${passed} 
+    //const soon = taskList[i].deadline ? 'deadline-in-5' : ''; ${soon}
+    //console.log(taskList[i].deadline);
 
     // const checkBox;
     //   if (taskList[i].isComplete) {
@@ -92,25 +95,25 @@ function printTaskList(taskList) {
             <span class="material-symbols-outlined category">${taskList[i].category}</span>
             <button class="material-symbols-outlined" aria-label="ta bort todo" data-id="${i}">close</button>
           </div>
-        </li>`;
+          </li>`;
         
-        const deadlines = new Date(taskList[i].deadline);
-        const deadlineIn5days = new Date(todaysDate.getFullYear(), todaysDate.getMonth(), todaysDate.getDate() + 5);
-
-        if (deadlines < todaysDate) {
-          console.log('deadline har passerat');
-          //.classList.add('passed-deadline');
-          
-        }
-        else if (deadlines <= deadlineIn5days) {
-          console.log('deadline är inom 5 dagar');
-          //.classList.add('.deadline-in-5');
-        }
-      
+          const deadlines = new Date(taskList[i].deadline);
+          const deadlineIn5days = new Date(todaysDate.getFullYear(), todaysDate.getMonth(), todaysDate.getDate() + 5);
+  
+          if (deadlines < todaysDate) {
+            console.log('deadline har passerat');
+            //.classList.add('passed-deadline');
+            
+          }
+          else if (deadlines <= deadlineIn5days) {
+            console.log('deadline är inom 5 dagar');
+            //.classList.add('.deadline-in-5');
+          }
+        
+    }
+    showsortSection();
+    todoEventListeners();
   }
-  showsortSection();
-  todoEventListeners();
-}
  
 function todoEventListeners() {
   const taskItems = Array.from(document.querySelectorAll('.tasks button'));
@@ -123,6 +126,9 @@ function todoEventListeners() {
     check.addEventListener('change', todoChecked);
   });  
 }
+
+
+
 
 function todoChecked(event) {
   const todo = taskList[event.currentTarget.dataset.id];

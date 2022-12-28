@@ -26,9 +26,13 @@ SAKER JAG VILL HA MED men ej prio:
     - byta bakgrund beroende på årstid?
 
 *GLÖM EJ:
-- TYPESCRIPT
 - METATAGGAR!
 
+INNAN inlämning:
+- ta bort alla console.log
+- utvärdering! tankar, annorlunda, reflektion
+- presentation github
+- it's learning lämna in repo
 
 TODO framöver:
  - spara sortera-text i LocalStorage om valt
