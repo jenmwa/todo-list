@@ -17,11 +17,18 @@ Och att vi använder LocalStorage för att spara våra todo's.
 * Prettier
 * Eslint
 * Stylelint
+
 ## Validering
 
-* HTML pdf
+* HTML
+[todo_htmlvalidate.pdf](https://github.com/Medieinstitutet/fed22d-js-grundkurs-2-todo-jenmwa/files/10320205/todo_htmlvalidate.pdf)
+
 * CSS pdf
-* LightHouse Accessibility PDF
+[todo_cssvalidate.pdf](https://github.com/Medieinstitutet/fed22d-js-grundkurs-2-todo-jenmwa/files/10320208/todo_cssvalidate.pdf)
+
+* LightHouse Accessibility
+<img width="800" alt="lighthouse_desktop" src="https://user-images.githubusercontent.com/113125376/209974174-6183d6a8-419a-42f2-af43-bedf0bd1e910.png">
+<img width="400" alt="lighthouse_mobile" src="https://user-images.githubusercontent.com/113125376/209974185-ece14cb2-f852-47d2-8a52-70156dc01acd.png">
 
 
 
@@ -40,3 +47,4 @@ att jobba vidare på:
 * få till visuell förändring om  deadline passerat
 * få till visuell förändring om deadline är inom 5 dagar
 * Css fixa om task är flera rader
+* Lägga till Metataggar
