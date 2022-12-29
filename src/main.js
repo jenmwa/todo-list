@@ -19,7 +19,6 @@ const taskError = document.querySelector('#taskError');
 let todaysDate = new Date();
 const dateField = document.querySelector('#todaysDate');
 dateField.innerHTML = todaysDate.toLocaleDateString();
-todaysDate = document.querySelector('#deadlineInput').valueAsDate;
 
 /************************************************************************************************************
  * -------------------------------------------  Functions  -------------------------------------------------
@@ -98,18 +97,18 @@ function printTaskList(taskList) {
           </div>
           </li>`;
         
-          const deadlines = new Date(taskList[i].deadline);
-          const deadlineIn5days = new Date(todaysDate.getFullYear(), todaysDate.getMonth(), todaysDate.getDate() + 5);
+          // const deadlines = new Date(taskList[i].deadline);
+          // const deadlineIn5days = new Date(todaysDate.getFullYear(), todaysDate.getMonth(), todaysDate.getDate() + 5);
   
-          if (deadlines < todaysDate) {
-            console.log('deadline har passerat');
-            //.classList.add('passed-deadline');
+          // if (deadlines < todaysDate) {
+          //   console.log('deadline har passerat');
+          //   //.classList.add('passed-deadline');
             
-          }
-          else if (deadlines <= deadlineIn5days) {
-            console.log('deadline är inom 5 dagar');
-            //.classList.add('.deadline-in-5');
-          }
+          // }
+          // else if (deadlines <= deadlineIn5days) {
+          //   console.log('deadline är inom 5 dagar');
+          //   //.classList.add('.deadline-in-5');
+          // }
         
     }
     showsortSection();
