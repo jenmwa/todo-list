@@ -16,9 +16,10 @@ const sortSection = document.querySelector('#sortSection');
 
 const taskError = document.querySelector('#taskError');
 
-const todaysDate = new Date();
+let todaysDate = new Date();
 const dateField = document.querySelector('#todaysDate');
 dateField.innerHTML = todaysDate.toLocaleDateString();
+todaysDate = document.querySelector('#deadlineInput').valueAsDate;
 
 /************************************************************************************************************
  * -------------------------------------------  Functions  -------------------------------------------------
