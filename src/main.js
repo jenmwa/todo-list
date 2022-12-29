@@ -127,9 +127,6 @@ function todoEventListeners() {
   });  
 }
 
-
-
-
 function todoChecked(event) {
   const todo = taskList[event.currentTarget.dataset.id];
 
