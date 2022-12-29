@@ -246,12 +246,10 @@ sortByDeadlineBtn.addEventListener('click', sortByDeadline);
  * ------------------------------------  RESET ALL BTN ------------------------------------------------------
  ************************************************************************************************************/
 
-function resetAll(event) {
-  event.preventDefault();
-  console.log('klick');
+function resetAll() {
   tasks.innerHTML = '';
-  sortSection.classList.remove('open');
   localStorage.clear();
+  sortSection.classList.remove('open');
 }
 
 /************************************************************************************************************
