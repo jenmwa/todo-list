@@ -47,3 +47,4 @@ att jobba vidare på:
 * få till visuell förändring om  deadline passerat
 * få till visuell förändring om deadline är inom 5 dagar
 * Css fixa om task är flera rader
+* Lägga till Metataggar
