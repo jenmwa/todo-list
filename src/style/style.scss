@@ -1,6 +1,8 @@
 @use "utils/a11y"; // Om det inte funkar, byt @use mot @import
 @use "vendor/reset";
 
+@use "darkmode";
+
 @use "base";
 
 @media screen and (min-width: 768px) {

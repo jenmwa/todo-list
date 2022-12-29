@@ -1,0 +1,102 @@
+body.change {
+    background: #403b34;
+    color: #eee;
+
+    main {
+        background: #403b34;
+    }
+
+    input {
+        background-color: whitesmoke;
+        color:#403b34
+    }
+
+    input[type="checkbox"]:checked {
+        border: none;
+        accent-color: #7e846b;
+        outline: 2px solid #2f2504;
+    }
+
+    label input[type="radio"]:checked ~ span {
+        background-color:whitesmoke;
+        color: #7e846b;
+      }
+
+    button {
+        background-color: #7e846b;
+        color: white;
+    }
+
+    li {
+        display: flex;
+        justify-content: space-between;
+        list-style: none;
+        background: #03241F;
+        color: whitesmoke;
+        border-radius: 12px;
+        padding: 1rem;
+        width: 350px;
+        height: 85px;
+        margin: 10px 0 0 -40px;
+        font-size: 1rem;
+        box-shadow: 5px 5px 5px black;
+    
+        .category {
+            font-size: 2rem;
+            background-color: transparent;
+            border: none;
+            color:  #d0ddd7;
+            padding: 10px;
+            margin: 0 5px 10px 0;
+        
+            &:hover {
+                background-color: transparent;
+                cursor:default;
+                box-shadow: none;
+                color: #d0ddd7;  
+            }
+        }
+
+    }
+
+    .material-symbols-outlined {
+        background-color: #03241F;
+        border: 2px solid #fcfcfc;
+        color: whitesmoke;
+
+        &:hover {
+            background-color: grey;
+            color: whitesmoke;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px #2f2504;                     
+        }
+    }
+
+    .app {
+        background: #03241F;
+        color: whitesmoke;
+    }
+   
+    .taskerror {
+        color: lightcoral;
+    }
+       
+    .submit {
+        &:hover {
+            background-color: #6c6b67;
+            color: whitesmoke;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px #2f2504;                     
+        }
+    }
+
+    .resetall {
+        text-shadow: 0 0 5px black;
+
+    }
+
+    .todochecked {
+        text-decoration: line-through;
+        color: #d0ddd7;
+    }
+ }
