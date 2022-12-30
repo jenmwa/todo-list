@@ -20,6 +20,8 @@ let todaysDate = new Date();
 const dateField = document.querySelector('#todaysDate');
 dateField.innerHTML = todaysDate.toLocaleDateString();
 
+document.querySelector('#deadlineInput').valueAsDate = todaysDate;
+
 /************************************************************************************************************
  * -------------------------------------------  Functions  -------------------------------------------------
  ************************************************************************************************************/
