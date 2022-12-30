@@ -71,16 +71,30 @@ function printTaskList(taskList) {
     const checkBox = taskList[i].isComplete ? 'todochecked' : ''; 
     const toggled = taskList[i].isComplete ? 'toggled' : '';
     const checked = taskList[i].isComplete ? 'checked' : '';
-    // const passed = taskList[i].deadline ? 'passed-deadline' : ''; ${passed} 
+    //const passed = taskList[i].deadline ? 'passed-deadline' : '';
     //const soon = taskList[i].deadline ? 'deadline-in-5' : ''; ${soon}
     //console.log(taskList[i].deadline);
 
-    // const checkBox;
-    //   if (taskList[i].isComplete) {
-    //     checkBox = 'todochecked';
-    //   } else {
-    //     checkBox = '';
-    //   };
+  //   let passed;
+  //    if (task.deadline) {
+  //    passed = 'passed-deadline';
+  //    } else {
+  //    passed = '';
+  //    }
+
+    //work in progress
+    const deadlines = new Date(taskList[i].deadline);
+    const deadlineIn5days = new Date(todaysDate.getFullYear(), todaysDate.getMonth(), todaysDate.getDate() + 5);
+    //variabel med VAR i koden klassen ska läggas till
+    
+    if (deadlines < todaysDate) {
+    console.log(taskList[i].deadline + ' deadline har passerat');
+    //.classList.add('passed-deadline');
+    }
+    else if (deadlines <= deadlineIn5days) {
+    console.log(taskList[i].deadline + ' deadline är inom 5 dagar');
+    //.classList.add('.deadline-in-5');
+    }
 
     tasks.innerHTML += `
         <li class="todo" data-id="${i}">
@@ -97,25 +111,11 @@ function printTaskList(taskList) {
           </div>
           </li>`;
         
-          //work in progress
-          const deadlines = new Date(taskList[i].deadline);
-          const deadlineIn5days = new Date(todaysDate.getFullYear(), todaysDate.getMonth(), todaysDate.getDate() + 5);
-
-          if (deadlines < todaysDate) {
-            console.log(taskList[i].deadline + ' deadline har passerat');
-            //.classList.add('passed-deadline');
-            
-          }
-          else if (deadlines <= deadlineIn5days) {
-            console.log(taskList[i].deadline + ' deadline är inom 5 dagar');
-            //.classList.add('.deadline-in-5');
-          }
-        
     }
     showsortSection();
     todoEventListeners();
   }
- 
+
 function todoEventListeners() {
   const taskItems = Array.from(document.querySelectorAll('.tasks button'));
   taskItems.forEach(item => {
