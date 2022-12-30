@@ -171,9 +171,10 @@ function removeTask(e) {
 let isNameSort = true;
 let isDeadlineSort = true;
 
-const SortByDateBtn = document.querySelector('#sortByDateBtn');
+const sortByDateBtn = document.querySelector('#sortByDateBtn');
 const sortByNameBtn = document.querySelector('#sortByNameBtn');
 const sortByDeadlineBtn = document.querySelector('#sortByDeadlineBtn');
+const sortByCategoryBtn = document.querySelector('#sortByCategoryBtn');
 
 function sortByDate(e) {
 e.preventDefault();
@@ -206,8 +207,8 @@ function sortByName(ev) {
   printTaskList(taskList);
 }
 
-function sortByDeadline(event) {
-  event.preventDefault();
+function sortByDeadline(eve) {
+  eve.preventDefault();
   document.querySelector('#sortByText').innerHTML = 'deadline';
   if (isDeadlineSort) {
     taskList.sort((a, b) => b.deadline.localeCompare(a.deadline));
@@ -219,6 +220,23 @@ function sortByDeadline(event) {
   setToLocalStorage();
   printTaskList(taskList);
 }
+
+function sortByCategory(event) {
+  event.preventDefault();
+  document.querySelector('#sortByText').innerHTML = 'kategori';
+  const sorted = taskList.sort((a, b) => {
+    if (a.category < b.category) {
+      return -1;
+    }
+    if (a.category > b.category) {
+      return 1;
+    }
+    return 0;
+  });
+  
+  setToLocalStorage();
+  printTaskList(taskList);
+  }
 
 function sortByComplete() {
   const done = taskList.sort((a, b) => {
@@ -235,9 +253,10 @@ function sortByComplete() {
   printTaskList(taskList);
   }
 
-SortByDateBtn.addEventListener('click', sortByDate);
+sortByDateBtn.addEventListener('click', sortByDate);
 sortByNameBtn.addEventListener('click', sortByName);
 sortByDeadlineBtn.addEventListener('click', sortByDeadline);
+sortByCategoryBtn.addEventListener('click', sortByCategory);
 
 /************************************************************************************************************
  * ------------------------------------  RESET ALL BTN ------------------------------------------------------
