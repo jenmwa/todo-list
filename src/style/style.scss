@@ -1,4 +1,4 @@
-@use "utils/a11y"; // Om det inte funkar, byt @use mot @import
+@use "utils/a11y";
 @use "vendor/reset";
 
 @use "darkmode";
@@ -25,7 +25,6 @@ $baseColor: #7e846b;
   font-family: 'Chivo Mono', monospace, serif;
   color: $primaryColorDark;
   font-size: rem(16px);
-  background-color: grey;
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
