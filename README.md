@@ -43,8 +43,5 @@ https://medieinstitutet.github.io/fed22d-js-grundkurs-2-todo-jenmwa/
 
 att jobba vidare på:
 
-* se över att en användare inte kan lägga in samma todo flera gånger
-* få till visuell förändring om  deadline passerat
-* få till visuell förändring om deadline är inom 5 dagar
 * avklarade todo's ska exkluderas från sortering
 * avklarade todo's ska hålla sig längst ner i listan - även när nya todo's läggs till
