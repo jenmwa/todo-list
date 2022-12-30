@@ -89,7 +89,6 @@ function printTaskList(taskList) {
               <input type="checkbox" name="checkbox" class="checkbox ${toggled}" ${checked} data-id="${i}">
               <span class="text texttodo ${checkBox}">${taskList[i].task}</span><br>
               <span class="text ${checkBox}"> ${taskList[i].deadline}</span>
-              <span class="deadlineMsg"></span>
             </label>
           </div>
           <div class="rightsection">
@@ -101,7 +100,7 @@ function printTaskList(taskList) {
           //work in progress
           const deadlines = new Date(taskList[i].deadline);
           const deadlineIn5days = new Date(todaysDate.getFullYear(), todaysDate.getMonth(), todaysDate.getDate() + 5);
-  
+
           if (deadlines < todaysDate) {
             console.log(taskList[i].deadline + ' deadline har passerat');
             //.classList.add('passed-deadline');
