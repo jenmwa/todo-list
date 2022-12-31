@@ -77,13 +77,6 @@ function printTaskList(taskList) {
     //const soon = taskList[i].deadline ? 'deadline-in-5' : ''; ${soon}
     //console.log(taskList[i].deadline);
 
-  //   let passed;
-  //    if (task.deadline) {
-  //    passed = 'passed-deadline';
-  //    } else {
-  //    passed = '';
-  //    }
-
     //work in progress
     const deadlines = new Date(taskList[i].deadline);
     const deadlineIn5days = new Date(todaysDate.getFullYear(), todaysDate.getMonth(), todaysDate.getDate() + 5);
@@ -242,7 +235,7 @@ function sortByCategory(event) {
   }
 
 function sortByComplete() {
-  const done = taskList.sort((a, b) => {
+  taskList.sort((a, b) => {
     if (a.isComplete < b.isComplete) {
       return -1;
   
