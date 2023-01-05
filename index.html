@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/ico" href="favicon/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Javascript todo-list gjord av Jenny Waller i kursen Javascript Grundkurs Medieinstitutet 2022.">
+  <meta name="author" content="Jenny Waller">
+  <meta name="theme-color" content="#7e846b">
+
+  <meta property="og:title" content="Javascript Project ToDo-list">
+  <meta property="og:url" content="https://jenwaller.se/javascript/todolist">
+  <meta property="og:description"
+    content="Javascript todo-list gjord av Jenny Waller i kursen Javascript Grundkurs Medieinstitutet 2022">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://jenwaller.se/javascript/img/todo.webp">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <title>Projekt todo-lista</title>
+  <script type="module" crossorigin src="/fed22d-js-grundkurs-2-todo-jenmwa/assets/index.2ce94f5e.js"></script>
+  <link rel="stylesheet" href="/fed22d-js-grundkurs-2-todo-jenmwa/assets/index.ca2435e8.css">
+</head>
+
+<body>
+  <header>
+    <h1>Jennys toDO-lista</h1>
+  </header>
+  <main>
+    <form class="app" id="app">
+      <span id="datetext">dagens datum</span>
+      <div class="date" id="todaysDate"></div>
+      <div class="colortoggleicon">
+        <span class="material-symbols-outlined light-mode-icon"> light_mode </span>
+      </div>
+      <label>
+        Vad ska göras?<br>
+        <small>max 15 tecken</small>
+        <input type="text" class="inputTaskField" id="inputTaskField" placeholder="skriv upp din toDo" minlength="2" maxlength="15">
+      </label>
+      <span class="taskerror" id="taskError"></span>
+      <div class="wrapper">
+        <label>
+          deadline datum<br>
+          <input type="date" title="deadline datum" class="deadline" id="deadlineInput">
+        </label>
+        <fieldset class="select">
+          <legend>kategori</legend>
+          <div class="categories">
+            <div class="section1">
+              <label>
+                <input type="radio" name="category" aria-label="prioritera" value="priority_high" checked>
+                <span class="material-symbols-outlined" id="prio">priority_high</span>
+              </label>
+              <label>
+                <input type="radio" name="category" aria-label="plugg" value="school">
+                <span class="material-symbols-outlined" id="school">school</span>
+              </label>
+            </div>
+            <div class="section2">
+              <label>
+                <input type="radio" name="category" aria-label="handla" value="add_shopping_cart">
+                <span class="material-symbols-outlined" id="shop">add_shopping_cart</span>
+              </label>
+              <label>
+                <input type="radio" name="category" aria-label="favorit" value="favorite">
+                <span class="material-symbols-outlined" id="fav">favorite</span>
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <button type="submit" class="submit" id="submit" aria-label="lägg till på listan" value="Lägg till">lägg
+        till</button>
+      <div class="sortsection" id="sortSection">sortera på:<br>
+        <button class="material-symbols-outlined" aria-label="inlagt datum" id="sortByDateBtn">calendar_today</button>
+        <button class="material-symbols-outlined" aria-label="namn" id="sortByNameBtn">sort_by_alpha</button>
+        <button class="material-symbols-outlined" aria-label="deadline" id="sortByDeadlineBtn">alarm</button>
+        <button class="material-symbols-outlined" aria-label="kategori" id="sortByCategoryBtn">category</button>
+      </div>
+      <div class="bottom">
+        <p class="sortbytext" id="sortByText"></p>
+        <button class="resetall" id="resetAll">Rensa lista</button>
+      </div>
+    </form>
+    <div class="todocontainer" id="todoContainer">
+      <ul class="tasks" id="tasks"></ul>
+    </div>
+  </main>
+
+  
+</body>
+
+</html>
