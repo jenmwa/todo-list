@@ -7,7 +7,6 @@ todo's ska även kunna sorteras per inlagt datum, per deadline samt bokstavsordn
 Och att vi använder LocalStorage för att spara våra todo's.
 
 
-
 ## Tech Stack
 
 * Vanilla JavaScript
